@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.5</version>
         <relativePath/>
     </parent>
     <groupId>bw.co.roguesystems.ithuteng</groupId>
@@ -373,6 +373,7 @@
         <module>core</module>
         <module>webservice</module>
 		<module>thymeleaf</module>
+		<module>admin</module>
     </modules>
     <properties>
         <andromda.version>5.0-SNAPSHOT</andromda.version>
