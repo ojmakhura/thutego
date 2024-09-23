@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>ithuteng-mda</name>
-	<comment>The Ithuteng Access Platform UML2 Eclipse Project.</comment>
+	<name>thutego-mda</name>
+	<comment>The Thutego Curriculum System UML2 Eclipse Project.</comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -16,7 +16,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1688840103204</id>
+			<id>1726917669280</id>
 			<name></name>
 			<type>30</type>
 			<matcher>

@@ -51,9 +51,6 @@ mkdir core\src\main\java
 mkdir core\src\test\java
 mkdir core\target\src\main\java
 
-mkdir web\src\main\java
-mkdir web\target\src\main\java
-
 mkdir webservice\src\main\java
 mkdir webservice\src\test\java
 mkdir webservice\target\src\main\java

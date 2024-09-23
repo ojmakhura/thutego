@@ -3,16 +3,16 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>bw.co.roguesystems.ithuteng</groupId>
-        <artifactId>ithuteng</artifactId>
+        <groupId>bw.co.roguesystems.thutego</groupId>
+        <artifactId>thutego</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>ithuteng-webservice</artifactId>
-    <name>Ithuteng Access Platform Web Services</name>
+    <artifactId>thutego-webservice</artifactId>
+    <name>Thutego Curriculum System Web Services</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ithuteng-core</artifactId>
+            <artifactId>thutego-core</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -39,11 +39,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-client</artifactId>
-            <version>3.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -93,6 +88,17 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+					<fork>true</fork>
+					<skip>false</skip>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>repackage</goal>
+						</goals>
+					</execution>
+				</executions>
             </plugin>
             <plugin>
                 <artifactId>maven-source-plugin</artifactId>

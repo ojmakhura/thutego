@@ -6,15 +6,15 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.5</version>
+        <version>3.2.5</version>
         <relativePath/>
     </parent>
-    <groupId>bw.co.roguesystems.ithuteng</groupId>
-    <artifactId>ithuteng</artifactId>
+    <groupId>bw.co.roguesystems.thutego</groupId>
+    <artifactId>thutego</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1</version>
-    <name>Ithuteng Access Platform</name>
-    <description>The Ithuteng Access Platform Project.</description>
+    <name>Thutego Curriculum System</name>
+    <description>The Thutego Curriculum System Project.</description>
     <inceptionYear></inceptionYear>
     <url>http://andromda.sourceforge.net/</url>
     <issueManagement>
@@ -45,7 +45,7 @@
     <developers>
         <developer>
             <id></id>
-            <name>Onalenna J. Makhura</name>
+            <name>Onalenna Junior Makhura</name>
             <email></email>
             <organization></organization>
             <roles>
@@ -235,36 +235,17 @@
                 <artifactId>springdoc-openapi-security</artifactId>
                 <version>${openapi.version}</version>
             </dependency>
-            <dependency>
-                <groupId>nz.net.ultraq.thymeleaf</groupId>
-                <artifactId>thymeleaf-layout-dialect</artifactId>
-                <version>3.1.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>font-awesome</artifactId>
-                <version>6.2.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>bootstrap</artifactId>
-                <version>5.2.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>jquery-ui</artifactId>
-                <version>1.13.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.webjars</groupId>
-                <artifactId>webjars-locator</artifactId>
-                <version>0.46</version>
-            </dependency>
             <!-- <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web-services</artifactId>
                 <version>${spring-boot.version}</version>
             </dependency> -->
+            <!-- Uncomment if using spring security -->
+            <!--<dependency>
+                <groupId>org.thymeleaf.extras</groupId>
+                <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+                <version>3.1.2.RELEASE</version>
+            </dependency>-->
             <!-- For Working with Json Web Tokens (JWT) -->
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
@@ -330,6 +311,13 @@
         </pluginManagement>
         <plugins>
             <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+            <plugin>
                 <!-- See https://github.com/lkwg82/enforcer-maven-plugin. Patched original. Fix cloudbees error on pom download -->
                 <groupId>de.lgohlke.mojo</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
@@ -340,25 +328,25 @@
     <modules>
         <!-- Save the values used to generate this project from andromdapp
         applicationParentDirectory=.
-        author=Onalenna J. Makhura
+        author=Onalenna Junior Makhura
         modelType=uml2
         applicationType=jar
         war=$war
         ear=$ear
         appServer=$appServer
         databaseType=postgres
-        testDatabase=mysql
+        testDatabase=h2
         transactionPersistenceType=spring
         jsr181Webservice=$jsr181Webservice
         ejb=$ejb
         ejb3=$ejb3
         hibernate=$hibernate
         spring=true
-        webType=thymeleaf
+        webType=angular
         jsf=false
         webservice=rest
         cxf=$cxf
-        thymeleaf=true
+        thymeleaf=false
         rest=true
 		springws=true
         jbossSeam=$jbossSeam
@@ -372,8 +360,7 @@
         <module>common</module>
         <module>core</module>
         <module>webservice</module>
-		<module>thymeleaf</module>
-		<module>admin</module>
+        <module>angular</module>
     </modules>
     <properties>
         <andromda.version>5.0-SNAPSHOT</andromda.version>
@@ -385,12 +372,11 @@
         <testdb.groupId>com.h2database</testdb.groupId>
         <testdb.artifactId>h2</testdb.artifactId>
         <testdb.version>1.4.180</testdb.version>
-        <testdb.driver>org.h2.Driver</testdb.driver>
-        <testdb.dialect>org.hibernate.dialect.H2Dialect</testdb.dialect>
-        <!-- See http://www.h2database.com/html/features.html#database_url (mixed mode) -->
-        <testdb.url>jdbc:h2:~/${application.id};AUTO_SERVER=TRUE;AUTO_RECONNECT=TRUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</testdb.url>
-        <testdb.username>sa</testdb.username>
-        <testdb.password>sa</testdb.password>
+        <testdb.driver>$${jdbc.driver}</testdb.driver>
+        <testdb.dialect>$${jdbc.dialect}</testdb.dialect>
+        <testdb.url>$${jdbc.url}</testdb.url>
+        <testdb.username>$${jdbc.username}</testdb.username>
+        <testdb.password>$${jdbc.password}</testdb.password>
         <!--
             Change this to generate to the correct MDA database mappings,
             For MySql use: MySQL
@@ -407,7 +393,7 @@
             For Derby use: Derby
         -->
         <sql.mappings>
-            MySQL
+            PostgreSQL
         </sql.mappings>
         <!--
         Change this for the appropriate database
@@ -433,12 +419,12 @@
         For Sybase Anywhere use: org.hibernate.dialect.SybaseAnywhereDialect
         -->
         <hibernate.dialect>
-            org.hibernate.dialect.MySQL8Dialect
+            org.hibernate.dialect.PostgreSQLDialect
         </hibernate.dialect>
         <tomcat.home>${env.CATALINA_HOME}</tomcat.home>
-        <application.id>ithuteng</application.id>
-        <application.package>bw.co.roguesystems.ithuteng</application.package>
-        <application.name>Ithuteng Access Platform</application.name>
+        <application.id>thutego</application.id>
+        <application.package>bw.co.roguesystems.thutego</application.package>
+        <application.name>Thutego Curriculum System</application.name>
         <application.version>0.0.1</application.version>
         <dataSource.name>jdbc/${application.id}</dataSource.name>
         <dataSource>java:comp/env/${dataSource.name}</dataSource>
@@ -447,7 +433,7 @@
         <!-- v 9.x only supports JDK7 and you cannot configure jetty.port from maven.-->
         <!-- v5 migration needed -->
         <!-- <spring.version>5.3.2</spring.version> -->
-	    <spring-boot.version>3.0.0</spring-boot.version>
+	    <spring-boot.version>3.2.5</spring-boot.version>
         <openapi.version>1.6.13</openapi.version>
         <!-- To override parent default settings for compiler plugin and compliance checks-->
         <dependencyConvergence>true</dependencyConvergence>
@@ -477,7 +463,7 @@
                 For Hypersonic use: hsqldb.jar
                 -->
                 <jdbc.driver.jar>
-                    /path/to/mysql/lib/mysql-connector-java-5.1.33.jar
+                    /path/to/postgres/lib/postgresql.jar
                 </jdbc.driver.jar>
                 <!--
                     Change driver for appropriate database
@@ -496,31 +482,31 @@
                     For Derby use: org.apache.derby.jdbc.EmbeddedDriver
                 -->
                 <jdbc.driver>
-                    com.mysql.jdbc.Driver
+                    org.postgresql.Driver
                 </jdbc.driver>
                 <!--
                     Change connection url for appropriate database
-                    For H2 use: jdbc:h2:~/ithuteng
-                    For MySQL use: jdbc:mysql://localhost:3306/ithuteng
-                    For Hypersonic use: jdbc:hsqldb:hsql://127.0.0.1/ithuteng or jdbc:hsqldb:file:<path>/ithuteng;shutdown=true
+                    For H2 use: jdbc:h2:~/thutego
+                    For MySQL use: jdbc:mysql://localhost:3306/thutego
+                    For Hypersonic use: jdbc:hsqldb:hsql://127.0.0.1/thutego or jdbc:hsqldb:file:<path>/thutego;shutdown=true
                     For Oracle9i use: jdbc:oracle:thin:@localhost:1521:yoursid
-                    For DB2 use: jdbc:db2:ithuteng
-                    For Informix use: jdbc:informix-sqli://localhost:1557/ithuteng:INFORMIXSERVER=myserver
-                    For MSSQL use: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=ithuteng
-                    For Pointbase use: jdbc:pointbase:server://@pointbase.server@:@pointbase.port/pointbase.ithuteng@,new
-                    For Postgres use: jdbc:postgresql://localhost/ithuteng
-                    For Sybase use: jdbc:sybase:Tds:localhost:5000/ithuteng?JCONNECT_VERSION=6
-                    For SapDB use: jdbc:sapdb://127.0.0.1/ithuteng
-                    For Progress use: jdbc:JdbcProgress:T:localhost:3305:ithuteng
+                    For DB2 use: jdbc:db2:thutego
+                    For Informix use: jdbc:informix-sqli://localhost:1557/thutego:INFORMIXSERVER=myserver
+                    For MSSQL use: jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=thutego
+                    For Pointbase use: jdbc:pointbase:server://@pointbase.server@:@pointbase.port/pointbase.thutego@,new
+                    For Postgres use: jdbc:postgresql://localhost/thutego
+                    For Sybase use: jdbc:sybase:Tds:localhost:5000/thutego?JCONNECT_VERSION=6
+                    For SapDB use: jdbc:sapdb://127.0.0.1/thutego
+                    For Progress use: jdbc:JdbcProgress:T:localhost:3305:thutego
                 -->
                 <jdbc.url>
-                    jdbc:mysql://localhost:3306/ithuteng
+                    ${DATABASE_URL}
                 </jdbc.url>
                 <!-- Enter id/password for the database connection -->
                 <jdbc.username>
-                    ithuteng
+                    ${POSTGRES_USER}
                 </jdbc.username>
-                <jdbc.password>ithuteng</jdbc.password>
+                <jdbc.password>${POSTGRES_PASSWORD}</jdbc.password>
                 <!--
                     Change exception sorter class name for appropriate database
                     For H2 use: org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter
@@ -537,7 +523,7 @@
                     For Progress use: org.jboss.resource.adapter.jdbc.vendor.DummyExceptionSorter
                 -->
                 <jdbc.exception.sorter>
-                    org.jboss.resource.adapter.jdbc.MySQLExceptionSorter
+                    org.jboss.resource.adapter.jdbc.NullExceptionSorter
                 </jdbc.exception.sorter>
                 <!-- Change this to the host on which your webapp/service will be deployed -->
                 <service.host>localhost</service.host>
@@ -586,18 +572,18 @@
                 <repository>
                     <id>andromda-repository</id>
                     <name>AndroMDA Repository</name>
-                    <url>file:/scratch/hudson/workspace/Andromda/ithuteng/</url>
+                    <url>file:/scratch/hudson/workspace/Andromda/thutego/</url>
                     <uniqueVersion>false</uniqueVersion>
                 </repository>
                 <snapshotRepository>
                     <id>andromda-snapshots</id>
                     <name>AndroMDA Snapshot Repository</name>
-                    <url>file:/scratch/hudson/workspace/Andromda/ithuteng/</url>
+                    <url>file:/scratch/hudson/workspace/Andromda/thutego/</url>
                     <uniqueVersion>false</uniqueVersion>
                 </snapshotRepository>
                 <site>
                     <id>website</id>
-                    <url>file:/scratch/hudson/workspace/Andromda/site/ithuteng/</url>
+                    <url>file:/scratch/hudson/workspace/Andromda/site/thutego/</url>
                 </site>
             </distributionManagement-->
         </profile>

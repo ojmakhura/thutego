@@ -5,13 +5,13 @@
     compiling or testing or packaging, run mvn install from /mda instead of from the root directory. -->
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>bw.co.roguesystems.ithuteng</groupId>
-        <artifactId>ithuteng</artifactId>
+        <groupId>bw.co.roguesystems.thutego</groupId>
+        <artifactId>thutego</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>ithuteng-mda</artifactId>
+    <artifactId>thutego-mda</artifactId>
     <packaging>pom</packaging>
-    <name>Ithuteng Access Platform MDA</name>
+    <name>Thutego Curriculum System MDA</name>
     <dependencies>
         <!-- provided profile dependencies are not added to the manifest, used only at code generation time -->
         <dependency>
@@ -47,7 +47,7 @@
         </dependency>
         <dependency>
             <groupId>org.andromda.cartridges</groupId>
-            <artifactId>andromda-thymeleaf-cartridge</artifactId>
+            <artifactId>andromda-angular-cartridge</artifactId>
             <version>${andromda.version}</version>
             <scope>runtime</scope>
         </dependency>
@@ -113,7 +113,7 @@
         </plugins>
     </build>
     <properties>
-        <model.uri>file:${project.basedir}/src/main/uml/ithuteng.uml</model.uri>
+        <model.uri>file:${project.basedir}/src/main/uml/thutego.uml</model.uri>
         <javaVersion>${java.version}</javaVersion>
         <filter></filter>
         <validation>true</validation>
@@ -131,12 +131,22 @@
         <core.manual.test.resources>${project.basedir}/../core/src/test/resources</core.manual.test.resources>
         <core.generated.test.dir>${project.basedir}/../core/target/src/test/java</core.generated.test.dir>
         <core.manual.test.dir>${project.basedir}/../core/src/test/java</core.manual.test.dir>
-        <thymeleaf.generated.dir>${project.basedir}/../thymeleaf/target</thymeleaf.generated.dir>
-        <thymeleaf.generated.java.dir>${thymeleaf.generated.dir}/src/main/java</thymeleaf.generated.java.dir>
-        <thymeleaf.generated.web.dir>${thymeleaf.generated.dir}/src/main/resources</thymeleaf.generated.web.dir>
-        <thymeleaf.manual.dir>${project.basedir}/../thymeleaf/src/main</thymeleaf.manual.dir>
-        <thymeleaf.manual.web.dir>${thymeleaf.manual.dir}/resources</thymeleaf.manual.web.dir>
-        <thymeleaf.manual.java.dir>${thymeleaf.manual.dir}/java</thymeleaf.manual.java.dir>
+        <angular.base.dir>${project.basedir}/../angular</angular.base.dir>
+        <angular.resources.dir>${project.basedir}/../angular/resources</angular.resources.dir>
+        <angular.css.dir>${project.basedir}/../angular/css</angular.css.dir>
+        <angular.test.dir>${project.basedir}/../angular/test</angular.test.dir>
+        <angular.manual.dir>${project.basedir}/../angular/src/app</angular.manual.dir>
+        <angular.generated.dir>${project.basedir}/../angular/target/src/app</angular.generated.dir>
+        <angular.ngrx.generated.dir>${angular.generated.dir}/store</angular.ngrx.generated.dir>
+        <angular.ngrx.manual.dir>${angular.manual.dir}/store</angular.ngrx.manual.dir>
+        <angular.model.dir>${angular.generated.dir}</angular.model.dir>
+        <angular.service.dir>${angular.generated.dir}</angular.service.dir>
+        <angular.service.impl.dir>${angular.manual.dir}</angular.service.impl.dir>
+        <angular.controller.dir>${angular.generated.dir}</angular.controller.dir>
+        <angular.controller.impl.dir>${angular.manual.dir}</angular.controller.impl.dir>
+        <angular.view.dir>${angular.generated.dir}</angular.view.dir>
+        <angular.view.impl.dir>${angular.manual.dir}</angular.view.impl.dir>
+        <angular.form.dir>${angular.generated.dir}</angular.form.dir>
         <webservice.project>${project.basedir}/../webservice</webservice.project>
         <webservice.generated.dir>${project.basedir}/../webservice/target/src/main</webservice.generated.dir>
         <webservice.manual.java.dir>${project.basedir}/../webservice/src/main/java</webservice.manual.java.dir>

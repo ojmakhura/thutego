@@ -3,17 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>bw.co.roguesystems.ithuteng</groupId>
-        <artifactId>ithuteng</artifactId>
+        <groupId>bw.co.roguesystems.thutego</groupId>
+        <artifactId>thutego</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>ithuteng-core</artifactId>
+    <artifactId>thutego-core</artifactId>
     <packaging>jar</packaging>
-    <name>Ithuteng Access Platform Core Business Tier</name>
+    <name>Thutego Curriculum System Core Business Tier</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ithuteng-common</artifactId>
+            <artifactId>thutego-common</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -94,8 +94,8 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
         </dependency>
         <dependency>

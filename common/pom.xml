@@ -3,17 +3,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>bw.co.roguesystems.ithuteng</groupId>
-        <artifactId>ithuteng</artifactId>
+        <groupId>bw.co.roguesystems.thutego</groupId>
+        <artifactId>thutego</artifactId>
         <version>0.0.1</version>
     </parent>
-    <artifactId>ithuteng-common</artifactId>
+    <artifactId>thutego-common</artifactId>
     <packaging>jar</packaging>
-    <name>Ithuteng Access Platform Common</name>
+    <name>Thutego Curriculum System Common</name>
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ithuteng-mda</artifactId>
+            <artifactId>thutego-mda</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
             <scope>provided</scope>
