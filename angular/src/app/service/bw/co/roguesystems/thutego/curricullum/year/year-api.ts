@@ -9,9 +9,9 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class YearController {
+export class YearApi {
     
-    protected path = '/curriculum/level';
+    protected path = '/year';
 
     constructor(private http: HttpClient) {
     }

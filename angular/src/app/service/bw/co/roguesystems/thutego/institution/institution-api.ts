@@ -9,7 +9,7 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class InstitutionController {
+export class InstitutionApi {
     
     protected path = '/institution';
 
@@ -34,7 +34,7 @@ export class InstitutionController {
 
     }
 
-    public pagedSearch(criteria: SearchObject<InstitutionVO> | any ): Observable<Page<InstitutionVO> | any> {
+    public pagedSearch(criteria: SearchObject<string> | any ): Observable<Page<InstitutionVO> | any> {
 
         return this.http.get<Page<InstitutionVO> | any>(this.path + `/search/page/${pageNumber}/size/${pageSize}`);
 

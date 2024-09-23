@@ -9,7 +9,7 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class TrainingStratergyController {
+export class TrainingStratergyApi {
     
     protected path = '/stratergy/training';
 

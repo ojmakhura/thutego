@@ -9,8 +9,8 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { ExitLevelOutcomeVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/outcome/exit-level-outcome-vo';
-import { ExitLevelOutcomeController } from '@app/service/bw/co/roguesystems/thutego/curricullum/outcome/exit-level-outcome-controller';
+import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/level/curriculum-level-vo';
+import { CurriculumLevelApi } from '@app/service/bw/co/roguesystems/thutego/curricullum/level/curriculum-level-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -22,11 +22,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const ExitLevelOutcomeControllerStore = signalStore(
+export const CurriculumLevelApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const exitLevelOutcomeController = inject(ExitLevelOutcomeController);
+    const curriculumLevelApi = inject(CurriculumLevelApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -34,7 +34,7 @@ export const ExitLevelOutcomeControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return exitLevelOutcomeController.findById(data.id, ).pipe(
+          return curriculumLevelApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -49,7 +49,7 @@ export const ExitLevelOutcomeControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return exitLevelOutcomeController.getAll().pipe(
+          return curriculumLevelApi.getAll().pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -64,7 +64,7 @@ export const ExitLevelOutcomeControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return exitLevelOutcomeController.remove(data.id, ).pipe(
+          return curriculumLevelApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -76,10 +76,10 @@ export const ExitLevelOutcomeControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{exitLevelOutcome: ExitLevelOutcomeVO | any }>(
+      save: rxMethod<{curriculumLevel: CurriculumLevelVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return exitLevelOutcomeController.save(data.exitLevelOutcome, ).pipe(
+          return curriculumLevelApi.save(data.curriculumLevel, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -94,7 +94,7 @@ export const ExitLevelOutcomeControllerStore = signalStore(
       search: rxMethod<{criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return exitLevelOutcomeController.search(data.criteria, ).pipe(
+          return curriculumLevelApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });

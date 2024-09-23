@@ -9,8 +9,8 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { TrainingStrategyVO } from '@app/model/bw/co/roguesystems/thutego/stratergies/training/training-strategy-vo';
-import { TrainingStratergyController } from '@app/service/bw/co/roguesystems/thutego/stratergies/training/training-stratergy-controller';
+import { AssessmentStrategyVO } from '@app/model/bw/co/roguesystems/thutego/stratergies/assessment/assessment-strategy-vo';
+import { AssessmentStratergyApi } from '@app/service/bw/co/roguesystems/thutego/stratergies/assessment/assessment-stratergy-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -22,11 +22,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const TrainingStratergyControllerStore = signalStore(
+export const AssessmentStratergyApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const trainingStratergyController = inject(TrainingStratergyController);
+    const assessmentStratergyApi = inject(AssessmentStratergyApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -34,7 +34,7 @@ export const TrainingStratergyControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return trainingStratergyController.findById(data.id, ).pipe(
+          return assessmentStratergyApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -49,7 +49,7 @@ export const TrainingStratergyControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return trainingStratergyController.getAll().pipe(
+          return assessmentStratergyApi.getAll().pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -64,7 +64,7 @@ export const TrainingStratergyControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return trainingStratergyController.remove(data.id, ).pipe(
+          return assessmentStratergyApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -76,10 +76,10 @@ export const TrainingStratergyControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{trainingStratergy: TrainingStrategyVO | any }>(
+      save: rxMethod<{trainingStratergy: AssessmentStrategyVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return trainingStratergyController.save(data.trainingStratergy, ).pipe(
+          return assessmentStratergyApi.save(data.trainingStratergy, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -94,7 +94,7 @@ export const TrainingStratergyControllerStore = signalStore(
       search: rxMethod<{criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return trainingStratergyController.search(data.criteria, ).pipe(
+          return assessmentStratergyApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });

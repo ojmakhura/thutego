@@ -13,8 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
-import { InstitutionEditorComponent } from '@app/components/institution/crop-editor.component';
-import { InstitutionDetailsComponent } from '@app/components/institution/crop-details.component';
+import { InstitutionDetailsComponent } from '@app/components/institution/institution-details.component';
+import { InstitutionEditorComponent } from '@app/components/institution/institution-editor.component';
 
 @Component({
   selector: 'app-edit-institution',
@@ -29,8 +29,8 @@ import { InstitutionDetailsComponent } from '@app/components/institution/crop-de
     SharedModule,
     MaterialModule,
     CsvModule,
-    InstitutionEditorComponent,
     InstitutionDetailsComponent,
+    InstitutionEditorComponent,
   ],
 })
 export class EditInstitutionImplComponent extends EditInstitutionComponent {

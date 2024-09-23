@@ -10,7 +10,7 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class ModuleController {
+export class ModuleApi {
     
     protected path = '/module';
 

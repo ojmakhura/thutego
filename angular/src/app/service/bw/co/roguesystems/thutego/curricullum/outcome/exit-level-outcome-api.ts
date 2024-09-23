@@ -9,7 +9,7 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class ExitLevelOutcomeController {
+export class ExitLevelOutcomeApi {
     
     protected path = '/curriculum/outcome';
 

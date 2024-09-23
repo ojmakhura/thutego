@@ -9,8 +9,8 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/level/curriculum-level-vo';
-import { CurriculumLevelController } from '@app/service/bw/co/roguesystems/thutego/curricullum/level/curriculum-level-controller';
+import { InstitutionVO } from '@app/model/bw/co/roguesystems/thutego/institution/institution-vo';
+import { InstitutionApi } from '@app/service/bw/co/roguesystems/thutego/institution/institution-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -22,11 +22,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const CurriculumLevelControllerStore = signalStore(
+export const InstitutionApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const curriculumLevelController = inject(CurriculumLevelController);
+    const institutionApi = inject(InstitutionApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -34,7 +34,7 @@ export const CurriculumLevelControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelController.findById(data.id, ).pipe(
+          return institutionApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -49,7 +49,37 @@ export const CurriculumLevelControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return curriculumLevelController.getAll().pipe(
+          return institutionApi.getAll().pipe(
+            tapResponse({
+              next: (data) => {
+                // patchState(store, { data, loading: false, success: true });
+              },
+              error: (error) => {
+                patchState(store, { error, loading: false, success: false });
+              },
+            }),
+          );
+        }),
+      ),
+      getAllPaged: rxMethod<{pageNumber: number | any , pageSize: number | any }>(
+        switchMap((data) => {
+          patchState(store, { loading: true });
+          return institutionApi.getAllPaged(data.pageNumber, data.pageSize, ).pipe(
+            tapResponse({
+              next: (data) => {
+                // patchState(store, { data, loading: false, success: true });
+              },
+              error: (error) => {
+                patchState(store, { error, loading: false, success: false });
+              },
+            }),
+          );
+        }),
+      ),
+      pagedSearch: rxMethod<{criteria: SearchObject<string> | any }>(
+        switchMap((data) => {
+          patchState(store, { loading: true });
+          return institutionApi.pagedSearch(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -64,7 +94,7 @@ export const CurriculumLevelControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelController.remove(data.id, ).pipe(
+          return institutionApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -76,10 +106,10 @@ export const CurriculumLevelControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{curriculumLevel: CurriculumLevelVO | any }>(
+      save: rxMethod<{institution: InstitutionVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelController.save(data.curriculumLevel, ).pipe(
+          return institutionApi.save(data.institution, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -94,7 +124,7 @@ export const CurriculumLevelControllerStore = signalStore(
       search: rxMethod<{criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelController.search(data.criteria, ).pipe(
+          return institutionApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });

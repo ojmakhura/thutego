@@ -9,9 +9,9 @@ import { SearchObject } from '@app/model/search-object';
 @Injectable({
   providedIn: 'root'
 })
-export class AssessmentStratergyController {
+export class AssessmentStratergyApi {
     
-    protected path = '/stratergy/training';
+    protected path = '/stratergy/assessment';
 
     constructor(private http: HttpClient) {
     }

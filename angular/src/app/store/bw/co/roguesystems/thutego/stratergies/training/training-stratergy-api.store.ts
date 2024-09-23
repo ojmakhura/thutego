@@ -9,9 +9,8 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { ModuleListVO } from '@app/model/bw/co/roguesystems/thutego/module/module-list-vo';
-import { ModuleVO } from '@app/model/bw/co/roguesystems/thutego/module/module-vo';
-import { ModuleController } from '@app/service/bw/co/roguesystems/thutego/module/module-controller';
+import { TrainingStrategyVO } from '@app/model/bw/co/roguesystems/thutego/stratergies/training/training-strategy-vo';
+import { TrainingStratergyApi } from '@app/service/bw/co/roguesystems/thutego/stratergies/training/training-stratergy-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -23,11 +22,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const ModuleControllerStore = signalStore(
+export const TrainingStratergyApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const moduleController = inject(ModuleController);
+    const trainingStratergyApi = inject(TrainingStratergyApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -35,22 +34,7 @@ export const ModuleControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return moduleController.findById(data.id, ).pipe(
-            tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
-              },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
-              },
-            }),
-          );
-        }),
-      ),
-      findModuleTopics: rxMethod<{moduleId: number | any }>(
-        switchMap((data) => {
-          patchState(store, { loading: true });
-          return moduleController.findModuleTopics(data.moduleId, ).pipe(
+          return trainingStratergyApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -65,7 +49,7 @@ export const ModuleControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return moduleController.getAll().pipe(
+          return trainingStratergyApi.getAll().pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -80,7 +64,7 @@ export const ModuleControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return moduleController.remove(data.id, ).pipe(
+          return trainingStratergyApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -92,10 +76,10 @@ export const ModuleControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{module: ModuleVO | any }>(
+      save: rxMethod<{trainingStratergy: TrainingStrategyVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return moduleController.save(data.module, ).pipe(
+          return trainingStratergyApi.save(data.trainingStratergy, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -107,10 +91,10 @@ export const ModuleControllerStore = signalStore(
           );
         }),
       ),
-      search: rxMethod<{criteria: SearchObject<ModuleSearchCriteria> | any }>(
+      search: rxMethod<{criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return moduleController.search(data.criteria, ).pipe(
+          return trainingStratergyApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });

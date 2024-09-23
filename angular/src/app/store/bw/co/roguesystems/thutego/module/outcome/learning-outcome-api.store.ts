@@ -9,8 +9,8 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { AssessmentStrategyVO } from '@app/model/bw/co/roguesystems/thutego/stratergies/assessment/assessment-strategy-vo';
-import { AssessmentStratergyController } from '@app/service/bw/co/roguesystems/thutego/stratergies/assessment/assessment-stratergy-controller';
+import { LearningOutcomeVO } from '@app/model/bw/co/roguesystems/thutego/module/outcome/learning-outcome-vo';
+import { LearningOutcomeApi } from '@app/service/bw/co/roguesystems/thutego/module/outcome/learning-outcome-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -22,11 +22,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const AssessmentStratergyControllerStore = signalStore(
+export const LearningOutcomeApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const assessmentStratergyController = inject(AssessmentStratergyController);
+    const learningOutcomeApi = inject(LearningOutcomeApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -34,7 +34,22 @@ export const AssessmentStratergyControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return assessmentStratergyController.findById(data.id, ).pipe(
+          return learningOutcomeApi.findById(data.id, ).pipe(
+            tapResponse({
+              next: (data) => {
+                // patchState(store, { data, loading: false, success: true });
+              },
+              error: (error) => {
+                patchState(store, { error, loading: false, success: false });
+              },
+            }),
+          );
+        }),
+      ),
+      findModuleOutcomes: rxMethod<{moduleId: number | any }>(
+        switchMap((data) => {
+          patchState(store, { loading: true });
+          return learningOutcomeApi.findModuleOutcomes(data.moduleId, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -49,7 +64,7 @@ export const AssessmentStratergyControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return assessmentStratergyController.getAll().pipe(
+          return learningOutcomeApi.getAll().pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -64,7 +79,7 @@ export const AssessmentStratergyControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return assessmentStratergyController.remove(data.id, ).pipe(
+          return learningOutcomeApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -76,10 +91,10 @@ export const AssessmentStratergyControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{trainingStratergy: AssessmentStrategyVO | any }>(
+      save: rxMethod<{learningOutcome: LearningOutcomeVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return assessmentStratergyController.save(data.trainingStratergy, ).pipe(
+          return learningOutcomeApi.save(data.learningOutcome, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -94,7 +109,7 @@ export const AssessmentStratergyControllerStore = signalStore(
       search: rxMethod<{criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return assessmentStratergyController.search(data.criteria, ).pipe(
+          return learningOutcomeApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });

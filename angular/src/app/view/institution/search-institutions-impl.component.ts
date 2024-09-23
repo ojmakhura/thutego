@@ -13,9 +13,8 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
-import { InstitutionEditorComponent } from '@app/components/institution/crop-editor.component';
-import { InstitutionDetailsComponent } from '@app/components/institution/crop-details.component';
-import { SearchInstitutionsInstitutionsImplComponent } from '@app/view/institution/search-institutions-institutions-impl.component';
+import { InstitutionDetailsComponent } from '@app/components/institution/institution-details.component';
+import { InstitutionEditorComponent } from '@app/components/institution/institution-editor.component';
 
 @Component({
   selector: 'app-search-institutions',
@@ -30,9 +29,8 @@ import { SearchInstitutionsInstitutionsImplComponent } from '@app/view/instituti
     SharedModule,
     MaterialModule,
     CsvModule,
-    InstitutionEditorComponent,
     InstitutionDetailsComponent,
-    SearchInstitutionsInstitutionsImplComponent,
+    InstitutionEditorComponent,
   ],
 })
 export class SearchInstitutionsImplComponent extends SearchInstitutionsComponent {

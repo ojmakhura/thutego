@@ -9,8 +9,9 @@ import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
-import { YearVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/year/year-vo';
-import { YearController } from '@app/service/bw/co/roguesystems/thutego/curricullum/year/year-controller';
+import { CurriculumVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-vo';
+import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-list-vo';
+import { CurriculumApi } from '@app/service/bw/co/roguesystems/thutego/curricullum/curriculum-api';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -22,11 +23,11 @@ const initialState: AppState<any, any> = {
   success: false,
 };
 
-export const YearControllerStore = signalStore(
+export const CurriculumApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
   withMethods((store) => {
-    const yearController = inject(YearController);
+    const curriculumApi = inject(CurriculumApi);
     return {
       reset: () => {
         patchState(store, initialState);
@@ -34,7 +35,7 @@ export const YearControllerStore = signalStore(
       findById: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return yearController.findById(data.id, ).pipe(
+          return curriculumApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -49,7 +50,22 @@ export const YearControllerStore = signalStore(
       getAll: rxMethod<void>(
         switchMap(() => {
           patchState(store, { loading: true });
-          return yearController.getAll().pipe(
+          return curriculumApi.getAll().pipe(
+            tapResponse({
+              next: (data) => {
+                // patchState(store, { data, loading: false, success: true });
+              },
+              error: (error) => {
+                patchState(store, { error, loading: false, success: false });
+              },
+            }),
+          );
+        }),
+      ),
+      getAllPaged: rxMethod<void>(
+        switchMap(() => {
+          patchState(store, { loading: true });
+          return curriculumApi.getAllPaged().pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -64,7 +80,7 @@ export const YearControllerStore = signalStore(
       remove: rxMethod<{id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return yearController.remove(data.id, ).pipe(
+          return curriculumApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -76,10 +92,10 @@ export const YearControllerStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{curriculumLevel: YearVO | any }>(
+      save: rxMethod<{curriculum: CurriculumVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return yearController.save(data.curriculumLevel, ).pipe(
+          return curriculumApi.save(data.curriculum, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
@@ -91,10 +107,25 @@ export const YearControllerStore = signalStore(
           );
         }),
       ),
-      search: rxMethod<{criteria: string | any }>(
+      search: rxMethod<{criteria: SearchObject<CurriculumSearchCriteria> | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return yearController.search(data.criteria, ).pipe(
+          return curriculumApi.search(data.criteria, ).pipe(
+            tapResponse({
+              next: (data) => {
+                // patchState(store, { data, loading: false, success: true });
+              },
+              error: (error) => {
+                patchState(store, { error, loading: false, success: false });
+              },
+            }),
+          );
+        }),
+      ),
+      searchPaged: rxMethod<{criteria: SearchObject<CurriculumSearchCriteria> | any }>(
+        switchMap((data) => {
+          patchState(store, { loading: true });
+          return curriculumApi.searchPaged(data.criteria, ).pipe(
             tapResponse({
               next: (data) => {
                 // patchState(store, { data, loading: false, success: true });
