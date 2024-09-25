@@ -160,6 +160,11 @@
                 <version>1.0.1.Final</version>
                 <scope>provided</scope>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <!-- <optional>true</optional> -->
+            </dependency>
             <!--<dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -315,6 +320,12 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<skip>true</skip>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
             <plugin>

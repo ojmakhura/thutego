@@ -6,6 +6,10 @@
 package bw.co.roguesystems.thutego.institution;
 
 import bw.co.roguesystems.thutego.SearchObject;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
