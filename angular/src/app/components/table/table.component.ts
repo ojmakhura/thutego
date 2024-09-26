@@ -18,7 +18,7 @@ import { MatTable, MatTableDataSource, MatTableModule } from '@angular/material/
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { ActionTemplate } from '@app/model/action-template';
-import { IdLabel } from '@app/model/id-label.model'; 
+import { IdLabel } from '@app/model/id-label.model';
 import { Page } from '@app/model/page.model';
 import { DeepSignal } from '@ngrx/signals';
 import { TranslateModule } from '@ngx-translate/core';
@@ -28,9 +28,9 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './table.component.html',
   standalone: true,
   imports: [
-    CommonModule, 
-    TranslateModule, 
-    SharedModule, 
+    CommonModule,
+    TranslateModule,
+    SharedModule,
     MaterialModule
   ],
 })
@@ -91,9 +91,9 @@ export class TableComponent<T> implements OnInit, OnDestroy, AfterViewInit {
     });
   }
 
-  onActionClicked(action: string, id: number) {
+  onActionClicked(action: string, row: any) {
     if (this.actionClicked) {
-      this.actionClicked.emit({ action, id });
+      this.actionClicked.emit({ action, row });
     }
   }
 }

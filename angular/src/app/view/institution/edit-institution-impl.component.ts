@@ -2,9 +2,6 @@
 import { Component } from '@angular/core';
 import { EditInstitutionComponent } from '@app/view/institution/edit-institution.component';
 import { EditInstitutionVarsForm } from '@app/view/institution/edit-institution.component';
-import { InstitutionState } from '@app/store/institution/institution.state';
-import * as InstitutionSelectors from '@app/store/institution/institution.selectors';
-import * as InstitutionActions from '@app/store/institution/institution.actions';
 import { MatRadioChange } from '@angular/material/radio';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
@@ -13,8 +10,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
-import { InstitutionDetailsComponent } from '@app/components/institution/institution-details.component';
+import { TableComponent } from '@app/components/table/table.component';
 import { InstitutionEditorComponent } from '@app/components/institution/institution-editor.component';
+import { InstitutionDetailsComponent } from '@app/components/institution/institution-details.component';
 
 @Component({
   selector: 'app-edit-institution',
@@ -29,8 +27,9 @@ import { InstitutionEditorComponent } from '@app/components/institution/institut
     SharedModule,
     MaterialModule,
     CsvModule,
-    InstitutionDetailsComponent,
+    TableComponent,
     InstitutionEditorComponent,
+    InstitutionDetailsComponent,
   ],
 })
 export class EditInstitutionImplComponent extends EditInstitutionComponent {

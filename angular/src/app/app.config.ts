@@ -11,7 +11,8 @@ import { UseCaseScope } from './utils/use-case-scope';
 import { withInterceptors, provideHttpClient } from '@angular/common/http';
 import { RouteReusableStrategy } from './@shared';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
-import { apiPrefixInterceptor, errorHandlerInterceptor } from './@core';
+import { errorHandlerInterceptor } from './@core/http/error-handler.interceptor';
+import { apiPrefixInterceptor } from './@core/http/api-prefix.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [

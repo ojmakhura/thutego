@@ -11,7 +11,6 @@ import { FormsModule } from '@angular/forms';
 import { I18nService } from '@app/i18n';
 import { environment } from '@env/environment';
 import { Logger, SharedModule, UntilDestroy, untilDestroyed } from '@shared';
-import { CoreModule } from './@core';
 import { AuthModule } from './auth';
 import { MaterialModule } from './material.module';
 import { ShellComponent } from './shell/shell.component';
@@ -31,7 +30,6 @@ const log = new Logger('App');
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    CoreModule,
     SharedModule,
     ShellComponent,
     AuthModule,

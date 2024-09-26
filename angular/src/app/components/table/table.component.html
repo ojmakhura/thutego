@@ -17,13 +17,13 @@
                 <mat-cell *matCellDef="let row">
                     @for(action of actions; track action) {
 
-                    <button mat-button matTooltip="Edit item template" (click)="onActionClicked(action.id, row.id)">
+                    <button mat-button matTooltip="{{action.tooltip}}" (click)="onActionClicked(action.id, row)">
                         @if(!action.icon) {
                             {{action.label}}
                         } @else {
                             <mat-icon>{{action.icon}}</mat-icon>
                         }
-                        
+
                     </button>
                     }
                 </mat-cell>

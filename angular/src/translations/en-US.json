@@ -88,6 +88,7 @@
   "add.new.documentation": "TODO: Model Documentation for institution.addNew",
   "add.new.reset.message": "Reset",
   "city": "City",
+  "code": "Code",
   "country": "Country",
   "created.at": "Created At",
   "created.at.required": "Created At is required.",

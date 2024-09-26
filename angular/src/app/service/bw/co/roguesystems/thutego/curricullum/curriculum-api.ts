@@ -6,12 +6,13 @@ import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curricul
 import { HttpClient } from '@angular/common/http';
 import { Page } from '@app/model/page.model';
 import { SearchObject } from '@app/model/search-object';
+import { CurriculumSearchCriteria } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-search-criteria';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CurriculumApi {
-    
+
     protected path = '/curriculum';
 
     constructor(private http: HttpClient) {
@@ -31,7 +32,7 @@ export class CurriculumApi {
 
     public getAllPaged(): Observable<Page<CurriculumListVO> | any> {
 
-        return this.http.post<Page<CurriculumListVO> | any>(this.path + `/paged`);
+        return this.http.get<Page<CurriculumListVO> | any>(this.path + `/paged`);
 
     }
 
