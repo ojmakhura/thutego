@@ -6,11 +6,9 @@
 package bw.co.roguesystems.thutego.institution;
 
 import bw.co.roguesystems.thutego.SearchObject;
-import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 import java.util.Optional;
+import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,6 +46,7 @@ public class InstitutionApiImpl extends InstitutionApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
+            
             Optional<?> data = Optional.of(this.institutionService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
@@ -85,6 +84,9 @@ public class InstitutionApiImpl extends InstitutionApiBase {
 
     @Override
     public ResponseEntity<?> handlePagedSearch(SearchObject<String> criteria) {
+
+        System.out.println(criteria);
+
         try {
             Optional<?> data = Optional.of(this.institutionService.search(criteria)); // TODO: Add custom code here;
             ResponseEntity<?> response;
@@ -97,6 +99,7 @@ public class InstitutionApiImpl extends InstitutionApiBase {
 
             return response;
         } catch (Exception e) {
+            e.printStackTrace();
             logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
@@ -124,6 +127,9 @@ public class InstitutionApiImpl extends InstitutionApiBase {
     @Override
     public ResponseEntity<?> handleSave(InstitutionVO institution) {
         try {
+
+            institution.setCreatedBy("SYSTEM");
+            institution.setCreatedAt(LocalDateTime.now());
             Optional<?> data = Optional.of(this.institutionService.save(institution)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
@@ -143,7 +149,7 @@ public class InstitutionApiImpl extends InstitutionApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(this.institutionService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

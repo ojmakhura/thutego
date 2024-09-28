@@ -4,14 +4,13 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { Page } from '@app/model/page.model';
-import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
 import { CurriculumVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-vo';
 import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-list-vo';
 import { CurriculumApi } from '@app/service/bw/co/roguesystems/thutego/curricullum/curriculum-api';
+import { CurriculumSearchCriteria } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-search-criteria';
 
 const initialState: AppState<any, any> = {
   data: null,
@@ -21,6 +20,7 @@ const initialState: AppState<any, any> = {
   error: null,
   loading: false,
   success: false,
+  messages: []
 };
 
 export const CurriculumApiStore = signalStore(

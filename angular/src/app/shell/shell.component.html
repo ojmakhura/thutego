@@ -1,7 +1,7 @@
 <mat-drawer-container fxFlex color="primary">
   <mat-drawer mode="side" #sidenav [mode]="isMobile ? 'over' : 'side'" [opened]="!isMobile" [disableClose]="!isMobile"
     ngClass.gt-sm="has-border">
-  
+
     <mat-toolbar>
       <span translate>application.name</span>
       <div fxFlex></div>
@@ -12,7 +12,7 @@
         <mat-menu #userMenu="matMenu">
           <mat-list>
             <mat-list-item>
-              <span >Logged in as</span>&nbsp;<b>{{username()}}</b>
+              <span >Logged in as</span>&nbsp;<b>{{username}}</b>
             </mat-list-item>
             <mat-divider></mat-divider>
           </mat-list>

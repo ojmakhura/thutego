@@ -36,9 +36,13 @@ export class InstitutionViewImplComponent extends InstitutionViewComponent {
 
     constructor() {
         super();
+        this.success = this.institutionApiStore.success;
+        this.loading = this.institutionApiStore.loading;
+        this.error = this.institutionApiStore.error;
+        this.messages = this.institutionApiStore.messages;
     }
 
-    override beforeOnInit(form: InstitutionViewVarsForm): InstitutionViewVarsForm{     
+    override beforeOnInit(form: InstitutionViewVarsForm): InstitutionViewVarsForm{
         return form;
     }
 

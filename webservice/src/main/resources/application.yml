@@ -1,7 +1,5 @@
 server:
     port: 8085
-    servlet:
-        context-path: /thutego/api/
 spring:
     thymeleaf:
         cache: false

@@ -4,22 +4,21 @@ import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { switchMap } from 'rxjs';
 import { tapResponse } from '@ngrx/operators';
-import { Page } from '@app/model/page.model';
-import { SearchObject } from '@app/model/search-object';
 import { AppState } from '@app/store/app-state';
 import { SearchObject } from '@app/model/search-object';
 import { Page } from '@app/model/page.model';
 import { InstitutionVO } from '@app/model/bw/co/roguesystems/thutego/institution/institution-vo';
 import { InstitutionApi } from '@app/service/bw/co/roguesystems/thutego/institution/institution-api';
 
-const initialState: AppState<any, any> = {
-  data: null,
+const initialState: AppState<InstitutionVO | undefined, InstitutionVO> = {
+  data: undefined,
   dataList: [],
-  dataPage: new Page<any>(),
-  searchCriteria: new SearchObject<any>(),
+  dataPage: new Page<InstitutionVO>(),
+  searchCriteria: new SearchObject<string>(),
   error: null,
   loading: false,
   success: false,
+  messages: [],
 };
 
 export const InstitutionApiStore = signalStore(
@@ -37,7 +36,7 @@ export const InstitutionApiStore = signalStore(
           return institutionApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+                patchState(store, { data, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -51,8 +50,8 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.getAll().pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (institutions) => {
+                patchState(store, { dataList: institutions, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -66,8 +65,8 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.getAllPaged(data.pageNumber, data.pageSize, ).pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (institutionsPage) => {
+                patchState(store, { dataPage: institutionsPage, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -81,8 +80,8 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.pagedSearch(data.criteria, ).pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (institutionPage: Page<InstitutionVO> | any) => {
+                patchState(store, { dataPage: institutionPage, loading: false, success: true, messages: [`Found ${institutionPage.numberOfElements} of page ${institutionPage.number}`] });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -97,7 +96,7 @@ export const InstitutionApiStore = signalStore(
           return institutionApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+                patchState(store, { loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -111,8 +110,8 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.save(data.institution, ).pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (institution) => {
+                patchState(store, { data: institution, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -126,8 +125,8 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (institutions) => {
+                patchState(store, { dataList: institutions, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });

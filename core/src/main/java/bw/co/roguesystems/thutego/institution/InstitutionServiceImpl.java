@@ -116,7 +116,8 @@ public class InstitutionServiceImpl
         return (root, query, cb) -> {
             return cb.or(
                 cb.like(cb.lower(root.get("name")), "%" + criteria.toLowerCase() + "%"),
-                cb.like(cb.lower(root.get("description")), "%" + criteria.toLowerCase() + "%")
+                cb.like(cb.lower(root.get("primaryIdentifier")), "%" + criteria.toLowerCase() + "%"),
+                cb.like(cb.lower(root.get("secondaryIdentifier")), "%" + criteria.toLowerCase() + "%")
             );
         };
     }
@@ -131,7 +132,9 @@ public class InstitutionServiceImpl
 
         Specification<Institution> specification = this.buildSpecification(criteria);
         Sort sort = SortOrderFactory.createSortOrder(orderings);
-        Collection<Institution> institutions = this.getInstitutionRepository().findAll(specification, sort);
+        Collection<Institution> institutions = sort != null ? 
+                        this.getInstitutionRepository().findAll(specification, sort) :
+                        this.getInstitutionRepository().findAll(specification);
         return this.getInstitutionDao().toInstitutionVOCollection(institutions);
     }
 
@@ -145,7 +148,8 @@ public class InstitutionServiceImpl
 
         Specification<Institution> specification = this.buildSpecification(criteria.getCriteria());
         Sort sort = SortOrderFactory.createSortOrder(criteria.getSortings());
-        Page<Institution> institutions = this.getInstitutionRepository().findAll(specification, PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), sort));
+        PageRequest pageRequest = sort == null ? PageRequest.of(criteria.getPageNumber(), criteria.getPageSize()) : PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), sort); 
+        Page<Institution> institutions = this.getInstitutionRepository().findAll(specification, pageRequest);
 
         return institutions.map(institution -> this.getInstitutionDao().toInstitutionVO(institution));
     }

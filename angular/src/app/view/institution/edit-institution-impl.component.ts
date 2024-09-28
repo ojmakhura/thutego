@@ -34,14 +34,25 @@ import { InstitutionDetailsComponent } from '@app/components/institution/institu
 })
 export class EditInstitutionImplComponent extends EditInstitutionComponent {
 
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+    this.success = this.institutionApiStore.success;
+    this.loading = this.institutionApiStore.loading;
+    this.error = this.institutionApiStore.error;
+    this.messages = this.institutionApiStore.messages;
+  }
 
-    override beforeOnInit(form: EditInstitutionVarsForm): EditInstitutionVarsForm{     
-        return form;
-    }
+  override beforeOnInit(form: EditInstitutionVarsForm): EditInstitutionVarsForm {
+    return form;
+  }
 
-    doNgOnDestroy(): void {
-    }
+  doNgOnDestroy(): void {
+  }
+
+  override beforeEditInstitutionSave(form: any): void {
+
+    form.institution = { ...this.institutionEditorComponent?.institutionEditorForm?.value };
+    this.institutionApiStore.save(form);
+
+  }
 }

@@ -7,11 +7,12 @@
  */
 import { Routes } from '@angular/router';
 import { Shell } from '@app/shell/shell.service';
+import { LoginComponent } from './auth/login.component';
 
 export const routes: Routes = [
   {
     path: 'login',
-    loadChildren: async () => (await import('./auth/auth.module')).AuthModule,
+    component: LoginComponent,
   },
   Shell.childRoutes([
     {
@@ -27,6 +28,14 @@ export const routes: Routes = [
     {
       path: 'institution', 
       loadChildren: () => import('@app/view/institution/institution.routes').then((m) => m.routes),
+    },
+    {
+      path: 'curriculum', 
+      loadChildren: () => import('@app/view/curriculum/curriculum.routes').then((m) => m.routes),
+    },
+    {
+      path: 'curriculum/level', 
+      loadChildren: () => import('@app/view/curriculum/level/curriculum-level.routes').then((m) => m.routes),
     },
   ]),
   // Fallback when no prior route is matched

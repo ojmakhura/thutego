@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -6,14 +6,12 @@ import { merge } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
 
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { I18nService } from '@app/i18n';
 import { environment } from '@env/environment';
 import { Logger, SharedModule, UntilDestroy, untilDestroyed } from '@shared';
-import { AuthModule } from './auth';
 import { MaterialModule } from './material.module';
 import { ShellComponent } from './shell/shell.component';
+import { I18nService } from './i18n/i18n.service';
 
 const log = new Logger('App');
 
@@ -28,21 +26,19 @@ const log = new Logger('App');
     RouterOutlet,
     RouterModule,
     FormsModule,
-    HttpClientModule,
     MaterialModule,
     SharedModule,
     ShellComponent,
-    AuthModule,
   ],
 })
 export class AppComponent implements OnInit, OnDestroy {
-  constructor(
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title,
-    private translateService: TranslateService,
-    private i18nService: I18nService,
-  ) {}
+
+  router = inject(Router);
+  activatedRoute = inject(ActivatedRoute);
+  private titleService = inject(Title);
+  private translateService = inject(TranslateService);
+  private i18nService = inject(I18nService)
+
 
   ngOnInit() {
     // Setup logger

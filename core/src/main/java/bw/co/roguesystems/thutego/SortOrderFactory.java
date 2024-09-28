@@ -1,11 +1,16 @@
 package bw.co.roguesystems.thutego;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.data.domain.Sort;
 import java.util.Collection;
 
 public class SortOrderFactory {
     
     public static Sort createSortOrder(Collection<PropertySearchOrder> orderings) {
+
+        if(CollectionUtils.isEmpty(orderings)) {
+            return null;
+        }
         
         Sort sort = null;
 
