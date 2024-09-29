@@ -36,9 +36,13 @@ export class CurriculumLevelViewImplComponent extends CurriculumLevelViewCompone
 
     constructor() {
         super();
+        this.success = this.curriculumLevelApiStore.success;
+        this.loading = this.curriculumLevelApiStore.loading;
+        this.error = this.curriculumLevelApiStore.error;
+        this.messages = this.curriculumLevelApiStore.messages;
     }
 
-    override beforeOnInit(form: CurriculumLevelViewVarsForm): CurriculumLevelViewVarsForm{     
+    override beforeOnInit(form: CurriculumLevelViewVarsForm): CurriculumLevelViewVarsForm{
         return form;
     }
 

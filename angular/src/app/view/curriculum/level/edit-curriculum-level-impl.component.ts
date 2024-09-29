@@ -36,12 +36,20 @@ export class EditCurriculumLevelImplComponent extends EditCurriculumLevelCompone
 
     constructor() {
         super();
+        this.success = this.curriculumLevelApiStore.success;
+        this.loading = this.curriculumLevelApiStore.loading;
+        this.error = this.curriculumLevelApiStore.error;
+        this.messages = this.curriculumLevelApiStore.messages;
     }
 
-    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{     
+    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{
         return form;
     }
 
     doNgOnDestroy(): void {
+    }
+    override beforeEditCurriculumLevelSave(form: any): void {
+      form.curriculumLevel = { ...this.curriculumEditorComponent?.curriculumLevelEditorForm?.value };
+      this.curriculumLevelApiStore.save(form);
     }
 }

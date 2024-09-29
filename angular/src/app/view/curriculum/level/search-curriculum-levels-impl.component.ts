@@ -34,12 +34,22 @@ export class SearchCurriculumLevelsImplComponent extends SearchCurriculumLevelsC
 
     constructor() {
         super();
+        this.success = this.curriculumLevelApiStore.success;
+        this.loading = this.curriculumLevelApiStore.loading;
+        this.error = this.curriculumLevelApiStore.error;
+        this.messages = this.curriculumLevelApiStore.messages;
+        this.curriculumLevelsTablePaged = false;
+        this.curriculumLevelsTableSignal = this.curriculumLevelApiStore.dataList;
     }
 
-    override beforeOnInit(form: SearchCurriculumLevelsVarsForm): SearchCurriculumLevelsVarsForm{     
+    override beforeOnInit(form: SearchCurriculumLevelsVarsForm): SearchCurriculumLevelsVarsForm{
         return form;
     }
 
     doNgOnDestroy(): void {
+    }
+
+    override beforeSearchCurriculumLevelsSearch(form: any): void {
+      this.curriculumLevelApiStore.getAll();
     }
 }

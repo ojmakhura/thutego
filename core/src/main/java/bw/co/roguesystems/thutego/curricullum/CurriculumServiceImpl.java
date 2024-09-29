@@ -10,8 +10,6 @@ package bw.co.roguesystems.thutego.curricullum;
 
 import bw.co.roguesystems.thutego.PropertySearchOrder;
 import bw.co.roguesystems.thutego.SearchObject;
-import bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelDao;
-import bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelRepository;
 import bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelVO;
 import java.util.Collection;
 import java.util.Set;
@@ -30,14 +28,14 @@ public class CurriculumServiceImpl
     extends CurriculumServiceBase
 {
     public CurriculumServiceImpl(
-        CurriculumLevelDao curriculumLevelDao,
-        CurriculumLevelRepository curriculumLevelRepository,
+        CurricullumDao curricullumDao,
+        CurricullumRepository curricullumRepository,
         MessageSource messageSource
     ) {
         
         super(
-            curriculumLevelDao,
-            curriculumLevelRepository,
+            curricullumDao,
+            curricullumRepository,
             messageSource
         );
     }

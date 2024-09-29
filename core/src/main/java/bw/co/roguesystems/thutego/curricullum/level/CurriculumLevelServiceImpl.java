@@ -9,9 +9,14 @@
 package bw.co.roguesystems.thutego.curricullum.level;
 
 import bw.co.roguesystems.thutego.PropertySearchOrder;
+import bw.co.roguesystems.thutego.SortOrderFactory;
+import io.micrometer.common.util.StringUtils;
+
 import java.util.Collection;
 import java.util.Set;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,8 +49,8 @@ public class CurriculumLevelServiceImpl
     protected CurriculumLevelVO handleFindById(Long id)
         throws Exception
     {
-        // TODO implement protected  CurriculumLevelVO handleFindById(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelService.handleFindById(Long id) Not implemented!");
+
+        return this.getCurriculumLevelDao().toCurriculumLevelVO(curriculumLevelRepository.getReferenceById(id));
     }
 
     /**
@@ -55,8 +60,8 @@ public class CurriculumLevelServiceImpl
     protected Collection<CurriculumLevelVO> handleGetAll()
         throws Exception
     {
-        // TODO implement protected  Collection<CurriculumLevelVO> handleGetAll()
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelService.handleGetAll() Not implemented!");
+
+        return this.getCurriculumLevelDao().toCurriculumLevelVOCollection(curriculumLevelRepository.findAll());
     }
 
     /**
@@ -66,8 +71,9 @@ public class CurriculumLevelServiceImpl
     protected boolean handleRemove(Long id)
         throws Exception
     {
-        // TODO implement protected  boolean handleRemove(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelService.handleRemove(Long id) Not implemented!");
+
+        curriculumLevelRepository.deleteById(id);
+        return true;
     }
 
     /**
@@ -77,8 +83,10 @@ public class CurriculumLevelServiceImpl
     protected CurriculumLevelVO handleSave(CurriculumLevelVO curriculumLevel)
         throws Exception
     {
-        // TODO implement protected  CurriculumLevelVO handleSave(CurriculumLevelVO curriculumLevel)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelService.handleSave(CurriculumLevelVO curriculumLevel) Not implemented!");
+            
+            CurriculumLevel entity = this.getCurriculumLevelDao().curriculumLevelVOToEntity(curriculumLevel);
+            curriculumLevelRepository.save(entity);
+            return this.getCurriculumLevelDao().toCurriculumLevelVO(entity);
     }
 
     /**
@@ -88,8 +96,26 @@ public class CurriculumLevelServiceImpl
     protected Collection<CurriculumLevelVO> handleSearch(String criteria, Set<PropertySearchOrder> orderings)
         throws Exception
     {
-        // TODO implement protected  Collection<CurriculumLevelVO> handleSearch(String criteria, Set<PropertySearchOrder> orderings)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelService.handleSearch(String criteria, Set<PropertySearchOrder> orderings) Not implemented!");
+
+        Specification<CurriculumLevel> specification = null;
+
+        if(StringUtils.isNotBlank(criteria)) {
+            specification = (root, query, cb) -> {
+                return cb.or(
+                    cb.like(cb.lower(root.get("level")), "%" + criteria.toLowerCase() + "%"),
+                    cb.like(cb.lower(root.get("code")), "%" + criteria.toLowerCase() + "%")
+                );
+            };
+        }
+
+        Sort sort = SortOrderFactory.createSortOrder(orderings);
+
+        if(sort == null) {
+            return this.getCurriculumLevelDao().toCurriculumLevelVOCollection(curriculumLevelRepository.findAll(specification));
+        }
+
+        return this.getCurriculumLevelDao().toCurriculumLevelVOCollection(curriculumLevelRepository.findAll(specification, sort));
+
     }
 
 }

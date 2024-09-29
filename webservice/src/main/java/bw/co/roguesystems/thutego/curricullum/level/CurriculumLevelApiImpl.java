@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.curricullum.level;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(this.curriculumLevelService.findById(id));
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -47,7 +48,7 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumLevelService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -66,7 +67,7 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumLevelService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -85,7 +86,18 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleSave(CurriculumLevelVO curriculumLevel) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(curriculumLevel.getId() == null) {
+
+                curriculumLevel.setCreatedAt(LocalDateTime.now());
+                curriculumLevel.setCreatedBy("SYSTEM");
+            } else {
+                    
+                    curriculumLevel.setModifiedAt(LocalDateTime.now());
+                    curriculumLevel.setModifiedBy("SYSTEM");
+            }
+
+            Optional<?> data = Optional.of(curriculumLevelService.save(curriculumLevel)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -104,7 +116,7 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumLevelService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

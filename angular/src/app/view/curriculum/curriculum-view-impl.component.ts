@@ -36,9 +36,13 @@ export class CurriculumViewImplComponent extends CurriculumViewComponent {
 
     constructor() {
         super();
+        this.success = this.curriculumApiStore.success;
+        this.loading = this.curriculumApiStore.loading;
+        this.error = this.curriculumApiStore.error;
+        this.messages = this.curriculumApiStore.messages;
     }
 
-    override beforeOnInit(form: CurriculumViewVarsForm): CurriculumViewVarsForm{     
+    override beforeOnInit(form: CurriculumViewVarsForm): CurriculumViewVarsForm{
         return form;
     }
 

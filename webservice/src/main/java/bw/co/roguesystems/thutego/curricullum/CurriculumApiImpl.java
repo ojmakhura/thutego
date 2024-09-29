@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurriculumApiImpl extends CurriculumApiBase {
     
     public CurriculumApiImpl(
-    ) {
+        CurriculumService curriculumService    ) {
         
         super(
-        );
+            curriculumService        );
     }
 
 

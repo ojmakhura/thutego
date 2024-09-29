@@ -6,8 +6,7 @@
  */
 package bw.co.roguesystems.thutego.curricullum.level;
 
-import bw.co.roguesystems.thutego.curricullum.CurriculumListVO;
-import bw.co.roguesystems.thutego.curricullum.CurriculumVO;
+import bw.co.roguesystems.thutego.curricullum.CurricullumRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -19,10 +18,12 @@ public class CurriculumLevelDaoImpl
 {
     
     public CurriculumLevelDaoImpl(
+        CurricullumRepository curricullumRepository,
         CurriculumLevelRepository curriculumLevelRepository
     ) {
 
         super(
+            curricullumRepository,
             curriculumLevelRepository
         );
     }
@@ -56,10 +57,6 @@ public class CurriculumLevelDaoImpl
      */
     private CurriculumLevel loadCurriculumLevelFromCurriculumLevelVO(CurriculumLevelVO curriculumLevelVO)
     {
-        // TODO implement loadCurriculumLevelFromCurriculumLevelVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.loadCurriculumLevelFromCurriculumLevelVO(CurriculumLevelVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
         if (curriculumLevelVO.getId() == null)
         {
             return  CurriculumLevel.Factory.newInstance();
@@ -68,7 +65,6 @@ public class CurriculumLevelDaoImpl
         {
             return this.load(curriculumLevelVO.getId());
         }
-        */
     }
 
     /**
@@ -93,143 +89,5 @@ public class CurriculumLevelDaoImpl
     {
         // TODO verify behavior of curriculumLevelVOToEntity
         super.curriculumLevelVOToEntity(source, target, copyIfNull);
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void toCurriculumVO(
-        CurriculumLevel source,
-        CurriculumVO target)
-    {
-        // TODO verify behavior of toCurriculumVO
-        super.toCurriculumVO(source, target);
-        // WARNING! No conversion for target.level (can't convert source.getLevel():java.lang.String to CurriculumLevelVO
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CurriculumVO toCurriculumVO(final CurriculumLevel entity)
-    {
-        // TODO verify behavior of toCurriculumVO
-        return super.toCurriculumVO(entity);
-    }
-
-    /**
-     * Retrieves the entity object that is associated with the specified value object
-     * from the object store. If no such entity object exists in the object store,
-     * a new, blank entity is created
-     */
-    private CurriculumLevel loadCurriculumLevelFromCurriculumVO(CurriculumVO curriculumVO)
-    {
-        // TODO implement loadCurriculumLevelFromCurriculumVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.loadCurriculumLevelFromCurriculumVO(CurriculumVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
-        if (curriculumVO.getId() == null)
-        {
-            return  CurriculumLevel.Factory.newInstance();
-        }
-        else
-        {
-            return this.load(curriculumVO.getId());
-        }
-        */
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public CurriculumLevel curriculumVOToEntity(CurriculumVO curriculumVO)
-    {
-        // TODO verify behavior of curriculumVOToEntity
-        CurriculumLevel entity = this.loadCurriculumLevelFromCurriculumVO(curriculumVO);
-        this.curriculumVOToEntity(curriculumVO, entity, true);
-        return entity;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void curriculumVOToEntity(
-        CurriculumVO source,
-        CurriculumLevel target,
-        boolean copyIfNull)
-    {
-        // TODO verify behavior of curriculumVOToEntity
-        super.curriculumVOToEntity(source, target, copyIfNull);
-        // No conversion for target.level (can't convert source.getLevel():CurriculumLevelVO to java.lang.String
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void toCurriculumListVO(
-        CurriculumLevel source,
-        CurriculumListVO target)
-    {
-        // TODO verify behavior of toCurriculumListVO
-        super.toCurriculumListVO(source, target);
-        // WARNING! No conversion for target.level (can't convert source.getLevel():java.lang.String to CurriculumLevelVO
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public CurriculumListVO toCurriculumListVO(final CurriculumLevel entity)
-    {
-        // TODO verify behavior of toCurriculumListVO
-        return super.toCurriculumListVO(entity);
-    }
-
-    /**
-     * Retrieves the entity object that is associated with the specified value object
-     * from the object store. If no such entity object exists in the object store,
-     * a new, blank entity is created
-     */
-    private CurriculumLevel loadCurriculumLevelFromCurriculumListVO(CurriculumListVO curriculumListVO)
-    {
-        // TODO implement loadCurriculumLevelFromCurriculumListVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.level.loadCurriculumLevelFromCurriculumListVO(CurriculumListVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
-        if (curriculumListVO.getId() == null)
-        {
-            return  CurriculumLevel.Factory.newInstance();
-        }
-        else
-        {
-            return this.load(curriculumListVO.getId());
-        }
-        */
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public CurriculumLevel curriculumListVOToEntity(CurriculumListVO curriculumListVO)
-    {
-        // TODO verify behavior of curriculumListVOToEntity
-        CurriculumLevel entity = this.loadCurriculumLevelFromCurriculumListVO(curriculumListVO);
-        this.curriculumListVOToEntity(curriculumListVO, entity, true);
-        return entity;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void curriculumListVOToEntity(
-        CurriculumListVO source,
-        CurriculumLevel target,
-        boolean copyIfNull)
-    {
-        // TODO verify behavior of curriculumListVOToEntity
-        super.curriculumListVOToEntity(source, target, copyIfNull);
-        // No conversion for target.level (can't convert source.getLevel():CurriculumLevelVO to java.lang.String
     }
 }

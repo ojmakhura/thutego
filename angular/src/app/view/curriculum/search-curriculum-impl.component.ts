@@ -38,9 +38,14 @@ export class SearchCurriculumImplComponent extends SearchCurriculumComponent {
 
     constructor() {
         super();
+        this.success = this.curriculumApiStore.success;
+        this.loading = this.curriculumApiStore.loading;
+        this.error = this.curriculumApiStore.error;
+        this.messages = this.curriculumApiStore.messages;
+        this.curriculaTableSignal = this.curriculumApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchCurriculumVarsForm): SearchCurriculumVarsForm{     
+    override beforeOnInit(form: SearchCurriculumVarsForm): SearchCurriculumVarsForm{
         return form;
     }
 

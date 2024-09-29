@@ -1,4 +1,3 @@
-
 import { inject } from '@angular/core';
 import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
@@ -18,7 +17,7 @@ const initialState: AppState<any, any> = {
   error: null,
   loading: false,
   success: false,
-  messages: []
+  messages: [],
 };
 
 export const CurriculumLevelApiStore = signalStore(
@@ -30,13 +29,13 @@ export const CurriculumLevelApiStore = signalStore(
       reset: () => {
         patchState(store, initialState);
       },
-      findById: rxMethod<{id: number | any }>(
+      findById: rxMethod<{ id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelApi.findById(data.id, ).pipe(
+          return curriculumLevelApi.findById(data.id).pipe(
             tapResponse({
               next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+                patchState(store, { data, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -50,8 +49,8 @@ export const CurriculumLevelApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumLevelApi.getAll().pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList) => {
+                patchState(store, { dataList, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -60,13 +59,13 @@ export const CurriculumLevelApiStore = signalStore(
           );
         }),
       ),
-      remove: rxMethod<{id: number | any }>(
+      remove: rxMethod<{ id: number | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelApi.remove(data.id, ).pipe(
+          return curriculumLevelApi.remove(data.id).pipe(
             tapResponse({
               next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+                patchState(store, { loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -75,13 +74,13 @@ export const CurriculumLevelApiStore = signalStore(
           );
         }),
       ),
-      save: rxMethod<{curriculumLevel: CurriculumLevelVO | any }>(
+      save: rxMethod<{ curriculumLevel: CurriculumLevelVO | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelApi.save(data.curriculumLevel, ).pipe(
+          return curriculumLevelApi.save(data.curriculumLevel).pipe(
             tapResponse({
               next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+                patchState(store, { data, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -90,13 +89,13 @@ export const CurriculumLevelApiStore = signalStore(
           );
         }),
       ),
-      search: rxMethod<{criteria: string | any }>(
+      search: rxMethod<{ criteria: string | any }>(
         switchMap((data) => {
           patchState(store, { loading: true });
-          return curriculumLevelApi.search(data.criteria, ).pipe(
+          return curriculumLevelApi.search(data.criteria).pipe(
             tapResponse({
-              next: (data) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList) => {
+                patchState(store, { dataList, loading: false, success: true });
               },
               error: (error) => {
                 patchState(store, { error, loading: false, success: false });
@@ -105,6 +104,6 @@ export const CurriculumLevelApiStore = signalStore(
           );
         }),
       ),
-    }
+    };
   }),
 );
