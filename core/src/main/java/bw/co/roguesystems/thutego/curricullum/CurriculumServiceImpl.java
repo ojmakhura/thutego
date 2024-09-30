@@ -10,11 +10,18 @@ package bw.co.roguesystems.thutego.curricullum;
 
 import bw.co.roguesystems.thutego.PropertySearchOrder;
 import bw.co.roguesystems.thutego.SearchObject;
+import bw.co.roguesystems.thutego.SortOrderFactory;
+import bw.co.roguesystems.thutego.ThutegoSpecifications;
 import bw.co.roguesystems.thutego.curricullum.level.CurriculumLevelVO;
 import java.util.Collection;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,21 +30,18 @@ import org.springframework.transaction.annotation.Transactional;
  * @see bw.co.roguesystems.thutego.curricullum.CurriculumService
  */
 @Service("curriculumService")
-@Transactional(propagation = Propagation.REQUIRED, readOnly=false)
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class CurriculumServiceImpl
-    extends CurriculumServiceBase
-{
+        extends CurriculumServiceBase {
     public CurriculumServiceImpl(
-        CurricullumDao curricullumDao,
-        CurricullumRepository curricullumRepository,
-        MessageSource messageSource
-    ) {
-        
+            CurricullumDao curricullumDao,
+            CurricullumRepository curricullumRepository,
+            MessageSource messageSource) {
+
         super(
-            curricullumDao,
-            curricullumRepository,
-            messageSource
-        );
+                curricullumDao,
+                curricullumRepository,
+                messageSource);
     }
 
     /**
@@ -45,10 +49,9 @@ public class CurriculumServiceImpl
      */
     @Override
     protected CurriculumVO handleFindById(Long id)
-        throws Exception
-    {
-        // TODO implement protected  CurriculumVO handleFindById(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleFindById(Long id) Not implemented!");
+            throws Exception {
+
+        return this.getCurricullumDao().toCurriculumVO(this.getCurricullumRepository().getReferenceById(id));
     }
 
     /**
@@ -56,10 +59,9 @@ public class CurriculumServiceImpl
      */
     @Override
     protected Collection<CurriculumListVO> handleGetAll()
-        throws Exception
-    {
-        // TODO implement protected  Collection<CurriculumListVO> handleGetAll()
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleGetAll() Not implemented!");
+            throws Exception {
+
+        return this.getCurricullumDao().toCurriculumListVOCollection(this.getCurricullumRepository().findAll());
     }
 
     /**
@@ -67,54 +69,113 @@ public class CurriculumServiceImpl
      */
     @Override
     protected boolean handleRemove(Long id)
-        throws Exception
-    {
-        // TODO implement protected  boolean handleRemove(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleRemove(Long id) Not implemented!");
+            throws Exception {
+
+        this.getCurricullumRepository().deleteById(id);
+        return true;
     }
 
     /**
      * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#save(CurriculumLevelVO)
      */
     @Override
-    protected CurriculumVO handleSave(CurriculumLevelVO curriculumLevel)
-        throws Exception
-    {
-        // TODO implement protected  CurriculumVO handleSave(CurriculumLevelVO curriculumLevel)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleSave(CurriculumLevelVO curriculumLevel) Not implemented!");
+    protected CurriculumVO handleSave(CurriculumVO curriculum)
+            throws Exception {
+
+        Curricullum entity = this.getCurricullumDao().curriculumVOToEntity(curriculum);
+        entity = this.getCurricullumRepository().save(entity);
+
+        return this.getCurricullumDao().toCurriculumVO(entity);
+    }
+
+    private Specification<Curricullum> getSpecification(CurriculumSearchCriteria criteria) {
+
+        Specification<Curricullum> specification = null;
+
+        if (StringUtils.isNotBlank(criteria.getName())) {
+            specification = ThutegoSpecifications.findByAttributeLikeIgnoreCase(criteria.getName(), criteria.getName());
+        }
+
+        if (StringUtils.isNotBlank(criteria.getCode())) {
+            Specification<Curricullum> tmp = ThutegoSpecifications.findByAttributeLikeIgnoreCase(criteria.getCode(),
+                    criteria.getCode());
+
+            if (specification == null) {
+                specification = tmp;
+            } else {
+                specification = specification.and(tmp);
+            }
+        }
+
+        if (criteria.getStatus() != null) {
+
+            Specification<Curricullum> tmp = ThutegoSpecifications
+                    .<Curricullum, CurricullumStatus>findByAttributeEquals(criteria.getStatus(), "status");
+
+            if (specification == null) {
+                specification = tmp;
+            } else {
+                specification = specification.and(tmp);
+            }
+        }
+
+        // TODO: Add other specifications
+
+        return specification;
+
     }
 
     /**
-     * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#search(CurriculumSearchCriteria, Set<PropertySearchOrder>)
+     * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#search(CurriculumSearchCriteria,
+     *      Set<PropertySearchOrder>)
      */
     @Override
-    protected Collection<CurriculumListVO> handleSearch(CurriculumSearchCriteria criteria, Set<PropertySearchOrder> orderings)
-        throws Exception
-    {
-        // TODO implement protected  Collection<CurriculumListVO> handleSearch(CurriculumSearchCriteria criteria, Set<PropertySearchOrder> orderings)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleSearch(CurriculumSearchCriteria criteria, Set<PropertySearchOrder> orderings) Not implemented!");
+    protected Collection<CurriculumListVO> handleSearch(CurriculumSearchCriteria criteria,
+            Set<PropertySearchOrder> orderings)
+            throws Exception {
+
+        Specification<Curricullum> specification = getSpecification(criteria);
+        Sort sort = SortOrderFactory.createSortOrder(orderings);
+
+        if (sort == null) {
+            return this.getCurricullumDao()
+                    .toCurriculumListVOCollection(this.getCurricullumRepository().findAll(specification));
+        }
+
+        return this.getCurricullumDao()
+                .toCurriculumListVOCollection(this.getCurricullumRepository().findAll(specification, sort));
     }
 
     /**
-     * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#getAll(Integer, Integer)
+     * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#getAll(Integer,
+     *      Integer)
      */
     @Override
     protected Page<CurriculumListVO> handleGetAll(Integer pageNumber, Integer pageSize)
-        throws Exception
-    {
-        // TODO implement protected  Page<CurriculumListVO> handleGetAll(Integer pageNumber, Integer pageSize)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleGetAll(Integer pageNumber, Integer pageSize) Not implemented!");
+            throws Exception {
+
+        Page<Curricullum> page = this.getCurricullumRepository().findAll(PageRequest.of(pageNumber, pageSize));
+
+        return page.map(this.getCurricullumDao()::toCurriculumListVO);
     }
 
     /**
      * @see bw.co.roguesystems.thutego.curricullum.CurriculumService#search(SearchObject<CurriculumSearchCriteria>)
      */
     @Override
-    protected Collection<Page<CurriculumListVO>> handleSearch(SearchObject<CurriculumSearchCriteria> criteria)
-        throws Exception
-    {
-        // TODO implement protected  Collection<Page<CurriculumListVO>> handleSearch(SearchObject<CurriculumSearchCriteria> criteria)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.curricullum.CurriculumService.handleSearch(SearchObject<CurriculumSearchCriteria> criteria) Not implemented!");
+    protected Page<CurriculumListVO> handleSearch(SearchObject<CurriculumSearchCriteria> criteria)
+            throws Exception {
+
+        Specification<Curricullum> specification = getSpecification(criteria.getCriteria());
+        Sort sort = SortOrderFactory.createSortOrder(criteria.getSortings());
+
+        Page<Curricullum> page = sort == null
+                ? this.getCurricullumRepository().findAll(specification,
+                        PageRequest.of(criteria.getPageNumber(), criteria.getPageSize()))
+                : this.getCurricullumRepository().findAll(specification,
+                        PageRequest.of(criteria.getPageNumber(), criteria.getPageSize(), sort));
+
+        return page.map(this.getCurricullumDao()::toCurriculumListVO);
     }
 
 }

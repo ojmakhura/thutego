@@ -35,10 +35,10 @@ export const CurriculumLevelApiStore = signalStore(
           return curriculumLevelApi.findById(data.id).pipe(
             tapResponse({
               next: (data) => {
-                patchState(store, { data, loading: false, success: true });
+                patchState(store, { data, loading: false, success: true, messages: [`Found curriculum level with id ${data.code}`] });
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(store, { error, loading: false, success: false, messages: [error?.error ? error.error : error]});
               },
             }),
           );
@@ -50,10 +50,19 @@ export const CurriculumLevelApiStore = signalStore(
           return curriculumLevelApi.getAll().pipe(
             tapResponse({
               next: (dataList) => {
-                patchState(store, { dataList, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    dataList,
+                    loading: false,
+                    success: true, messages: [
+                      `Found ${dataList.length} curriculum levels`
+                    ]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(store, { error, loading: false, success: false, messages: [error?.error ? error.error : error] });
               },
             }),
           );
@@ -64,11 +73,30 @@ export const CurriculumLevelApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumLevelApi.remove(data.id).pipe(
             tapResponse({
-              next: (data) => {
-                patchState(store, { loading: false, success: true });
+              next: (removed) => {
+                patchState(
+                  store,
+                  {
+                    loading: false,
+                    success: true,
+                    messages: [
+                      `Removed curriculum level with code ${data.id}`
+                    ]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [
+                      error?.error ? error.error : error
+                    ]
+                  }
+                );
               },
             }),
           );
@@ -80,10 +108,30 @@ export const CurriculumLevelApiStore = signalStore(
           return curriculumLevelApi.save(data.curriculumLevel).pipe(
             tapResponse({
               next: (data) => {
-                patchState(store, { data, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    data,
+                    loading: false,
+                    success: true,
+                    messages: [
+                      `Saved curriculum level with code ${data.level}`
+                    ]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [
+                      error?.error ? error.error : error
+                    ]
+                  }
+                );
               },
             }),
           );
@@ -95,10 +143,19 @@ export const CurriculumLevelApiStore = signalStore(
           return curriculumLevelApi.search(data.criteria).pipe(
             tapResponse({
               next: (dataList) => {
-                patchState(store, { dataList, loading: false, success: true });
+                patchState(store,
+                  {
+                    dataList,
+                    loading: false,
+                    success: true,
+                    messages: [
+                      `Found ${dataList.length} curriculum levels`
+                    ]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(store, { error, loading: false, success: false, messages: [error?.error ? error.error : error] });
               },
             }),
           );

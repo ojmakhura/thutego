@@ -36,11 +36,27 @@ export const CurriculumApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumApi.findById(data.id).pipe(
             tapResponse({
-              next: (data) => {
-                patchState(store, { data, loading: false, success: true });
+              next: (data: CurriculumVO) => {
+                patchState(
+                  store,
+                  {
+                    data,
+                    loading: false,
+                    success: true,
+                    messages: [`Found curriculum with id ${data.name}`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -52,10 +68,26 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.getAll().pipe(
             tapResponse({
               next: (dataList) => {
-                patchState(store, { dataList, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    dataList,
+                    loading: false,
+                    success: true ,
+                    messages: [`Found ${dataList.length} curriculums`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -67,10 +99,26 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.getAllPaged().pipe(
             tapResponse({
               next: (dataPage) => {
-                patchState(store, { dataPage, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    dataPage,
+                    loading: false,
+                    success: true,
+                    messages: [`Found ${dataPage.totalElements} curricula`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -82,10 +130,25 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.remove(data.id).pipe(
             tapResponse({
               next: (removed) => {
-                patchState(store, { loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    loading: false,
+                    success: true ,
+                    messages: [`Removed curriculum with id ${data.id}`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -97,10 +160,26 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.save(data.curriculum).pipe(
             tapResponse({
               next: (data) => {
-                patchState(store, { data, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    data,
+                    loading: false,
+                    success: true,
+                    messages: [`Saved curriculum with id ${data.name}`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -112,10 +191,26 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.search(data.criteria).pipe(
             tapResponse({
               next: (dataList) => {
-                patchState(store, { dataList, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    dataList,
+                    loading: false,
+                    success: true,
+                    messages: [`Found ${dataList.length} curricula`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -127,10 +222,26 @@ export const CurriculumApiStore = signalStore(
           return curriculumApi.searchPaged(data.criteria).pipe(
             tapResponse({
               next: (dataPage) => {
-                patchState(store, { dataPage, loading: false, success: true });
+                patchState(
+                  store,
+                  {
+                    dataPage,
+                    loading: false,
+                    success: true,
+                    messages: [`Found ${dataPage.totalElements} curricula`]
+                  }
+                );
               },
-              error: (error) => {
-                patchState(store, { error, loading: false, success: false });
+              error: (error: any) => {
+                patchState(
+                  store,
+                  {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );

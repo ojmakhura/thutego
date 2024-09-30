@@ -11,8 +11,8 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { CurriculumDetailsComponent } from '@app/components/curriculum/curriculum-details.component';
-import { CurriculumEditorComponent } from '@app/components/curriculum/curriculum-editor.component';
+import { CurriculumDetailsImplComponent } from '@app/components/curriculum/curriculum-details-impl.component';
+import { CurriculumEditorImplComponent } from '@app/components/curriculum/curriculum-editor-impl.component';
 
 @Component({
   selector: 'app-edit-curriculum',
@@ -28,8 +28,8 @@ import { CurriculumEditorComponent } from '@app/components/curriculum/curriculum
     MaterialModule,
     CsvModule,
     TableComponent,
-    CurriculumDetailsComponent,
-    CurriculumEditorComponent,
+    CurriculumDetailsImplComponent,
+    CurriculumEditorImplComponent,
   ],
 })
 export class EditCurriculumImplComponent extends EditCurriculumComponent {

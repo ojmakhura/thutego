@@ -11,7 +11,7 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { CurriculumLevelEditorComponent } from '@app/components/curriculum/level/curriculum-level-editor.component';
+import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/level/curriculum-level-editor-impl.component';
 
 @Component({
   selector: 'app-search-curriculum-levels',
@@ -27,7 +27,7 @@ import { CurriculumLevelEditorComponent } from '@app/components/curriculum/level
     MaterialModule,
     CsvModule,
     TableComponent,
-    CurriculumLevelEditorComponent,
+    CurriculumLevelEditorImplComponent,
   ],
 })
 export class SearchCurriculumLevelsImplComponent extends SearchCurriculumLevelsComponent {

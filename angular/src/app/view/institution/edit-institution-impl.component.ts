@@ -11,8 +11,8 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { InstitutionEditorComponent } from '@app/components/institution/institution-editor.component';
-import { InstitutionDetailsComponent } from '@app/components/institution/institution-details.component';
+import { InstitutionEditorImplComponent } from '@app/components/institution/institution-editor-impl.component';
+import { InstitutionDetailsImplComponent } from '@app/components/institution/institution-details-impl.component';
 
 @Component({
   selector: 'app-edit-institution',
@@ -28,8 +28,8 @@ import { InstitutionDetailsComponent } from '@app/components/institution/institu
     MaterialModule,
     CsvModule,
     TableComponent,
-    InstitutionEditorComponent,
-    InstitutionDetailsComponent,
+    InstitutionEditorImplComponent,
+    InstitutionDetailsImplComponent,
   ],
 })
 export class EditInstitutionImplComponent extends EditInstitutionComponent {

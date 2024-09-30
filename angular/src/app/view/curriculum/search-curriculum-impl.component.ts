@@ -11,9 +11,9 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { CurriculumDetailsComponent } from '@app/components/curriculum/curriculum-details.component';
-import { CurriculumEditorComponent } from '@app/components/curriculum/curriculum-editor.component';
-import { CurriculumSearchComponent } from '@app/components/curriculum/curriculum-search.component';
+import { CurriculumDetailsImplComponent } from '@app/components/curriculum/curriculum-details-impl.component';
+import { CurriculumEditorImplComponent } from '@app/components/curriculum/curriculum-editor-impl.component';
+import { CurriculumSearchImplComponent } from '@app/components/curriculum/curriculum-search-impl.component';
 
 @Component({
   selector: 'app-search-curriculum',
@@ -29,9 +29,9 @@ import { CurriculumSearchComponent } from '@app/components/curriculum/curriculum
     MaterialModule,
     CsvModule,
     TableComponent,
-    CurriculumDetailsComponent,
-    CurriculumEditorComponent,
-    CurriculumSearchComponent,
+    CurriculumDetailsImplComponent,
+    CurriculumEditorImplComponent,
+    CurriculumSearchImplComponent,
   ],
 })
 export class SearchCurriculumImplComponent extends SearchCurriculumComponent {

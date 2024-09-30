@@ -11,7 +11,7 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { ExitLevelOutcomeEditorComponent } from '@app/components/curriculum/outcome/exit-level-outcome-editor.component';
+import { ExitLevelOutcomeEditorImplComponent } from '@app/components/curriculum/outcome/exit-level-outcome-editor-impl.component';
 
 @Component({
   selector: 'app-search-curriculum-outcome-levels',
@@ -27,16 +27,20 @@ import { ExitLevelOutcomeEditorComponent } from '@app/components/curriculum/outc
     MaterialModule,
     CsvModule,
     TableComponent,
-    ExitLevelOutcomeEditorComponent,
+    ExitLevelOutcomeEditorImplComponent,
   ],
 })
 export class SearchCurriculumOutcomeLevelsImplComponent extends SearchCurriculumOutcomeLevelsComponent {
 
     constructor() {
         super();
+        this.success = this.exitLevelOutcomeApiStore.success;
+        this.loading = this.exitLevelOutcomeApiStore.loading;
+        this.error = this.exitLevelOutcomeApiStore.error;
+        this.messages = this.exitLevelOutcomeApiStore.messages;
     }
 
-    override beforeOnInit(form: SearchCurriculumOutcomeLevelsVarsForm): SearchCurriculumOutcomeLevelsVarsForm{     
+    override beforeOnInit(form: SearchCurriculumOutcomeLevelsVarsForm): SearchCurriculumOutcomeLevelsVarsForm{
         return form;
     }
 

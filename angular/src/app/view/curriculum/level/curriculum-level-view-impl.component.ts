@@ -11,8 +11,8 @@ import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { CurriculumLevelEditorComponent } from '@app/components/curriculum/level/curriculum-level-editor.component';
-import { CurriculumLevelDetailsComponent } from '@app/components/curriculum/level/curriculum-level-details.component';
+import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/level/curriculum-level-editor-impl.component';
+import { CurriculumLevelDetailsImplComponent } from '@app/components/curriculum/level/curriculum-level-details-impl.component';
 
 @Component({
   selector: 'app-curriculum-level-view',
@@ -28,8 +28,8 @@ import { CurriculumLevelDetailsComponent } from '@app/components/curriculum/leve
     MaterialModule,
     CsvModule,
     TableComponent,
-    CurriculumLevelEditorComponent,
-    CurriculumLevelDetailsComponent,
+    CurriculumLevelEditorImplComponent,
+    CurriculumLevelDetailsImplComponent,
   ],
 })
 export class CurriculumLevelViewImplComponent extends CurriculumLevelViewComponent {

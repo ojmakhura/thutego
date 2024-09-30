@@ -6,6 +6,8 @@
 package bw.co.roguesystems.thutego.curricullum;
 
 import bw.co.roguesystems.thutego.SearchObject;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -105,6 +107,15 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleSave(CurriculumVO curriculum) {
         try {
+
+            if(curriculum.getId() == null) {
+                curriculum.setCreatedAt(LocalDateTime.now());
+                curriculum.setCreatedBy("SYSTEM");
+            } else {
+                curriculum.setModifiedAt(LocalDateTime.now());
+                curriculum.setModifiedBy("SYSTEM");
+            }
+
             Optional<?> data = Optional.empty(); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
