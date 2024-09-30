@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.module.outcome;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(learningOutcomeService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {
@@ -46,7 +47,7 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleFindModuleOutcomes(Long moduleId) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(learningOutcomeService.findModuleOutcomes(moduleId)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {
@@ -65,7 +66,7 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(learningOutcomeService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {
@@ -84,7 +85,7 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(learningOutcomeService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {
@@ -103,7 +104,16 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleSave(LearningOutcomeVO learningOutcome) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(learningOutcome.getId() == null) {
+                learningOutcome.setCreatedAt(LocalDateTime.now());
+                learningOutcome.setCreatedBy("SYSTEM");
+            } else {
+                learningOutcome.setModifiedAt(LocalDateTime.now());
+                learningOutcome.setModifiedBy("SYSTEM");
+            }
+            
+            Optional<?> data = Optional.of(learningOutcomeService.save(learningOutcome)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {
@@ -122,7 +132,7 @@ public class LearningOutcomeApiImpl extends LearningOutcomeApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(learningOutcomeService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if (data.isPresent()) {

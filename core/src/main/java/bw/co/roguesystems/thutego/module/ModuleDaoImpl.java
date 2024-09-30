@@ -6,8 +6,12 @@
  */
 package bw.co.roguesystems.thutego.module;
 
-import bw.co.roguesystems.thutego.curricullum.CurricullumRepository;
+import bw.co.roguesystems.thutego.curriculum.CurriculumRepository;
+import bw.co.roguesystems.thutego.module.outcome.LearningOutcome;
 import bw.co.roguesystems.thutego.module.outcome.LearningOutcomeRepository;
+import bw.co.roguesystems.thutego.module.outcome.LearningOutcomeVO;
+
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -20,13 +24,13 @@ public class ModuleDaoImpl
     
     public ModuleDaoImpl(
         LearningOutcomeRepository learningOutcomeRepository,
-        CurricullumRepository curricullumRepository,
+        CurriculumRepository curriculumRepository,
         ModuleRepository moduleRepository
     ) {
 
         super(
             learningOutcomeRepository,
-            curricullumRepository,
+            curriculumRepository,
             moduleRepository
         );
     }
@@ -42,6 +46,16 @@ public class ModuleDaoImpl
         // TODO verify behavior of toModuleVO
         super.toModuleVO(source, target);
         // WARNING! No conversion for target.learningOutcomes (can't convert source.getLearningOutcomes():bw.co.roguesystems.thutego.module.outcome.LearningOutcome to bw.co.roguesystems.thutego.module.outcome.LearningOutcomeVO
+        if(CollectionUtils.isNotEmpty(source.getLearningOutcomes()))
+        {
+            source.getLearningOutcomes().forEach(learningOutcome -> {
+                LearningOutcomeVO learningOutcomeVO = new LearningOutcomeVO();
+                learningOutcomeVO.setId(learningOutcome.getId());
+                learningOutcomeVO.setCount(learningOutcome.getCount());
+                learningOutcomeVO.setDescription(learningOutcome.getDescription());
+                target.getLearningOutcomes().add(learningOutcomeVO);
+            });
+        }
     }
 
     /**
@@ -61,10 +75,6 @@ public class ModuleDaoImpl
      */
     private Module loadModuleFromModuleVO(ModuleVO moduleVO)
     {
-        // TODO implement loadModuleFromModuleVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.loadModuleFromModuleVO(ModuleVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
         if (moduleVO.getId() == null)
         {
             return  Module.Factory.newInstance();
@@ -73,7 +83,6 @@ public class ModuleDaoImpl
         {
             return this.load(moduleVO.getId());
         }
-        */
     }
 
     /**
@@ -98,6 +107,16 @@ public class ModuleDaoImpl
     {
         // TODO verify behavior of moduleVOToEntity
         super.moduleVOToEntity(source, target, copyIfNull);
+
+        // if(CollectionUtils.isNotEmpty(source.getLearningOutcomes())) {
+        //     source.getLearningOutcomes().forEach(learningOutcomeVO -> {
+        //         LearningOutcome learningOutcome = new LearningOutcome();
+        //         learningOutcome.setId(learningOutcomeVO.getId());
+        //         learningOutcome.setCount(learningOutcomeVO.getCount());
+        //         learningOutcome.setDescription(learningOutcomeVO.getDescription());
+        //         target.getLearningOutcomes().add(learningOutcome);
+        //     });
+        // }
     }
     /**
      * {@inheritDoc}
@@ -128,10 +147,6 @@ public class ModuleDaoImpl
      */
     private Module loadModuleFromModuleListVO(ModuleListVO moduleListVO)
     {
-        // TODO implement loadModuleFromModuleListVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.loadModuleFromModuleListVO(ModuleListVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
         if (moduleListVO.getId() == null)
         {
             return  Module.Factory.newInstance();
@@ -140,7 +155,6 @@ public class ModuleDaoImpl
         {
             return this.load(moduleListVO.getId());
         }
-        */
     }
 
     /**

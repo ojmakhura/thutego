@@ -6,7 +6,7 @@
  */
 package bw.co.roguesystems.thutego.module.outcome;
 
-import bw.co.roguesystems.thutego.curricullum.outcome.ExitLevelOutcomeRepository;
+import bw.co.roguesystems.thutego.curriculum.outcome.ExitLevelOutcomeRepository;
 import bw.co.roguesystems.thutego.module.ModuleRepository;
 import bw.co.roguesystems.thutego.module.topic.TopicRepository;
 import org.springframework.stereotype.Repository;

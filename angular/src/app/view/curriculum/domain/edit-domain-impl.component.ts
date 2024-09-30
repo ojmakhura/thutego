@@ -34,19 +34,25 @@ import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/do
 })
 export class EditDomainImplComponent extends EditDomainComponent {
 
-    constructor() {
-        super();
-        this.domainApiStore.reset()
-        this.success = this.domainApiStore.success;
-        this.loading = this.domainApiStore.loading;
-        this.error = this.domainApiStore.error;
-        this.messages = this.domainApiStore.messages;
-    }
+  constructor() {
+    super();
+    this.domainApiStore.reset()
+    this.success = this.domainApiStore.success;
+    this.loading = this.domainApiStore.loading;
+    this.error = this.domainApiStore.error;
+    this.messages = this.domainApiStore.messages;
+  }
 
-    override beforeOnInit(form: EditDomainVarsForm): EditDomainVarsForm{
-        return form;
-    }
+  override beforeOnInit(form: EditDomainVarsForm): EditDomainVarsForm {
+    return form;
+  }
 
-    doNgOnDestroy(): void {
-    }
+  doNgOnDestroy(): void {
+  }
+
+  override beforeEditDomainSave(form: any): void {
+
+    form.domain = { ...this.domainEditorComponent?.domainEditorForm?.value };
+    this.domainApiStore.save(form);
+  }
 }

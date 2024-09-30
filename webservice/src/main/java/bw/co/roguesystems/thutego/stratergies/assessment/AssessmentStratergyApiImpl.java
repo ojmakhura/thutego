@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.stratergies.assessment;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class AssessmentStratergyApiImpl extends AssessmentStratergyApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(assessmentStratergyService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -47,7 +48,7 @@ public class AssessmentStratergyApiImpl extends AssessmentStratergyApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(assessmentStratergyService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -66,7 +67,7 @@ public class AssessmentStratergyApiImpl extends AssessmentStratergyApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(assessmentStratergyService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -83,9 +84,18 @@ public class AssessmentStratergyApiImpl extends AssessmentStratergyApiBase {
     }
 
     @Override
-    public ResponseEntity<?> handleSave(AssessmentStrategyVO trainingStratergy) {
+    public ResponseEntity<?> handleSave(AssessmentStrategyVO assessmentStratergy) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(assessmentStratergy.getId() == null) {
+                assessmentStratergy.setCreatedAt(LocalDateTime.now());
+                assessmentStratergy.setCreatedBy("SYSTEM");
+            } else {
+                assessmentStratergy.setModifiedAt(LocalDateTime.now());
+                assessmentStratergy.setModifiedBy("SYSTEM");
+            }
+
+            Optional<?> data = Optional.of(assessmentStratergyService.save(assessmentStratergy)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -104,7 +114,7 @@ public class AssessmentStratergyApiImpl extends AssessmentStratergyApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(assessmentStratergyService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

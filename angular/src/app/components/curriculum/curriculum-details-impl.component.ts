@@ -26,10 +26,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
-import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/level/curriculum-level-vo';
-import { ExitLevelOutcomeVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/outcome/exit-level-outcome-vo';
-import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curricullum/curriculum-list-vo';
-import { CurricullumStatus } from '@app/model/bw/co/roguesystems/thutego/curricullum/curricullum-status';
+import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/level/curriculum-level-vo';
+import { ExitLevelOutcomeVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/outcome/exit-level-outcome-vo';
+import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-list-vo';
+import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumDetailsComponent } from './curriculum-details.component';
 

@@ -9,9 +9,16 @@
 package bw.co.roguesystems.thutego.module;
 
 import bw.co.roguesystems.thutego.PropertySearchOrder;
+import bw.co.roguesystems.thutego.SortOrderFactory;
+import bw.co.roguesystems.thutego.ThutegoSpecifications;
+
 import java.util.Collection;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,8 +51,7 @@ public class ModuleServiceImpl
     protected ModuleVO handleFindById(Long id)
         throws Exception
     {
-        // TODO implement protected  ModuleVO handleFindById(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleFindById(Long id) Not implemented!");
+        return this.getModuleDao().toModuleVO(this.getModuleRepository().getReferenceById(id));
     }
 
     /**
@@ -55,8 +61,8 @@ public class ModuleServiceImpl
     protected Collection<ModuleListVO> handleGetAll()
         throws Exception
     {
-        // TODO implement protected  Collection<ModuleListVO> handleGetAll()
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleGetAll() Not implemented!");
+        
+        return this.getModuleDao().toModuleListVOCollection(this.getModuleRepository().findAll());
     }
 
     /**
@@ -66,8 +72,9 @@ public class ModuleServiceImpl
     protected boolean handleRemove(Long id)
         throws Exception
     {
-        // TODO implement protected  boolean handleRemove(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleRemove(Long id) Not implemented!");
+
+        this.getModuleRepository().deleteById(id);
+        return true;
     }
 
     /**
@@ -77,8 +84,11 @@ public class ModuleServiceImpl
     protected ModuleVO handleSave(ModuleVO module)
         throws Exception
     {
-        // TODO implement protected  ModuleVO handleSave(ModuleVO module)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleSave(ModuleVO module) Not implemented!");
+
+        Module entity = this.getModuleDao().moduleVOToEntity(module);
+        entity = this.getModuleRepository().save(entity);
+
+        return this.getModuleDao().toModuleVO(entity);
     }
 
     /**
@@ -88,19 +98,71 @@ public class ModuleServiceImpl
     protected Collection<ModuleListVO> handleSearch(ModuleSearchCriteria criteria, Set<PropertySearchOrder> orderings)
         throws Exception
     {
-        // TODO implement protected  Collection<ModuleListVO> handleSearch(ModuleSearchCriteria criteria, Set<PropertySearchOrder> orderings)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleSearch(ModuleSearchCriteria criteria, Set<PropertySearchOrder> orderings) Not implemented!");
+        Specification<Module> spec = null;
+
+        if(criteria.getCurrriculumId() != null) {
+
+            spec = ThutegoSpecifications.<Module, Long>findByAttributeEquals(criteria.getCurrriculumId(), "curriculum", "id");
+        }
+
+        if(StringUtils.isNotBlank(criteria.getCode())) {
+            
+            Specification<Module> codeSpec = ThutegoSpecifications.findByAttributeLikeIgnoreCase(criteria.getCode(), "code");
+
+            if(spec == null) {
+
+                spec = codeSpec;
+            } else {
+
+                spec = spec.and(codeSpec);
+            }
+        }
+
+        if(StringUtils.isNotBlank(criteria.getName())) {
+
+            Specification<Module> nameSpec = ThutegoSpecifications.findByAttributeLikeIgnoreCase(criteria.getName(), "name");
+
+            if(spec == null) {
+
+                spec = nameSpec;
+            } else {
+
+                spec = spec.and(nameSpec);
+            }
+        }
+
+        if(criteria.getType() != null) {
+
+            Specification<Module> typeSpec = ThutegoSpecifications.<Module, ModuleType>findByAttributeEquals(criteria.getType(), "type");
+
+            if(spec == null) {
+
+                spec = typeSpec;
+            } else {
+
+                spec = spec.and(typeSpec);
+            }
+        }
+
+        Sort sort = SortOrderFactory.createSortOrder(orderings);
+
+        if(sort == null) {
+
+            return this.getModuleDao().toModuleListVOCollection(this.getModuleRepository().findAll(spec));
+        }   
+
+        return this.getModuleDao().toModuleListVOCollection(this.getModuleRepository().findAll(spec, sort));
     }
 
     /**
      * @see bw.co.roguesystems.thutego.module.ModuleService#findCurriculumModules(Long)
      */
     @Override
-    protected ModuleListVO handleFindCurriculumModules(Long curriculumId)
+    protected Collection<ModuleListVO> handleFindCurriculumModules(Long curriculumId)
         throws Exception
     {
-        // TODO implement protected  ModuleListVO handleFindCurriculumModules(Long curriculumId)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.module.ModuleService.handleFindCurriculumModules(Long curriculumId) Not implemented!");
+
+        return this.getModuleRepository().findCurriculumModules(curriculumId);
     }
 
 }

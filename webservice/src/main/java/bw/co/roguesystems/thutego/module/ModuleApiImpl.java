@@ -5,8 +5,13 @@
 //
 package bw.co.roguesystems.thutego.module;
 
+import bw.co.roguesystems.thutego.PropertySearchOrder;
 import bw.co.roguesystems.thutego.SearchObject;
+
+import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,7 +34,7 @@ public class ModuleApiImpl extends ModuleApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(moduleService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -46,9 +51,9 @@ public class ModuleApiImpl extends ModuleApiBase {
     }
 
     @Override
-    public ResponseEntity<?> handleFindModuleTopics(Long moduleId) {
+    public ResponseEntity<?> handleFindCurriculumModules(Long moduleId) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(moduleService.findCurriculumModules(moduleId)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -67,7 +72,7 @@ public class ModuleApiImpl extends ModuleApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(moduleService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -86,7 +91,7 @@ public class ModuleApiImpl extends ModuleApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(moduleService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -105,7 +110,16 @@ public class ModuleApiImpl extends ModuleApiBase {
     @Override
     public ResponseEntity<?> handleSave(ModuleVO module) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(module.getId() == null) {
+                module.setCreatedAt(LocalDateTime.now());
+                module.setCreatedBy("SYSTEM");
+            } else {
+                module.setModifiedAt(LocalDateTime.now());
+                module.setModifiedBy("SYSTEM");
+            }
+            
+            Optional<?> data = Optional.of(moduleService.save(module)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -124,7 +138,7 @@ public class ModuleApiImpl extends ModuleApiBase {
     @Override
     public ResponseEntity<?> handleSearch(SearchObject<ModuleSearchCriteria> criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(moduleService.search(criteria.getCriteria(), (Set<PropertySearchOrder>) criteria.getSortings())); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.stratergies.training;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class TrainingStratergyApiImpl extends TrainingStratergyApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(trainingStratergyService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -47,7 +48,7 @@ public class TrainingStratergyApiImpl extends TrainingStratergyApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(trainingStratergyService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -66,7 +67,7 @@ public class TrainingStratergyApiImpl extends TrainingStratergyApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(trainingStratergyService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -85,7 +86,16 @@ public class TrainingStratergyApiImpl extends TrainingStratergyApiBase {
     @Override
     public ResponseEntity<?> handleSave(TrainingStrategyVO trainingStratergy) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(trainingStratergy.getId() == null) {
+                trainingStratergy.setCreatedAt(LocalDateTime.now());
+                trainingStratergy.setCreatedBy("SYSTEM");
+            } else {
+                trainingStratergy.setModifiedAt(LocalDateTime.now());
+                trainingStratergy.setModifiedBy("SYSTEM");
+            }
+
+            Optional<?> data = Optional.of(trainingStratergyService.save(trainingStratergy)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -104,7 +114,7 @@ public class TrainingStratergyApiImpl extends TrainingStratergyApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(trainingStratergyService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

@@ -26,7 +26,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
-import { CurricullumStatus } from '@app/model/bw/co/roguesystems/thutego/curricullum/curricullum-status';
+import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumSearchComponent } from './curriculum-search.component';
 

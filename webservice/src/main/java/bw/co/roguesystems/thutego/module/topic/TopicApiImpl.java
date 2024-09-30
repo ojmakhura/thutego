@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.module.topic;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -47,7 +48,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleFindModuleOutcomeTopics(Long learningOutcomeId) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.findModuleOutcomeTopics(learningOutcomeId)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -66,7 +67,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleFindModuleTopics(Long moduleId) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.findModuleTopics(moduleId)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -85,7 +86,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -104,7 +105,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -123,7 +124,16 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleSave(TopicVO topic) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+
+            if(topic.getId() == null) {
+                topic.setCreatedAt(LocalDateTime.now());
+                topic.setCreatedBy("SYSTEM");
+            } else {
+                topic.setModifiedAt(LocalDateTime.now());
+                topic.setModifiedBy("SYSTEM");
+            }
+            
+            Optional<?> data = Optional.of(topicService.save(topic)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -142,7 +152,7 @@ public class TopicApiImpl extends TopicApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(topicService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
