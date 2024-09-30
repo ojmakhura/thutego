@@ -48,4 +48,10 @@ export class EditCurriculumOutcomeLevelImplComponent extends EditCurriculumOutco
 
     doNgOnDestroy(): void {
     }
+
+    override beforeEditCurriculumOutcomeLevelSave(form: any): void {
+
+      form.exitLevelOutcome = { ...this.exitLevelOutcomeEditor?.exitLevelOutcomeEditorForm?.value };
+      this.exitLevelOutcomeApiStore.save(form);
+    }
 }
