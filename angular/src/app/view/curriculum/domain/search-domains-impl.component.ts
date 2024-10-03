@@ -39,6 +39,8 @@ export class SearchDomainsImplComponent extends SearchDomainsComponent {
         this.loading = this.domainApiStore.loading;
         this.error = this.domainApiStore.error;
         this.messages = this.domainApiStore.messages;
+        this.domainsTablePaged = false;
+        this.domainsTableSignal = this.domainApiStore.dataList;
     }
 
     override beforeOnInit(form: SearchDomainsVarsForm): SearchDomainsVarsForm{
@@ -46,5 +48,11 @@ export class SearchDomainsImplComponent extends SearchDomainsComponent {
     }
 
     doNgOnDestroy(): void {
+    }
+
+    override beforeSearchDomainsSearch(form: any): void {
+      this.domainApiStore.search({
+        criteria: this.criteria ? this.criteria : '',
+      });
     }
 }

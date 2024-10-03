@@ -28,13 +28,14 @@ import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumLevelEditorComponent } from './curriculum-level-editor.component';
+import { TableComponent } from '@app/components/table/table.component';
 
 @Component({
   selector: 'app-curriculum-level-editor',
   templateUrl: './curriculum-level-editor.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
 })
 export class CurriculumLevelEditorImplComponent extends CurriculumLevelEditorComponent {
   constructor() {

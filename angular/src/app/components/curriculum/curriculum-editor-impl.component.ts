@@ -32,13 +32,19 @@ import { SearchObject } from '@app/model/search-object';
 import { CurriculumEditorComponent } from './curriculum-editor.component';
 import { CurriculumLevelApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/level/curriculum-level-api.store';
 import { CurriculumApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/curriculum-api.store';
+import { TableComponent } from '@app/components/table/table.component';
+import { DomainApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/domain/domain-api.store';
 
 @Component({
   selector: 'app-curriculum-editor',
   templateUrl: './curriculum-editor.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
+  providers: [
+    CurriculumLevelApiStore,
+    DomainApiStore
+  ],
 })
 export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
@@ -47,6 +53,9 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
   searchingLevels = false;
   loadingCurriculum = false;
 
+  searchingDomains = false;
+  domainStore = inject(DomainApiStore);
+
   constructor() {
     super();
 
@@ -54,6 +63,7 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
       this.levelBackingList = this.curriculumLevelStore.dataList();
       let curriculum = this.curriculumStore.data();
+      this.domainBackingList = this.domainStore.dataList();
 
       if(this.searchingLevels) {
 
@@ -65,6 +75,12 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
         this.curriculumEditorForm.patchValue(curriculum);
         this.loadingCurriculum = false;
+      }
+
+      if(this.searchingDomains) {
+
+        this.domainFilteredList$ = of(this.domainBackingList);
+        this.searchingDomains = false;
       }
 
     });
@@ -94,5 +110,21 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
     this.curriculumLevelStore.search({criteria: search});
 
+  }
+
+  override filterDomain() {
+
+      this.searchingDomains = true;
+
+      let search = this.domainFilterCtrl.value;
+
+      if(!search) {
+        search = '';
+      } else {
+
+        search = search.toLowerCase();
+      }
+
+      this.domainStore.search({criteria: search});
   }
 }

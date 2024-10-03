@@ -29,13 +29,14 @@ import { CsvModule } from '@ctrl/ngx-csv';
 import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumSearchComponent } from './curriculum-search.component';
+import { TableComponent } from '@app/components/table/table.component';
 
 @Component({
   selector: 'app-curriculum-search',
   templateUrl: './curriculum-search.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
 })
 export class CurriculumSearchImplComponent extends CurriculumSearchComponent {
   constructor() {

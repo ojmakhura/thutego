@@ -28,13 +28,14 @@ import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumLevelDetailsComponent } from './curriculum-level-details.component';
+import { TableComponent } from '@app/components/table/table.component';
 
 @Component({
   selector: 'app-curriculum-level-details',
   templateUrl: './curriculum-level-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
 })
 export class CurriculumLevelDetailsImplComponent extends CurriculumLevelDetailsComponent {
   constructor() {

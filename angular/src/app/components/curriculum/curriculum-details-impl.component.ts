@@ -32,13 +32,14 @@ import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curricul
 import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumDetailsComponent } from './curriculum-details.component';
+import { TableComponent } from '@app/components/table/table.component';
 
 @Component({
   selector: 'app-curriculum-details',
   templateUrl: './curriculum-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
 })
 export class CurriculumDetailsImplComponent extends CurriculumDetailsComponent {
   constructor() {

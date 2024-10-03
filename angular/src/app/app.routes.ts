@@ -49,6 +49,18 @@ export const routes: Routes = [
       path: 'curriculum/field', 
       loadChildren: () => import('@app/view/curriculum/field/learning-field.routes').then((m) => m.routes),
     },
+    {
+      path: 'module', 
+      loadChildren: () => import('@app/view/module/module.routes').then((m) => m.routes),
+    },
+    {
+      path: 'module/outcome', 
+      loadChildren: () => import('@app/view/module/outcome/leaning-outcome.routes').then((m) => m.routes),
+    },
+    {
+      path: 'module/topic', 
+      loadChildren: () => import('@app/view/module/topic/topic.routes').then((m) => m.routes),
+    },
   ]),
   // Fallback when no prior route is matched
   { 

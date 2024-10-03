@@ -55,7 +55,11 @@ export class TableComponent<T> implements OnInit, OnDestroy, AfterViewInit {
   constructor() {
 
     effect(() => {
-        console.log(this.dataSignal())
+
+      if(!this.dataSignal) {
+        return;
+      }
+
       if (!this.paged) {
         const data: T[] = <T[]>this.dataSignal();
         this.dataSource = new MatTableDataSource(data);
