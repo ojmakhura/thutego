@@ -34,6 +34,7 @@ import { CurriculumLevelApiStore } from '@app/store/bw/co/roguesystems/thutego/c
 import { CurriculumApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/curriculum-api.store';
 import { TableComponent } from '@app/components/table/table.component';
 import { DomainApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/domain/domain-api.store';
+import { LearningFieldApiStore } from '@app/store/bw/co/roguesystems/thutego/curriculum/field/learning-field-api.store';
 
 @Component({
   selector: 'app-curriculum-editor',
@@ -51,10 +52,14 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
   curriculumStore = inject(CurriculumApiStore);
   curriculumLevelStore = inject(CurriculumLevelApiStore);
   searchingLevels = false;
+  searchingFields = false;
   loadingCurriculum = false;
 
   searchingDomains = false;
   domainStore = inject(DomainApiStore);
+  learningFieldStore = inject(LearningFieldApiStore);
+
+  override domainDisplays = ['name'];
 
   constructor() {
     super();
@@ -64,6 +69,7 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
       this.levelBackingList = this.curriculumLevelStore.dataList();
       let curriculum = this.curriculumStore.data();
       this.domainBackingList = this.domainStore.dataList();
+      this.learningFieldBackingList = this.learningFieldStore.dataList();
 
       if(this.searchingLevels) {
 
@@ -82,6 +88,13 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
         this.domainFilteredList$ = of(this.domainBackingList);
         this.searchingDomains = false;
       }
+
+      if(this.searchingFields) {
+
+        this.learningFieldFilteredList$ = of(this.learningFieldBackingList);
+        this.searchingFields = false;
+      }
+
 
     });
 
@@ -126,5 +139,22 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
       }
 
       this.domainStore.search({criteria: search});
+  }
+
+  override filterLearningField() {
+
+    this.searchingFields = true;
+
+    let search = this.learningFieldFilterCtrl.value;
+
+    if(!search) {
+      search = '';
+    } else {
+
+      search = search.toLowerCase();
+    }
+
+    this.learningFieldStore.search({criteria: search});
+
   }
 }

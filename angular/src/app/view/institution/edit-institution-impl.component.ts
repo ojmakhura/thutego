@@ -51,7 +51,7 @@ export class EditInstitutionImplComponent extends EditInstitutionComponent {
 
   override beforeEditInstitutionSave(form: any): void {
 
-    form.institution = { ...this.institutionEditorComponent?.institutionEditorForm?.value };
+    form.institution = { ...this.institutionEditor?.institutionEditorForm?.value };
     this.institutionApiStore.save(form);
 
   }

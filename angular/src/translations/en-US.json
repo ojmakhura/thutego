@@ -220,6 +220,7 @@
   "level": "Level",
   "level.id": "Level Id",
   "level.required": "Level is required.",
+  "load.curricula": "Load Curricula",
   "logo": "Logo",
   "longitude": "Longitude",
   "modified.at": "Modified At",

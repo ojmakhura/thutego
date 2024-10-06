@@ -115,6 +115,7 @@ public class CurriculumLevelApiImpl extends CurriculumLevelApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
+            System.out.println(criteria);
             Optional<?> data = Optional.of(curriculumLevelService.search(criteria, null)); // TODO: Add custom code
                                                                                            // here;
             ResponseEntity<?> response;

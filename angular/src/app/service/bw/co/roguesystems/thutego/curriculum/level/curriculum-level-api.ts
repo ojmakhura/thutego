@@ -42,7 +42,7 @@ export class CurriculumLevelApi {
 
     public search(criteria: string | any ): Observable<CurriculumLevelVO[] | any[]> {
 
-        return this.http.get<CurriculumLevelVO[] | any[]>(this.path + `/search`);
+        return this.http.get<CurriculumLevelVO[] | any[]>(this.path + `/search?criteria=${criteria}`);
 
     }
 

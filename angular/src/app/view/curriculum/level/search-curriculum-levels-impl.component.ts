@@ -50,6 +50,8 @@ export class SearchCurriculumLevelsImplComponent extends SearchCurriculumLevelsC
     }
 
     override beforeSearchCurriculumLevelsSearch(form: any): void {
-      this.curriculumLevelApiStore.getAll();
+      this.curriculumLevelApiStore.search({
+        criteria: this.getGroupControl('criteria').value
+      });
     }
 }

@@ -48,4 +48,12 @@ export class EditLearningFieldImplComponent extends EditLearningFieldComponent {
 
     doNgOnDestroy(): void {
     }
+
+    override beforeEditLearningFieldSave(form: any): void {
+      form.learningField = { ...this.learningFieldEditor?.learningFieldEditorForm?.value };
+      console.log(form);
+      this.learningFieldApiStore.save({
+          field: form.learningField,
+      });
+  }
 }
