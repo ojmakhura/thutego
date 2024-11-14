@@ -32,7 +32,7 @@ export const CurriculumApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: { id: number | any }) => {
           patchState(store, { loading: true });
           return curriculumApi.findById(data.id).pipe(
             tapResponse({
@@ -67,7 +67,7 @@ export const CurriculumApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumApi.getAll().pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any[]) => {
                 patchState(
                   store,
                   {
@@ -98,7 +98,7 @@ export const CurriculumApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumApi.getAllPaged().pipe(
             tapResponse({
-              next: (dataPage) => {
+              next: (dataPage: any) => {
                 patchState(
                   store,
                   {
@@ -125,11 +125,11 @@ export const CurriculumApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: { id: number | any }) => {
           patchState(store, { loading: true });
           return curriculumApi.remove(data.id).pipe(
             tapResponse({
-              next: (removed) => {
+              next: (removed: boolean) => {
                 patchState(
                   store,
                   {
@@ -155,11 +155,11 @@ export const CurriculumApiStore = signalStore(
         }),
       ),
       save: rxMethod<{ curriculum: CurriculumVO | any }>(
-        switchMap((data) => {
+        switchMap((data: { curriculum: CurriculumVO | any }) => {
           patchState(store, { loading: true });
           return curriculumApi.save(data.curriculum).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: CurriculumVO | any ) => {
                 patchState(
                   store,
                   {
@@ -186,11 +186,11 @@ export const CurriculumApiStore = signalStore(
         }),
       ),
       search: rxMethod<{ criteria: SearchObject<CurriculumSearchCriteria> | any }>(
-        switchMap((data) => {
+        switchMap((data: { criteria: SearchObject<CurriculumSearchCriteria> | any }) => {
           patchState(store, { loading: true });
           return curriculumApi.search(data.criteria).pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: CurriculumVO[]) => {
                 patchState(
                   store,
                   {
@@ -217,11 +217,11 @@ export const CurriculumApiStore = signalStore(
         }),
       ),
       searchPaged: rxMethod<{ criteria: SearchObject<CurriculumSearchCriteria> | any }>(
-        switchMap((data) => {
+        switchMap((data: { criteria: SearchObject<CurriculumSearchCriteria> | any }) => {
           patchState(store, { loading: true });
           return curriculumApi.searchPaged(data.criteria).pipe(
             tapResponse({
-              next: (dataPage) => {
+              next: (dataPage: any) => {
                 patchState(
                   store,
                   {

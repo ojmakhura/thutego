@@ -30,11 +30,11 @@ export const CurriculumLevelApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return curriculumLevelApi.findById(data.id).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(store, { data, loading: false, success: true, messages: [`Found curriculum level with id ${data.code}`] });
               },
               error: (error: any) => {
@@ -49,7 +49,7 @@ export const CurriculumLevelApiStore = signalStore(
           patchState(store, { loading: true });
           return curriculumLevelApi.getAll().pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(
                   store,
                   {
@@ -69,11 +69,11 @@ export const CurriculumLevelApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return curriculumLevelApi.remove(data.id).pipe(
             tapResponse({
-              next: (removed) => {
+              next: (removed: boolean) => {
                 patchState(
                   store,
                   {
@@ -103,11 +103,11 @@ export const CurriculumLevelApiStore = signalStore(
         }),
       ),
       save: rxMethod<{ curriculumLevel: CurriculumLevelVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return curriculumLevelApi.save(data.curriculumLevel).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store,
                   {
@@ -138,11 +138,11 @@ export const CurriculumLevelApiStore = signalStore(
         }),
       ),
       search: rxMethod<{ criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return curriculumLevelApi.search(data.criteria).pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(store,
                   {
                     dataList,

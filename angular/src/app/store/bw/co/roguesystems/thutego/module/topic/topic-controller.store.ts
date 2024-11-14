@@ -30,14 +30,14 @@ export const TopicControllerStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.findById(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -45,14 +45,14 @@ export const TopicControllerStore = signalStore(
         }),
       ),
       findModuleOutcomeTopics: rxMethod<{learningOutcomeId: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.findModuleOutcomeTopics(data.learningOutcomeId, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -60,14 +60,14 @@ export const TopicControllerStore = signalStore(
         }),
       ),
       findModuleTopics: rxMethod<{moduleId: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.findModuleTopics(data.moduleId, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -79,10 +79,10 @@ export const TopicControllerStore = signalStore(
           patchState(store, { loading: true });
           return topicController.getAll().pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -90,14 +90,14 @@ export const TopicControllerStore = signalStore(
         }),
       ),
       remove: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.remove(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -105,14 +105,14 @@ export const TopicControllerStore = signalStore(
         }),
       ),
       save: rxMethod<{topic: TopicVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.save(data.topic, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -120,14 +120,14 @@ export const TopicControllerStore = signalStore(
         }),
       ),
       search: rxMethod<{criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return topicController.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),

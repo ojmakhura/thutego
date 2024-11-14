@@ -50,7 +50,7 @@ export class EditLearningFieldImplComponent extends EditLearningFieldComponent {
     }
 
     override beforeEditLearningFieldSave(form: any): void {
-      form.learningField = { ...this.learningFieldEditor?.learningFieldEditorForm?.value };
+      form.learningField = { ...this.learningFieldEditor?.formGroupControl?.value };
       console.log(form);
       this.learningFieldApiStore.save({
           field: form.learningField,

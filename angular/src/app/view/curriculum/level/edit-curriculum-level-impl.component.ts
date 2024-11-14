@@ -49,7 +49,7 @@ export class EditCurriculumLevelImplComponent extends EditCurriculumLevelCompone
     doNgOnDestroy(): void {
     }
     override beforeEditCurriculumLevelSave(form: any): void {
-      form.curriculumLevel = { ...this.curriculumLevelEditor?.curriculumLevelEditorForm?.value };
+      form.curriculumLevel = { ...this.curriculumLevelEditor?.formGroupControl?.value };
       this.curriculumLevelApiStore.save(form);
     }
 }

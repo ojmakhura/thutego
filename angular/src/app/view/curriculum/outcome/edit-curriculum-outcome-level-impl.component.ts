@@ -51,7 +51,7 @@ export class EditCurriculumOutcomeLevelImplComponent extends EditCurriculumOutco
 
     override beforeEditCurriculumOutcomeLevelSave(form: any): void {
 
-      form.exitLevelOutcome = { ...this.exitLevelOutcomeEditor?.exitLevelOutcomeEditorForm?.value };
+      form.exitLevelOutcome = { ...this.exitLevelOutcomeEditor?.formGroupControl?.value };
       this.exitLevelOutcomeApiStore.save(form);
     }
 }

@@ -31,11 +31,11 @@ export const DomainApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return domainApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    data,
@@ -66,7 +66,7 @@ export const DomainApiStore = signalStore(
           patchState(store, { loading: true });
           return domainApi.getAll().pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(
                   store, {
                     dataList,
@@ -93,11 +93,11 @@ export const DomainApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return domainApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    loading: false,
@@ -123,11 +123,11 @@ export const DomainApiStore = signalStore(
         }),
       ),
       save: rxMethod<{domain: DomainVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return domainApi.save(data.domain, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    data,
@@ -154,11 +154,11 @@ export const DomainApiStore = signalStore(
         }),
       ),
       search: rxMethod<{criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return domainApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(
                   store, {
                     dataList,

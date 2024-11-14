@@ -31,14 +31,14 @@ export const ExitLevelOutcomeApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return exitLevelOutcomeApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -50,10 +50,10 @@ export const ExitLevelOutcomeApiStore = signalStore(
           patchState(store, { loading: true });
           return exitLevelOutcomeApi.getAll().pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -61,14 +61,14 @@ export const ExitLevelOutcomeApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return exitLevelOutcomeApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -76,14 +76,14 @@ export const ExitLevelOutcomeApiStore = signalStore(
         }),
       ),
       save: rxMethod<{exitLevelOutcome: ExitLevelOutcomeVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return exitLevelOutcomeApi.save(data.exitLevelOutcome, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),
@@ -91,14 +91,14 @@ export const ExitLevelOutcomeApiStore = signalStore(
         }),
       ),
       search: rxMethod<{criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return exitLevelOutcomeApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 // patchState(store, { data, loading: false, success: true });
               },
-              error: (error) => {
+              error: (error: any) => {
                 patchState(store, { error, loading: false, success: false });
               },
             }),

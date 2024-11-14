@@ -52,7 +52,7 @@ export class EditDomainImplComponent extends EditDomainComponent {
 
   override beforeEditDomainSave(form: any): void {
 
-    form.domain = { ...this.domainEditor?.domainEditorForm?.value };
+    form.domain = { ...this.domainEditor?.formGroupControl?.value };
     this.domainApiStore.save(form);
   }
 }

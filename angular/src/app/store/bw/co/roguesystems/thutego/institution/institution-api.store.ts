@@ -31,11 +31,11 @@ export const InstitutionApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.findById(data.id,).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(store, { data, loading: false, success: true, messages: [`Found institution with id ${data.name}`] });
               },
               error: (error: any) => {
@@ -50,7 +50,7 @@ export const InstitutionApiStore = signalStore(
           patchState(store, { loading: true });
           return institutionApi.getAll().pipe(
             tapResponse({
-              next: (institutions) => {
+              next: (institutions: InstitutionVO[]) => {
                 patchState(store, { dataList: institutions, loading: false, success: true, messages: [`Found ${institutions.length} institutions`] });
               },
               error: (error: any) => {
@@ -61,11 +61,11 @@ export const InstitutionApiStore = signalStore(
         }),
       ),
       getAllPaged: rxMethod<{ pageNumber: number | any, pageSize: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.getAllPaged(data.pageNumber, data.pageSize,).pipe(
             tapResponse({
-              next: (institutionsPage) => {
+              next: (institutionsPage: Page<InstitutionVO>) => {
                 patchState(store, { dataPage: institutionsPage, loading: false, success: true, messages: [`Found ${institutionsPage.numberOfElements} of page ${institutionsPage.number}`] });
               },
               error: (error: any) => {
@@ -76,7 +76,7 @@ export const InstitutionApiStore = signalStore(
         }),
       ),
       pagedSearch: rxMethod<{ criteria: SearchObject<string> | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.pagedSearch(data.criteria,).pipe(
             tapResponse({
@@ -91,11 +91,11 @@ export const InstitutionApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{ id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.remove(data.id,).pipe(
             tapResponse({
-              next: (removed) => {
+              next: (removed: boolean) => {
                 patchState(store, { loading: false, success: true , messages: [`Removed institution with id ${data.id}`] });
               },
               error: (error: any) => {
@@ -106,11 +106,11 @@ export const InstitutionApiStore = signalStore(
         }),
       ),
       save: rxMethod<{ institution: InstitutionVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.save(data.institution,).pipe(
             tapResponse({
-              next: (institution) => {
+              next: (institution: InstitutionVO) => {
                 patchState(store, { data: institution, loading: false, success: true, messages: [`Saved institution with id ${institution.name}`] });
               },
               error: (error: any) => {
@@ -121,11 +121,11 @@ export const InstitutionApiStore = signalStore(
         }),
       ),
       search: rxMethod<{ criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return institutionApi.search(data.criteria,).pipe(
             tapResponse({
-              next: (institutions) => {
+              next: (institutions: InstitutionVO[]) => {
                 patchState(store, { dataList: institutions, loading: false, success: true, messages: [`Found ${institutions.length} institutions`] });
               },
               error: (error: any) => {

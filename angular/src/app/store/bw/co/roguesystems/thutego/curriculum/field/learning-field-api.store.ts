@@ -31,11 +31,11 @@ export const LearningFieldApiStore = signalStore(
         patchState(store, initialState);
       },
       findById: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return learningFieldApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    data,
@@ -64,7 +64,7 @@ export const LearningFieldApiStore = signalStore(
           patchState(store, { loading: true });
           return learningFieldApi.getAll().pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(
                   store, {
                     dataList,
@@ -89,11 +89,11 @@ export const LearningFieldApiStore = signalStore(
         }),
       ),
       remove: rxMethod<{id: number | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return learningFieldApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    loading: false,
@@ -117,11 +117,11 @@ export const LearningFieldApiStore = signalStore(
         }),
       ),
       save: rxMethod<{field: LearningFieldVO | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return learningFieldApi.save(data.field, ).pipe(
             tapResponse({
-              next: (data) => {
+              next: (data: any) => {
                 patchState(
                   store, {
                    data,
@@ -148,11 +148,11 @@ export const LearningFieldApiStore = signalStore(
         }),
       ),
       search: rxMethod<{criteria: string | any }>(
-        switchMap((data) => {
+        switchMap((data: any) => {
           patchState(store, { loading: true });
           return learningFieldApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (dataList) => {
+              next: (dataList: any) => {
                 patchState(
                   store, {
                     dataList,
