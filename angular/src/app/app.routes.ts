@@ -61,6 +61,30 @@ export const routes: Routes = [
       path: 'module/topic', 
       loadChildren: () => import('@app/view/module/topic/topic.routes').then((m) => m.routes),
     },
+    {
+      path: 'programme', 
+      loadChildren: () => import('@app/view/programme/programme.routes').then((m) => m.routes),
+    },
+    {
+      path: 'organisation', 
+      loadChildren: () => import('@app/view/organisation/organisation.routes').then((m) => m.routes),
+    },
+    {
+      path: 'user', 
+      loadChildren: () => import('@app/view/user/user.routes').then((m) => m.routes),
+    },
+    {
+      path: 'access', 
+      loadChildren: () => import('@app/view/access/access-point.routes').then((m) => m.routes),
+    },
+    {
+      path: 'access/type', 
+      loadChildren: () => import('@app/view/access/type/access-point-type.routes').then((m) => m.routes),
+    },
+    {
+      path: 'authorisation', 
+      loadChildren: () => import('@app/view/authorisation/authorisation.routes').then((m) => m.routes),
+    },
   ]),
   // Fallback when no prior route is matched
   { 

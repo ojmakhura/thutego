@@ -1,0 +1,127 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="ojmakhura" id="district">
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Gaborone City</column>
+            <column name="code">GC</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Francistown City</column>
+            <column name="code">FC</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Lobatse Town</column>
+            <column name="code">LT</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Selebi-Phikwe Town</column>
+            <column name="code">SPT</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Jwaneng Town</column>
+            <column name="code">JT</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Orapa Town</column>
+            <column name="code">OT</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Sowa Township</column>
+            <column name="code">ST</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Southern District</column>
+            <column name="code">SOU</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">South-East District</column>
+            <column name="code">SOUE</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Kweneng District</column>
+            <column name="code">KWE</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Kgatleng District</column>
+            <column name="code">KGA</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Central District</column>
+            <column name="code">CENT</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">North-East District</column>
+            <column name="code">NE</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Ngamiland District</column>
+            <column name="code">NGM</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Chobe District</column>
+            <column name="code">CHO</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Ghanzi District</column>
+            <column name="code">GHA</column>
+        </insert>
+        <insert tableName="DISTRICT">
+            <column name="ID" valueSequenceNext="district_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="name">Kgalagadi District</column>
+            <column name="code">KLG</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,8 +1,8 @@
 server:
     port: 8085
 spring:
-    thymeleaf:
-        cache: false
+    liquibase:
+        enabled: false
     mvc:
         format:
             date: iso

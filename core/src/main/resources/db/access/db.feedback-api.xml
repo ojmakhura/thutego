@@ -1,0 +1,72 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="ojmakhura" id="feedback_api">
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi findById"/>
+            <column name="URL" value="GET /feedback/id/{id}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi save"/>
+            <column name="URL" value="POST /feedback"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi remove"/>
+            <column name="URL" value="DELETE /feedback/id/{id}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi getAll"/>
+            <column name="URL" value="GET /feedback/all"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi search"/>
+            <column name="URL" value="POST /feedback/search"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi getAllPaged"/>
+            <column name="URL" value="POST /feedback/page/{pageNumber}/size/{pageSize}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi pagedSearch"/>
+            <column name="URL" value="POST /feedback/search/paged"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="FeedbackApi runStandardAnalytics"/>
+            <column name="URL" value="POST /feedback/analytics"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

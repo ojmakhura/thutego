@@ -52,7 +52,7 @@ public class CurriculumDaoImpl
             CurriculumLevelVO level = new CurriculumLevelVO();
             level.setId(source.getLevel().getId());
             level.setLevel(source.getLevel().getLevel());
-            target.setLevel(level);
+            target.setLevel(level.getLevel());
         }
 
         if (source.getDomain() != null) {

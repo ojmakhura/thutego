@@ -1,0 +1,64 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <changeSet author="ojmakhura" id="service_center_api">
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi findById"/>
+            <column name="URL" value="GET /organisation/service/center/id/{id}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi save"/>
+            <column name="URL" value="POST /organisation/service/center"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi remove"/>
+            <column name="URL" value="DELETE /organisation/service/center/id/{id}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi getAll"/>
+            <column name="URL" value="GET /organisation/service/center/all"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi search"/>
+            <column name="URL" value="POST /organisation/service/center/search"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi getAllPaged"/>
+            <column name="URL" value="POST /organisation/service/center/page/{pageNumber}/size/{pageSize}"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+        <insert tableName="ACCESS_POINT">
+            <column name="ID" valueSequenceNext="access_point_seq"/>
+            <column name="CREATED_AT" value="NOW()"/>
+            <column name="CREATED_BY" value="liquibase"/>
+            <column name="NAME" value="ServiceCenterApi pagedSearch"/>
+            <column name="URL" value="POST /organisation/service/center/search/paged"/>
+            <column name="ACCESS_POINT_TYPE_FK" valueComputed="(SELECT id from ACCESS_POINT_TYPE WHERE code='API')"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
