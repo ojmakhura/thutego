@@ -7,10 +7,10 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { LearningFieldEditorImplComponent } from '@app/components/curriculum/field/learning-field-editor-impl.component';
 import { LearningFieldDetailsImplComponent } from '@app/components/curriculum/field/learning-field-details-impl.component';
 
@@ -24,10 +24,10 @@ import { LearningFieldDetailsImplComponent } from '@app/components/curriculum/fi
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
+    LoaderComponent,
     LearningFieldEditorImplComponent,
     LearningFieldDetailsImplComponent,
   ],
@@ -36,13 +36,9 @@ export class SearchLearningFieldsImplComponent extends SearchLearningFieldsCompo
 
     constructor() {
         super();
-        this.success = this.learningFieldApiStore.success;
-        this.loading = this.learningFieldApiStore.loading;
-        this.error = this.learningFieldApiStore.error;
-        this.messages = this.learningFieldApiStore.messages;
     }
 
-    override beforeOnInit(form: SearchLearningFieldsVarsForm): SearchLearningFieldsVarsForm{
+    override beforeOnInit(form: SearchLearningFieldsVarsForm): SearchLearningFieldsVarsForm{     
         return form;
     }
 

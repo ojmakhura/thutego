@@ -27,384 +27,343 @@ const initialState: AppState<any, any> = {
 export const AuthorisationApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store: any) => {
+  withMethods((store) => {
     const authorisationApi = inject(AuthorisationApi);
     return {
       reset: () => {
         patchState(store, initialState);
       },
-      findById: rxMethod<{id: number | any }>(
+      findById: rxMethod<{ id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.findById(data.id, ).pipe(
+          patchState(store, { loading: true, loaderMessage: 'Authorisation loading...' });
+          return authorisationApi.findById(data.id).pipe(
             tapResponse({
               next: (data: AuthorisationDTO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(store, {
+                  data,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [`Authorisation found.`],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      findByRolesAndUrl: rxMethod<{url: string | any , roles: Array<string> | any }>(
+      findByRolesAndUrl: rxMethod<{ url: string | any; roles: Set<string> | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.findByRolesAndUrl(data.url, data.roles, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.findByRolesAndUrl(data.url, data.roles).pipe(
             tapResponse({
-              next: (data: AuthorisationListDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: AuthorisationDTO[] | any[]) => {
+                patchState(store, {
+                  dataList,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [`Found ${data.length} authorisations.`],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      findByRolesAndUrlPaged: rxMethod<{url: string | any , roles: Array<string> | any , pageNumber: number | any , pageSize: number | any }>(
+      findByRolesAndUrlPaged: rxMethod<{
+        url: string | any;
+        roles: Set<string> | any;
+        pageNumber: number | any;
+        pageSize: number | any;
+      }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.findByRolesAndUrlPaged(data.url, data.roles, data.pageNumber, data.pageSize, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.findByRolesAndUrlPaged(data.url, data.roles, data.pageNumber, data.pageSize).pipe(
             tapResponse({
-              next: (data: Page<AuthorisationListDTO>[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataPage: AuthorisationDTO | any) => {
+                patchState(store, {
+                  dataPage,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [
+                    `Found ${dataPage.numberOfElements} of ${dataPage.totalElements} in page ${dataPage.number} of ${dataPage.totalPages}`,
+                  ],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      findRestrictedViewItems: rxMethod<{url: string | any , roles: Array<string> | any }>(
+      findRestrictedViewItems: rxMethod<{ url: string | any; roles: Set<string> | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.findRestrictedViewItems(data.url, data.roles, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.findRestrictedViewItems(data.url, data.roles).pipe(
             tapResponse({
-              next: (data: AuthorisationListDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: AuthorisationDTO[] | any[]) => {
+                patchState(store, {
+                  dataList,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [`Found ${data.length} authorisations.`],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      getAccessTypeCodeAuthorisations: rxMethod<{roles: Array<string> | any , accessPointTypeCodes: Array<string> | any }>(
+      getAccessTypeCodeAuthorisations: rxMethod<{ roles: Set<string> | any; accessPointTypeCodes: Set<string> | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.getAccessTypeCodeAuthorisations(data.roles, data.accessPointTypeCodes, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.getAccessTypeCodeAuthorisations(data.roles, data.accessPointTypeCodes).pipe(
             tapResponse({
-              next: (data: AuthorisationListDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: AuthorisationDTO[] | any[]) => {
+                patchState(store, {
+                  dataList,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [`Found ${data.length} authorisations.`],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      getAccessTypeCodeAuthorisationsPaged: rxMethod<{roles: Array<string> | any , accessPointTypeCodes: Array<string> | any , pageNumber: number | any , pageSize: number | any }>(
+      getAccessTypeCodeAuthorisationsPaged: rxMethod<{
+        roles: Set<string> | any;
+        accessPointTypeCodes: Set<string> | any;
+        pageNumber: number | any;
+        pageSize: number | any;
+      }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.getAccessTypeCodeAuthorisationsPaged(data.roles, data.accessPointTypeCodes, data.pageNumber, data.pageSize, ).pipe(
-            tapResponse({
-              next: (data: Page<AuthorisationListDTO>[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
-              },
-              error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+          patchState(store, { loading: true });
+          return authorisationApi
+            .getAccessTypeCodeAuthorisationsPaged(data.roles, data.accessPointTypeCodes, data.pageNumber, data.pageSize)
+            .pipe(
+              tapResponse({
+                next: (dataPage: Page<AuthorisationDTO> | any) => {
+                  patchState(store, {
+                    dataPage,
+                    loading: false,
+                    error: false,
+                    success: true,
+                    messages: [
+                      `Found ${dataPage.numberOfElements} of ${dataPage.totalElements} in page ${dataPage.number} of ${dataPage.totalPages}`,
+                    ],
+                  });
+                },
+                error: (error: any) => {
+                  patchState(store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
-              },
-            }),
-          );
+                    messages: [error?.error ? error.error : error],
+                  });
+                },
+              }),
+            );
         }),
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
+          patchState(store, { loading: true });
           return authorisationApi.getAll().pipe(
             tapResponse({
-              next: (data: AuthorisationListDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: AuthorisationDTO[] | any[]) => {
+                patchState(store, {
+                  dataList,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [`Found ${dataList.length} authorisations.`],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      getAllPaged: rxMethod<{pageNumber: number | any , pageSize: number | any }>(
+      getAllPaged: rxMethod<{ pageNumber: number | any; pageSize: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.getAllPaged(data.pageNumber, data.pageSize, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.getAllPaged(data.pageNumber, data.pageSize).pipe(
             tapResponse({
-              next: (data: Page<AuthorisationListDTO> | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataPage: Page<AuthorisationDTO> | any) => {
+                patchState(store, {
+                  dataPage,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [
+                    `Found ${dataPage.numberOfElements} of ${dataPage.totalElements} in page ${dataPage.number} of ${dataPage.totalPages}`,
+                  ],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      remove: rxMethod<{id: number | any }>(
+      remove: rxMethod<{ id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.remove(data.id, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.remove(data.id).pipe(
             tapResponse({
               next: (data: boolean | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(store, {
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      save: rxMethod<{authorisation: AuthorisationDTO | any }>(
+      save: rxMethod<{ authorisation: AuthorisationDTO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.save(data.authorisation, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.save(data.authorisation).pipe(
             tapResponse({
               next: (data: AuthorisationDTO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(store, {
+                  data,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      search: rxMethod<{criteria: AuthorisationCriteria | any }>(
+      search: rxMethod<{ criteria: AuthorisationCriteria | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.search(data.criteria, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.search(data.criteria).pipe(
             tapResponse({
-              next: (data: AuthorisationListDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: AuthorisationDTO[] | any[]) => {
+                patchState(store, {
+                  dataList,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-      searchPaged: rxMethod<{criteria: AuthorisationCriteriaTemplate<AuthorisationCriteria> | any }>(
+      searchPaged: rxMethod<{ criteria: SearchObject<AuthorisationCriteria> | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
-          return authorisationApi.searchPaged(data.criteria, ).pipe(
+          patchState(store, { loading: true });
+          return authorisationApi.searchPaged(data.criteria).pipe(
             tapResponse({
-              next: (data: Page<AuthorisationListDTO>[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataPage: Page<AuthorisationDTO> | any) => {
+                patchState(store, {
+                  dataPage,
+                  loading: false,
+                  error: false,
+                  success: true,
+                  messages: [
+                    `Found ${dataPage.numberOfElements} of ${dataPage.totalElements} in page ${dataPage.number} of ${dataPage.totalPages}`,
+                  ],
+                });
               },
               error: (error: any) => {
-                patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
-                    success: false,
-                    messages: [error?.error ? error.error : error] 
-                  }
-                );
+                patchState(store, {
+                  error,
+                  loading: false,
+                  success: false,
+                  messages: [error?.error ? error.error : error],
+                });
               },
             }),
           );
         }),
       ),
-    }
+    };
   }),
 );

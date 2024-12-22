@@ -9,19 +9,10 @@
     <include file="access/db.access-type.xml" relativeToChangelogFile="true"/>
     <include file="access/db.access-point-menus.xml" relativeToChangelogFile="true"/>
     <include file="access/db.access-point-type-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.authorisation-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.organisation-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.department-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.service-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.service-center-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.district-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.village-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.feedback-api.xml" relativeToChangelogFile="true"/>
-    <include file="access/db.visitor-api.xml" relativeToChangelogFile="true"/>
+    <include file="access/db.access-point-api.xml" relativeToChangelogFile="true"/>
     <include file="access/db.user-api.xml" relativeToChangelogFile="true"/>
 
     <!-- District initialisation -->
-    <include file="district/db.district.xml" relativeToChangelogFile="true"/>
     <include file="authorisation/db.authorisation.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

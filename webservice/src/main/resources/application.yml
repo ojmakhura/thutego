@@ -10,3 +10,18 @@ spring:
             time: HH:mm:ss
         pathmatch:
             matching-strategy: ANT_PATH_MATCHER
+    security:
+        oauth2:
+            client:
+                registration:
+                    keycloak:
+                        client-id: ${CLIENT_ID:thutego-api}
+                        provider: keycloak
+                        scope: openid, profile, email
+                provider:
+                    keycloak:
+                        issuer-uri: ${KEYCLOAK_AUTH_URL:http://localhost:8970}/realms/${REALM:thutego}
+                        user-name-attribute: preferred_username
+            resourceserver:
+                jwt:
+                    issuer-uri: ${KEYCLOAK_AUTH_URL:http://localhost:8970}/realms/${REALM:thutego}

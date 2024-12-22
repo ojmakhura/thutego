@@ -7,12 +7,12 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { DomainEditorImplComponent } from '@app/components/curriculum/domain/domain-editor-impl.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/domain-details-impl.component';
+import { DomainEditorImplComponent } from '@app/components/curriculum/domain/domain-editor-impl.component';
 
 @Component({
   selector: 'app-domain-view',
@@ -24,26 +24,21 @@ import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/do
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
-    DomainEditorImplComponent,
+    LoaderComponent,
     DomainDetailsImplComponent,
+    DomainEditorImplComponent,
   ],
 })
 export class DomainViewImplComponent extends DomainViewComponent {
 
     constructor() {
         super();
-        this.domainApiStore.reset()
-        this.success = this.domainApiStore.success;
-        this.loading = this.domainApiStore.loading;
-        this.error = this.domainApiStore.error;
-        this.messages = this.domainApiStore.messages;
     }
 
-    override beforeOnInit(form: DomainViewVarsForm): DomainViewVarsForm{
+    override beforeOnInit(form: DomainViewVarsForm): DomainViewVarsForm{     
         return form;
     }
 

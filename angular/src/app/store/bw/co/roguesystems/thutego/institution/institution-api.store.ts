@@ -19,6 +19,7 @@ const initialState: AppState<InstitutionVO | undefined, InstitutionVO> = {
   loading: false,
   success: false,
   messages: [],
+  loaderMessage: ''
 };
 
 export const InstitutionApiStore = signalStore(

@@ -7,12 +7,12 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { InstitutionEditorImplComponent } from '@app/components/institution/institution-editor-impl.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { InstitutionDetailsImplComponent } from '@app/components/institution/institution-details-impl.component';
+import { InstitutionEditorImplComponent } from '@app/components/institution/institution-editor-impl.component';
 
 @Component({
   selector: 'app-edit-institution',
@@ -24,35 +24,24 @@ import { InstitutionDetailsImplComponent } from '@app/components/institution/ins
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
-    InstitutionEditorImplComponent,
+    LoaderComponent,
     InstitutionDetailsImplComponent,
+    InstitutionEditorImplComponent,
   ],
 })
 export class EditInstitutionImplComponent extends EditInstitutionComponent {
 
-  constructor() {
-    super();
-    this.success = this.institutionApiStore.success;
-    this.loading = this.institutionApiStore.loading;
-    this.error = this.institutionApiStore.error;
-    this.messages = this.institutionApiStore.messages;
-  }
+    constructor() {
+        super();
+    }
 
-  override beforeOnInit(form: EditInstitutionVarsForm): EditInstitutionVarsForm {
-    return form;
-  }
+    override beforeOnInit(form: EditInstitutionVarsForm): EditInstitutionVarsForm{     
+        return form;
+    }
 
-  doNgOnDestroy(): void {
-  }
-
-  override beforeEditInstitutionSave(form: any): void {
-
-    form.institution = { ...this.institutionEditor?.formGroupControl?.value };
-    this.institutionApiStore.save(form);
-
-  }
+    doNgOnDestroy(): void {
+    }
 }

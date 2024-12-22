@@ -18,7 +18,8 @@ const initialState: AppState<any, any> = {
   error: null,
   loading: false,
   success: false,
-  messages: []
+  messages: [],
+  loaderMessage: ''
 };
 
 export const ExitLevelOutcomeApiStore = signalStore(
@@ -32,7 +33,7 @@ export const ExitLevelOutcomeApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Finding exit level outcome...' });
           return exitLevelOutcomeApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -47,7 +48,7 @@ export const ExitLevelOutcomeApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Getting all exit level outcomes...' });
           return exitLevelOutcomeApi.getAll().pipe(
             tapResponse({
               next: (data: any) => {
@@ -62,7 +63,7 @@ export const ExitLevelOutcomeApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Removing exit level outcome...' });
           return exitLevelOutcomeApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -77,7 +78,7 @@ export const ExitLevelOutcomeApiStore = signalStore(
       ),
       save: rxMethod<{exitLevelOutcome: ExitLevelOutcomeVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Saving exit level outcome...' });
           return exitLevelOutcomeApi.save(data.exitLevelOutcome, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -92,7 +93,7 @@ export const ExitLevelOutcomeApiStore = signalStore(
       ),
       search: rxMethod<{criteria: string | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Searching exit level outcomes...' });
           return exitLevelOutcomeApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data: any) => {

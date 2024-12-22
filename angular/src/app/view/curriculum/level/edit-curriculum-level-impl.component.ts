@@ -7,10 +7,10 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/level/curriculum-level-editor-impl.component';
 import { CurriculumLevelDetailsImplComponent } from '@app/components/curriculum/level/curriculum-level-details-impl.component';
 
@@ -24,10 +24,10 @@ import { CurriculumLevelDetailsImplComponent } from '@app/components/curriculum/
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
+    LoaderComponent,
     CurriculumLevelEditorImplComponent,
     CurriculumLevelDetailsImplComponent,
   ],
@@ -36,20 +36,12 @@ export class EditCurriculumLevelImplComponent extends EditCurriculumLevelCompone
 
     constructor() {
         super();
-        this.success = this.curriculumLevelApiStore.success;
-        this.loading = this.curriculumLevelApiStore.loading;
-        this.error = this.curriculumLevelApiStore.error;
-        this.messages = this.curriculumLevelApiStore.messages;
     }
 
-    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{
+    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{     
         return form;
     }
 
     doNgOnDestroy(): void {
-    }
-    override beforeEditCurriculumLevelSave(form: any): void {
-      form.curriculumLevel = { ...this.curriculumLevelEditor?.formGroupControl?.value };
-      this.curriculumLevelApiStore.save(form);
     }
 }

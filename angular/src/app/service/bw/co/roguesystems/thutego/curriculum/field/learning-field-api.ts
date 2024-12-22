@@ -10,44 +10,34 @@ import { SearchObject } from '@app/model/search-object';
   providedIn: 'root'
 })
 export class LearningFieldApi {
-
+    
     protected path = '/curriculum/field';
 
     private http = inject(HttpClient);
 
     public findById(id: number | any ): Observable<LearningFieldVO | any> {
 
-
-        return this.http.get<LearningFieldVO | any>(this.path + `/${id}`);
-
+        return this.http.get<LearningFieldVO | any>(this.path + `/${id}/{id}`);
     }
 
     public getAll(): Observable<LearningFieldVO[] | any[]> {
 
-
         return this.http.get<LearningFieldVO[] | any[]>(this.path);
-
     }
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-
-        return this.http.delete<boolean | any>(this.path + `/${id}`);
-
+        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
     }
 
     public save(field: LearningFieldVO | any ): Observable<LearningFieldVO | any> {
 
-
         return this.http.post<LearningFieldVO | any>(this.path, field);
-
     }
 
     public search(criteria: string | any ): Observable<LearningFieldVO[] | any[]> {
 
-
         return this.http.get<LearningFieldVO[] | any[]>(this.path + `/search?criteria=${criteria}`);
-
     }
 
 }

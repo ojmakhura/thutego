@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "../../@shared/loader/loader.component";
+import { LoaderComponent } from "@shared/loader/loader.component";
 
 @Component({
   selector: 'app-search-access-point-types',
@@ -34,10 +34,16 @@ export class SearchAccessPointTypesImplComponent extends SearchAccessPointTypesC
         super();
     }
 
-    override beforeOnInit(form: SearchAccessPointTypesVarsForm): SearchAccessPointTypesVarsForm{     
+    override beforeOnInit(form: SearchAccessPointTypesVarsForm): SearchAccessPointTypesVarsForm{
         return form;
     }
 
     doNgOnDestroy(): void {
+    }
+
+    override beforeSearchAccessPointTypesSearch(form: any): void {
+
+      console.log(this.searchAccessPointTypesForm.value);
+      this.accessPointTypeApiStore.search(this.searchAccessPointTypesForm.value);
     }
 }

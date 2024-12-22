@@ -20,7 +20,8 @@ const initialState: AppState<any, any> = {
   error: null,
   loading: false,
   success: false,
-  messages: []
+  messages: [],
+  loaderMessage: ''
 };
 
 export const ModuleApiStore = signalStore(

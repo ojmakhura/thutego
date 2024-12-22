@@ -20,6 +20,7 @@ const initialState: AppState<CurriculumVO | any, CurriculumListVO> = {
   loading: false,
   success: false,
   messages: [],
+  loaderMessage: ''
 };
 
 export const CurriculumApiStore = signalStore(
@@ -33,7 +34,7 @@ export const CurriculumApiStore = signalStore(
       },
       findById: rxMethod<{ id: number | any }>(
         switchMap((data: { id: number | any }) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Finding curriculum...' });
           return curriculumApi.findById(data.id).pipe(
             tapResponse({
               next: (data: CurriculumVO) => {
@@ -43,7 +44,7 @@ export const CurriculumApiStore = signalStore(
                     data,
                     loading: false,
                     success: true,
-                    messages: [`Found curriculum with id ${data.name}`]
+                    messages: [`Found curriculum with id ${data.id}`]
                   }
                 );
               },
@@ -64,7 +65,7 @@ export const CurriculumApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Getting all curricula...' });
           return curriculumApi.getAll().pipe(
             tapResponse({
               next: (dataList: any[]) => {
@@ -93,10 +94,10 @@ export const CurriculumApiStore = signalStore(
           );
         }),
       ),
-      getAllPaged: rxMethod<void>(
-        switchMap(() => {
-          patchState(store, { loading: true });
-          return curriculumApi.getAllPaged().pipe(
+      getAllPaged: rxMethod<{pageNumber: number , pageSize: number}>(
+        switchMap((data: any) => {
+          patchState(store, { loading: true, loaderMessage: 'Getting all curricula by page...' });
+          return curriculumApi.getAllPaged(data.pageNumber, data.pageSize).pipe(
             tapResponse({
               next: (dataPage: any) => {
                 patchState(
@@ -126,7 +127,7 @@ export const CurriculumApiStore = signalStore(
       ),
       remove: rxMethod<{ id: number | any }>(
         switchMap((data: { id: number | any }) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Removing curriculum...' });
           return curriculumApi.remove(data.id).pipe(
             tapResponse({
               next: (removed: boolean) => {
@@ -156,7 +157,7 @@ export const CurriculumApiStore = signalStore(
       ),
       save: rxMethod<{ curriculum: CurriculumVO | any }>(
         switchMap((data: { curriculum: CurriculumVO | any }) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Saving curriculum...' });
           return curriculumApi.save(data.curriculum).pipe(
             tapResponse({
               next: (data: CurriculumVO | any ) => {
@@ -187,7 +188,7 @@ export const CurriculumApiStore = signalStore(
       ),
       search: rxMethod<{ criteria: SearchObject<CurriculumSearchCriteria> | any }>(
         switchMap((data: { criteria: SearchObject<CurriculumSearchCriteria> | any }) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Searching curricula...' });
           return curriculumApi.search(data.criteria).pipe(
             tapResponse({
               next: (dataList: CurriculumVO[]) => {
@@ -218,7 +219,7 @@ export const CurriculumApiStore = signalStore(
       ),
       searchPaged: rxMethod<{ criteria: SearchObject<CurriculumSearchCriteria> | any }>(
         switchMap((data: { criteria: SearchObject<CurriculumSearchCriteria> | any }) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Searching curricula by page...' });
           return curriculumApi.searchPaged(data.criteria).pipe(
             tapResponse({
               next: (dataPage: any) => {

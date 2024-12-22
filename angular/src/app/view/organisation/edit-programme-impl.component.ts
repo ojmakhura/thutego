@@ -10,9 +10,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "../../@shared/loader/loader.component";
-import { OrganisationDetailsImplComponent } from '@app/components/organisation/organisation-details-impl.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { OrganisationEditorImplComponent } from '@app/components/organisation/organisation-editor-impl.component';
+import { OrganisationDetailsImplComponent } from '@app/components/organisation/organisation-details-impl.component';
 
 @Component({
   selector: 'app-edit-programme',
@@ -28,8 +28,8 @@ import { OrganisationEditorImplComponent } from '@app/components/organisation/or
     CsvModule,
     TableComponent,
     LoaderComponent,
-    OrganisationDetailsImplComponent,
     OrganisationEditorImplComponent,
+    OrganisationDetailsImplComponent,
   ],
 })
 export class EditProgrammeImplComponent extends EditProgrammeComponent {

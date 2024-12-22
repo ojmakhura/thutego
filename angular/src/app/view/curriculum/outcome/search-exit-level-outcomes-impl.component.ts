@@ -7,10 +7,10 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { ExitLevelOutcomeEditorImplComponent } from '@app/components/curriculum/outcome/exit-level-outcome-editor-impl.component';
 
 @Component({
@@ -23,10 +23,10 @@ import { ExitLevelOutcomeEditorImplComponent } from '@app/components/curriculum/
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
+    LoaderComponent,
     ExitLevelOutcomeEditorImplComponent,
   ],
 })

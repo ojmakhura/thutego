@@ -32,7 +32,7 @@ export class AccessPointApi {
         return this.http.get<Page<AccessPointListDTO> | any>(this.path + `/page/${pageNumber}/size/${pageSize}/page/{pageNumber}/size/{pageSize}`);
     }
 
-    public pagedSearch(criteria: AccessPointCriteriaTemplate<AccessPointCriteria> | any ): Observable<Page<AccessPointListDTO> | any> {
+    public pagedSearch(criteria: SearchObject<AccessPointCriteria> | any ): Observable<Page<AccessPointListDTO> | any> {
 
         return this.http.post<Page<AccessPointListDTO> | any>(this.path + `/search/paged/search/paged`, criteria);
     }

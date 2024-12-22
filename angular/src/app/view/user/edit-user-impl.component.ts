@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "../../@shared/loader/loader.component";
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { UserEditorImplComponent } from '@app/components/user/user-editor-impl.component';
 import { ChangePasswordImplComponent } from '@app/view/user/change-password-impl.component';
 

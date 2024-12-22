@@ -5,10 +5,13 @@
 //
 package bw.co.roguesystems.thutego.curriculum;
 
+import bw.co.roguesystems.thutego.PropertySearchOrder;
 import bw.co.roguesystems.thutego.SearchObject;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.Set;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -31,7 +34,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -50,7 +53,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleGetAll() {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -67,9 +70,9 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     }
 
     @Override
-    public ResponseEntity<?> handleGetAllPaged() {
+    public ResponseEntity<?> handleGetAllPaged(Integer pageNumber, Integer pageSize) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.getAll(pageNumber, pageSize)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -88,7 +91,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -116,7 +119,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
                 curriculum.setModifiedBy("SYSTEM");
             }
 
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.save(curriculum)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -135,7 +138,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleSearch(SearchObject<CurriculumSearchCriteria> criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.search(criteria.getCriteria(), Set.copyOf(criteria.getSortings()))); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -154,7 +157,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleSearchPaged(SearchObject<CurriculumSearchCriteria> criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(curriculumService.search(criteria)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

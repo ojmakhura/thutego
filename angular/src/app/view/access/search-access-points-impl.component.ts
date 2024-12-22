@@ -10,8 +10,11 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "../../@shared/loader/loader.component";
 import { AccessPointSearchImplComponent } from '@app/components/access/access-point-search-impl.component';
+import { LoaderComponent } from '@app/@shared';
+import { AccessPointCriteria } from '@app/model/bw/co/roguesystems/thutego/access/access-point-criteria';
+import { SearchObject } from '@app/model/search-object';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-access-points',
@@ -26,20 +29,66 @@ import { AccessPointSearchImplComponent } from '@app/components/access/access-po
     MaterialModule,
     CsvModule,
     TableComponent,
-    LoaderComponent,
     AccessPointSearchImplComponent,
+    LoaderComponent
   ],
 })
 export class SearchAccessPointsImplComponent extends SearchAccessPointsComponent {
 
     constructor() {
         super();
+        this.accessPointApiStore.reset();
+        this.success = this.accessPointApiStore.success;
+        this.loading = this.accessPointApiStore.loading;
+        this.error = this.accessPointApiStore.error;
+        this.messages = this.accessPointApiStore.messages;
+        this.loaderMessage = this.accessPointApiStore.loaderMessage;
+        this.accessPointsTablePaged = true;
+        this.accessPointsTableSignal = this.accessPointApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchAccessPointsVarsForm): SearchAccessPointsVarsForm{     
+    override beforeOnInit(form: SearchAccessPointsVarsForm): SearchAccessPointsVarsForm{
         return form;
     }
 
     doNgOnDestroy(): void {
+    }
+
+    override doNgAfterViewInit(): void {
+
+      this.accessPointsTable?.tablePaginator?.page?.subscribe({
+        next: (paginator: MatPaginator) => {
+          this.doSearch(paginator.pageIndex, paginator.pageSize);
+        },
+      });
+    }
+
+    override beforeSearchAccessPointsSearch(form: any): void {
+      this.doSearch();
+    }
+
+    private doSearch(pageNumber: number = 0, pageSize: number = 10): void {
+
+      let tmp = this.criteria.formGroupControl.value;
+
+      let criteria = new SearchObject<AccessPointCriteria>();
+      criteria.criteria = {};
+
+      if(tmp.name) {
+        criteria.criteria.name = tmp.name;
+      }
+
+      if(tmp.url) {
+        criteria.criteria.url = tmp.url;
+      }
+
+      if(tmp.type) {
+        criteria.criteria.typeId = tmp.type.id;
+      }
+
+      criteria.pageNumber = pageNumber;
+      criteria.pageSize = pageSize;
+
+      this.accessPointApiStore.pagedSearch({ criteria: criteria });
     }
 }

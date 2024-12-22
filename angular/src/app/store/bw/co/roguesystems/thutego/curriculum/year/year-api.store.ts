@@ -18,7 +18,8 @@ const initialState: AppState<any, any> = {
   error: null,
   loading: false,
   success: false,
-  messages: []
+  messages: [],
+  loaderMessage: ''
 };
 
 export const YearApiStore = signalStore(
@@ -32,7 +33,7 @@ export const YearApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Finding year...' });
           return yearApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -47,7 +48,7 @@ export const YearApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Getting all years...' });
           return yearApi.getAll().pipe(
             tapResponse({
               next: (data: any) => {
@@ -62,7 +63,7 @@ export const YearApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Removing year...' });
           return yearApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -77,7 +78,7 @@ export const YearApiStore = signalStore(
       ),
       save: rxMethod<{curriculumLevel: YearVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Saving year...' });
           return yearApi.save(data.curriculumLevel, ).pipe(
             tapResponse({
               next: (data: any) => {
@@ -92,7 +93,7 @@ export const YearApiStore = signalStore(
       ),
       search: rxMethod<{criteria: string | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Searching year...' });
           return yearApi.search(data.criteria, ).pipe(
             tapResponse({
               next: (data: any) => {

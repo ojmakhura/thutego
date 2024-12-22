@@ -10,44 +10,34 @@ import { SearchObject } from '@app/model/search-object';
   providedIn: 'root'
 })
 export class DomainApi {
-
+    
     protected path = '/curriculum/domain';
 
     private http = inject(HttpClient);
 
     public findById(id: number | any ): Observable<DomainVO | any> {
 
-
-        return this.http.get<DomainVO | any>(this.path + `/${id}`);
-
+        return this.http.get<DomainVO | any>(this.path + `/${id}/{id}`);
     }
 
     public getAll(): Observable<DomainVO[] | any[]> {
 
-
         return this.http.get<DomainVO[] | any[]>(this.path);
-
     }
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-
-        return this.http.delete<boolean | any>(this.path + `/${id}`);
-
+        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
     }
 
     public save(domain: DomainVO | any ): Observable<DomainVO | any> {
 
-
         return this.http.post<DomainVO | any>(this.path, domain);
-
     }
 
     public search(criteria: string | any ): Observable<DomainVO[] | any[]> {
 
-
         return this.http.get<DomainVO[] | any[]>(this.path + `/search?criteria=${criteria}`);
-
     }
 
 }

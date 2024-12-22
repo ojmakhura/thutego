@@ -7,12 +7,12 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { CurriculumDetailsImplComponent } from '@app/components/curriculum/curriculum-details-impl.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { CurriculumEditorImplComponent } from '@app/components/curriculum/curriculum-editor-impl.component';
+import { CurriculumDetailsImplComponent } from '@app/components/curriculum/curriculum-details-impl.component';
 
 @Component({
   selector: 'app-curriculum-view',
@@ -24,25 +24,21 @@ import { CurriculumEditorImplComponent } from '@app/components/curriculum/curric
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
-    CurriculumDetailsImplComponent,
+    LoaderComponent,
     CurriculumEditorImplComponent,
+    CurriculumDetailsImplComponent,
   ],
 })
 export class CurriculumViewImplComponent extends CurriculumViewComponent {
 
     constructor() {
         super();
-        this.success = this.curriculumApiStore.success;
-        this.loading = this.curriculumApiStore.loading;
-        this.error = this.curriculumApiStore.error;
-        this.messages = this.curriculumApiStore.messages;
     }
 
-    override beforeOnInit(form: CurriculumViewVarsForm): CurriculumViewVarsForm{
+    override beforeOnInit(form: CurriculumViewVarsForm): CurriculumViewVarsForm{     
         return form;
     }
 

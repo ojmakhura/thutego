@@ -7,10 +7,10 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { ModuleEditorImplComponent } from '@app/components/module/module-editor-impl.component';
 import { ModuleSearchImplComponent } from '@app/components/module/module-search-impl.component';
 
@@ -24,10 +24,10 @@ import { ModuleSearchImplComponent } from '@app/components/module/module-search-
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
+    LoaderComponent,
     ModuleEditorImplComponent,
     ModuleSearchImplComponent,
   ],

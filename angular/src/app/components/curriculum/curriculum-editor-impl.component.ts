@@ -79,7 +79,7 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
       if(this.loadingCurriculum) {
 
-        this.curriculumEditorForm.patchValue(curriculum);
+        this.formGroupControl.patchValue(curriculum);
         this.loadingCurriculum = false;
       }
 

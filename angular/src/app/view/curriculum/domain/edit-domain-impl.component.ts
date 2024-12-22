@@ -7,12 +7,12 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { DomainEditorImplComponent } from '@app/components/curriculum/domain/domain-editor-impl.component';
+import { LoaderComponent } from "@shared/loader/loader.component";
 import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/domain-details-impl.component';
+import { DomainEditorImplComponent } from '@app/components/curriculum/domain/domain-editor-impl.component';
 
 @Component({
   selector: 'app-edit-domain',
@@ -24,35 +24,24 @@ import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/do
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    SharedModule,
     MaterialModule,
     CsvModule,
     TableComponent,
-    DomainEditorImplComponent,
+    LoaderComponent,
     DomainDetailsImplComponent,
+    DomainEditorImplComponent,
   ],
 })
 export class EditDomainImplComponent extends EditDomainComponent {
 
-  constructor() {
-    super();
-    this.domainApiStore.reset()
-    this.success = this.domainApiStore.success;
-    this.loading = this.domainApiStore.loading;
-    this.error = this.domainApiStore.error;
-    this.messages = this.domainApiStore.messages;
-  }
+    constructor() {
+        super();
+    }
 
-  override beforeOnInit(form: EditDomainVarsForm): EditDomainVarsForm {
-    return form;
-  }
+    override beforeOnInit(form: EditDomainVarsForm): EditDomainVarsForm{     
+        return form;
+    }
 
-  doNgOnDestroy(): void {
-  }
-
-  override beforeEditDomainSave(form: any): void {
-
-    form.domain = { ...this.domainEditor?.formGroupControl?.value };
-    this.domainApiStore.save(form);
-  }
+    doNgOnDestroy(): void {
+    }
 }
