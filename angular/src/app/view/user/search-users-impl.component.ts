@@ -32,9 +32,17 @@ export class SearchUsersImplComponent extends SearchUsersComponent {
 
     constructor() {
         super();
+        this.userApiStore.reset();
+        this.success = this.userApiStore.success;
+        this.loading = this.userApiStore.loading;
+        this.error = this.userApiStore.error;
+        this.messages = this.userApiStore.messages;
+        this.loaderMessage = this.userApiStore.loaderMessage;
+        this.usersTablePaged = true;
+        this.usersTableSignal = this.userApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchUsersVarsForm): SearchUsersVarsForm{     
+    override beforeOnInit(form: SearchUsersVarsForm): SearchUsersVarsForm{
         return form;
     }
 

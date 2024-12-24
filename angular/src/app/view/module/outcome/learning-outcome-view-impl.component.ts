@@ -36,9 +36,15 @@ export class LearningOutcomeViewImplComponent extends LearningOutcomeViewCompone
 
     constructor() {
         super();
+        this.learningOutcomeApiStore.reset();
+        this.success = this.learningOutcomeApiStore.success;
+        this.loading = this.learningOutcomeApiStore.loading;
+        this.error = this.learningOutcomeApiStore.error;
+        this.messages = this.learningOutcomeApiStore.messages;
+        this.loaderMessage = this.learningOutcomeApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: LearningOutcomeViewVarsForm): LearningOutcomeViewVarsForm{     
+    override beforeOnInit(form: LearningOutcomeViewVarsForm): LearningOutcomeViewVarsForm{
         return form;
     }
 

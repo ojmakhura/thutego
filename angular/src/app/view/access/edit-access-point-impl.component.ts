@@ -32,14 +32,29 @@ import { AccessPointEditorImplComponent } from '@app/components/access/access-po
 })
 export class EditAccessPointImplComponent extends EditAccessPointComponent {
 
-    constructor() {
-        super();
-    }
+  constructor() {
+    super();
+    this.accessPointApiStore.reset();
+    this.success = this.accessPointApiStore.success;
+    this.loading = this.accessPointApiStore.loading;
+    this.error = this.accessPointApiStore.error;
+    this.messages = this.accessPointApiStore.messages;
+  }
 
-    override beforeOnInit(form: EditAccessPointVarsForm): EditAccessPointVarsForm{     
-        return form;
-    }
+  override beforeOnInit(form: EditAccessPointVarsForm): EditAccessPointVarsForm {
+    this.route.queryParams.subscribe((params: any) => {
+      if (params.id) {
+        this.accessPointApiStore.findById(params);
+      }
+    });
+    return form;
+  }
 
-    doNgOnDestroy(): void {
-    }
+  doNgOnDestroy(): void {
+  }
+
+  override beforeEditAccessPointSave(form: any): void {
+    let accessPoint = this.accessPoint.formGroupControl.value;
+    this.accessPointApiStore.save({ accessPoint });
+  }
 }

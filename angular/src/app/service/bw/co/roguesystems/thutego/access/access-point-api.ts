@@ -12,7 +12,7 @@ import { SearchObject } from '@app/model/search-object';
   providedIn: 'root'
 })
 export class AccessPointApi {
-    
+
     protected path = '/access';
 
     private http = inject(HttpClient);
@@ -34,7 +34,7 @@ export class AccessPointApi {
 
     public pagedSearch(criteria: SearchObject<AccessPointCriteria> | any ): Observable<Page<AccessPointListDTO> | any> {
 
-        return this.http.post<Page<AccessPointListDTO> | any>(this.path + `/search/paged/search/paged`, criteria);
+        return this.http.post<Page<AccessPointListDTO> | any>(this.path + `/search/paged`, criteria);
     }
 
     public remove(id: number | any ): Observable<boolean | any> {

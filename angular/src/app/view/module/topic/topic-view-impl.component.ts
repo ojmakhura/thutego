@@ -36,9 +36,15 @@ export class TopicViewImplComponent extends TopicViewComponent {
 
     constructor() {
         super();
+        this.topicApiStore.reset();
+        this.success = this.topicApiStore.success;
+        this.loading = this.topicApiStore.loading;
+        this.error = this.topicApiStore.error;
+        this.messages = this.topicApiStore.messages;
+        this.loaderMessage = this.topicApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: TopicViewVarsForm): TopicViewVarsForm{     
+    override beforeOnInit(form: TopicViewVarsForm): TopicViewVarsForm{
         return form;
     }
 

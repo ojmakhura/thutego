@@ -25,7 +25,7 @@ const initialState: AppState<any, any> = {
 export const AssessmentStratergyApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store) => {
+  withMethods((store: any) => {
     const assessmentStratergyApi = inject(AssessmentStratergyApi);
     return {
       reset: () => {
@@ -33,14 +33,30 @@ export const AssessmentStratergyApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return assessmentStratergyApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: AssessmentStrategyVO | any) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Assessment Strategy with id ${data.id} found`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -48,14 +64,30 @@ export const AssessmentStratergyApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return assessmentStratergyApi.getAll().pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList: AssessmentStrategyVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                     dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} Assessment Strategies`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -63,29 +95,61 @@ export const AssessmentStratergyApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return assessmentStratergyApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: boolean | any) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Assessment Strategy with id ${data.id} removed`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
         }),
       ),
-      save: rxMethod<{trainingStratergy: AssessmentStrategyVO | any }>(
+      save: rxMethod<{assessmentStratergy: AssessmentStrategyVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
-          return assessmentStratergyApi.save(data.trainingStratergy, ).pipe(
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
+          return assessmentStratergyApi.save(data.assessmentStratergy, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: AssessmentStrategyVO | any) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Assessment Strategy saved`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -93,14 +157,30 @@ export const AssessmentStratergyApiStore = signalStore(
       ),
       search: rxMethod<{criteria: string | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return assessmentStratergyApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList: AssessmentStrategyVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} Assessment Strategies`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );

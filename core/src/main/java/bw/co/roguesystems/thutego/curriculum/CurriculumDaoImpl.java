@@ -14,6 +14,8 @@ import bw.co.roguesystems.thutego.curriculum.level.CurriculumLevelRepository;
 import bw.co.roguesystems.thutego.curriculum.level.CurriculumLevelVO;
 import bw.co.roguesystems.thutego.curriculum.outcome.ExitLevelOutcomeRepository;
 import bw.co.roguesystems.thutego.module.ModuleRepository;
+import bw.co.roguesystems.thutego.programme.ProgrammeRepository;
+
 import org.springframework.stereotype.Repository;
 
 /**
@@ -29,10 +31,11 @@ public class CurriculumDaoImpl
             CurriculumLevelRepository curriculumLevelRepository,
             DomainRepository domainRepository,
             LearningFieldRepository learningFieldRepository,
+            ProgrammeRepository programmeRepository,
             CurriculumRepository curriculumRepository) {
 
         super(exitLevelOutcomeRepository, moduleRepository, curriculumLevelRepository, domainRepository,
-                learningFieldRepository, curriculumRepository);
+                learningFieldRepository, programmeRepository, curriculumRepository);
     }
 
     /**

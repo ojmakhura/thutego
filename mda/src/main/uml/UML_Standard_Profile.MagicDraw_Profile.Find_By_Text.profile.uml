@@ -1,63 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_Whw2PcBmEe-pQ9dybSGUrA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:MagicDrawProfile="http://www.omg.org/spec/UML/20131001/MagicDrawProfile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/UML/20131001/MagicDrawProfile UML_Standard_Profile.MagicDraw_Profile.profile.uml#_2HiI4sHJEe-ud5g4HGfq3Q">
   <uml:Profile xmi:id="_19_0beta_8bb027e_1484121177637_661582_4502" name="Find By Text" visibility="public" URI="" metamodelReference="_19_0beta_8bb027e_1484121177637_838384_4503">
-    <eAnnotations xmi:id="_WhyvxcBmEe-pQ9dybSGUrA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-      <contents xmi:type="ecore:EPackage" xmi:id="_WhyvxsBmEe-pQ9dybSGUrA" name="FindByText" nsURI="http://UML_Standard_Profile/MagicDraw_Profile/Find_By_Text/_19_0beta_8bb027e_1484121177637_661582_4502" nsPrefix="FindByText">
-        <eAnnotations xmi:id="_Whyvx8BmEe-pQ9dybSGUrA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-          <details xmi:id="_WhyvyMBmEe-pQ9dybSGUrA" key="originalName" value="Find By Text"/>
+    <eAnnotations xmi:id="_2HtJmMHJEe-ud5g4HGfq3Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <contents xmi:type="ecore:EPackage" xmi:id="_2HtJmcHJEe-ud5g4HGfq3Q" name="FindByText" nsURI="http://UML_Standard_Profile/MagicDraw_Profile/Find_By_Text/_19_0beta_8bb027e_1484121177637_661582_4502" nsPrefix="FindByText">
+        <eAnnotations xmi:id="_2HtJmsHJEe-ud5g4HGfq3Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <details xmi:id="_2HtJm8HJEe-ud5g4HGfq3Q" key="originalName" value="Find By Text"/>
         </eAnnotations>
       </contents>
     </eAnnotations>
-    <eAnnotations xmi:id="_WkTL8MBmEe-pQ9dybSGUrA" source="MagicDraw">
-      <details xmi:id="_WkTL8cBmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484121177637_661582_4502"/>
+    <eAnnotations xmi:id="_2KRT0MHJEe-ud5g4HGfq3Q" source="MagicDraw">
+      <details xmi:id="_2KRT0cHJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484121177637_661582_4502"/>
     </eAnnotations>
     <ownedRule xmi:id="_18_5_88f027b_1482412691270_968549_4493" name="FindSymbolByText" visibility="public">
-      <eAnnotations xmi:id="_WkTL8sBmEe-pQ9dybSGUrA" source="MagicDraw">
-        <details xmi:id="_WkTL88BmEe-pQ9dybSGUrA" key="md_id" value="_18_5_88f027b_1482412691270_968549_4493"/>
+      <eAnnotations xmi:id="_2KRT0sHJEe-ud5g4HGfq3Q" source="MagicDraw">
+        <details xmi:id="_2KRT08HJEe-ud5g4HGfq3Q" key="md_id" value="_18_5_88f027b_1482412691270_968549_4493"/>
       </eAnnotations>
       <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_18_5_88f027b_1482412691270_584482_4494" name="" visibility="public">
-        <eAnnotations xmi:id="_WkTL9MBmEe-pQ9dybSGUrA" source="MagicDraw">
-          <details xmi:id="_WkTL9cBmEe-pQ9dybSGUrA" key="md_id" value="_18_5_88f027b_1482412691270_584482_4494"/>
+        <eAnnotations xmi:id="_2KRT1MHJEe-ud5g4HGfq3Q" source="MagicDraw">
+          <details xmi:id="_2KRT1cHJEe-ud5g4HGfq3Q" key="md_id" value="_18_5_88f027b_1482412691270_584482_4494"/>
         </eAnnotations>
       </specification>
     </ownedRule>
     <ownedRule xmi:id="_19_0beta_8bb027e_1484121197522_336656_4504" name="FindRelationMapNodeByText" visibility="public">
-      <eAnnotations xmi:id="_WkTL9sBmEe-pQ9dybSGUrA" source="MagicDraw">
-        <details xmi:id="_WkTL98BmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484121197522_336656_4504"/>
+      <eAnnotations xmi:id="_2KRT1sHJEe-ud5g4HGfq3Q" source="MagicDraw">
+        <details xmi:id="_2KRT18HJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484121197522_336656_4504"/>
       </eAnnotations>
       <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0beta_8bb027e_1484121197532_640420_4505" name="" visibility="public">
-        <eAnnotations xmi:id="_WkTL-MBmEe-pQ9dybSGUrA" source="MagicDraw">
-          <details xmi:id="_WkTL-cBmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484121197532_640420_4505"/>
+        <eAnnotations xmi:id="_2KRT2MHJEe-ud5g4HGfq3Q" source="MagicDraw">
+          <details xmi:id="_2KRT2cHJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484121197532_640420_4505"/>
         </eAnnotations>
       </specification>
     </ownedRule>
     <ownedRule xmi:id="_19_0beta_8bb027e_1484311679571_804841_4514" name="FindTextInDiagramTable" visibility="public">
-      <eAnnotations xmi:id="_WkTL-sBmEe-pQ9dybSGUrA" source="MagicDraw">
-        <details xmi:id="_WkTL-8BmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484311679571_804841_4514"/>
+      <eAnnotations xmi:id="_2KRT2sHJEe-ud5g4HGfq3Q" source="MagicDraw">
+        <details xmi:id="_2KRT28HJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484311679571_804841_4514"/>
       </eAnnotations>
       <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0beta_8bb027e_1484311679581_183139_4515" name="" visibility="public">
-        <eAnnotations xmi:id="_WkTL_MBmEe-pQ9dybSGUrA" source="MagicDraw">
-          <details xmi:id="_WkTL_cBmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484311679581_183139_4515"/>
+        <eAnnotations xmi:id="_2KRT3MHJEe-ud5g4HGfq3Q" source="MagicDraw">
+          <details xmi:id="_2KRT3cHJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484311679581_183139_4515"/>
         </eAnnotations>
       </specification>
     </ownedRule>
     <ownedRule xmi:id="_19_0beta_8760276_1486466992679_284556_4542" name="FindTextInGanttChart" visibility="public">
-      <eAnnotations xmi:id="_WkTL_sBmEe-pQ9dybSGUrA" source="MagicDraw">
-        <details xmi:id="_WkTL_8BmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8760276_1486466992679_284556_4542"/>
+      <eAnnotations xmi:id="_2KRT3sHJEe-ud5g4HGfq3Q" source="MagicDraw">
+        <details xmi:id="_2KRT38HJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8760276_1486466992679_284556_4542"/>
       </eAnnotations>
       <constrainedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       <specification xmi:type="uml:OpaqueExpression" xmi:id="_19_0beta_8760276_1486466992694_29205_4543" name="" visibility="public">
-        <eAnnotations xmi:id="_WkTMAMBmEe-pQ9dybSGUrA" source="MagicDraw">
-          <details xmi:id="_WkTMAcBmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8760276_1486466992694_29205_4543"/>
+        <eAnnotations xmi:id="_2KRT4MHJEe-ud5g4HGfq3Q" source="MagicDraw">
+          <details xmi:id="_2KRT4cHJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8760276_1486466992694_29205_4543"/>
         </eAnnotations>
       </specification>
     </ownedRule>
     <packageImport xmi:id="_19_0beta_8bb027e_1484121177637_838384_4503">
-      <eAnnotations xmi:id="_WkTMAsBmEe-pQ9dybSGUrA" source="MagicDraw">
-        <details xmi:id="_WkTMA8BmEe-pQ9dybSGUrA" key="md_id" value="_19_0beta_8bb027e_1484121177637_838384_4503"/>
+      <eAnnotations xmi:id="_2KRT4sHJEe-ud5g4HGfq3Q" source="MagicDraw">
+        <details xmi:id="_2KRT48HJEe-ud5g4HGfq3Q" key="md_id" value="_19_0beta_8bb027e_1484121177637_838384_4503"/>
       </eAnnotations>
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
     </packageImport>
@@ -68,14 +68,14 @@
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <profileApplication xmi:id="_be00301_1073394351331_445580_2profileApplicationFind_By_Text">
-      <eAnnotations xmi:id="_Wiq0SsBmEe-pQ9dybSGUrA" source="http://www.eclipse.org/uml2/2.0.0/UML">
-        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_Whw2PcBmEe-pQ9dybSGUrA"/>
+      <eAnnotations xmi:id="_2I2XgsHJEe-ud5g4HGfq3Q" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_2HiI4sHJEe-ud5g4HGfq3Q"/>
       </eAnnotations>
       <appliedProfile href="UML_Standard_Profile.MagicDraw_Profile.profile.uml#_be00301_1073394351331_445580_2"/>
     </profileApplication>
   </uml:Profile>
-  <MagicDrawProfile:searchRule xmi:id="_Wiq0S8BmEe-pQ9dybSGUrA" base_Constraint="_19_0beta_8bb027e_1484121197522_336656_4504" implementation="com.nomagic.magicdraw.search.bytext.map.FindByTextRelationMapValidator" base_Element="_19_0beta_8bb027e_1484121197522_336656_4504"/>
-  <MagicDrawProfile:searchRule xmi:id="_Wiq0TMBmEe-pQ9dybSGUrA" base_Constraint="_19_0beta_8760276_1486466992679_284556_4542" implementation="com.nomagic.magicdraw.search.bytext.gantt.FindByTextGanttChartValidator" base_Element="_19_0beta_8760276_1486466992679_284556_4542"/>
-  <MagicDrawProfile:searchRule xmi:id="_Wiq0TcBmEe-pQ9dybSGUrA" base_Constraint="_19_0beta_8bb027e_1484311679571_804841_4514" implementation="com.nomagic.magicdraw.search.bytext.table.FindByTextDiagramTableValidator" base_Element="_19_0beta_8bb027e_1484311679571_804841_4514"/>
-  <MagicDrawProfile:searchRule xmi:id="_Wiq0TsBmEe-pQ9dybSGUrA" base_Constraint="_18_5_88f027b_1482412691270_968549_4493" implementation="com.nomagic.magicdraw.search.bytext.diagram.FindByTextDiagramValidator" base_Element="_18_5_88f027b_1482412691270_968549_4493"/>
+  <MagicDrawProfile:searchRule xmi:id="_2I2Xg8HJEe-ud5g4HGfq3Q" base_Constraint="_19_0beta_8bb027e_1484121197522_336656_4504" implementation="com.nomagic.magicdraw.search.bytext.map.FindByTextRelationMapValidator" base_Element="_19_0beta_8bb027e_1484121197522_336656_4504"/>
+  <MagicDrawProfile:searchRule xmi:id="_2I2XhMHJEe-ud5g4HGfq3Q" base_Constraint="_19_0beta_8760276_1486466992679_284556_4542" implementation="com.nomagic.magicdraw.search.bytext.gantt.FindByTextGanttChartValidator" base_Element="_19_0beta_8760276_1486466992679_284556_4542"/>
+  <MagicDrawProfile:searchRule xmi:id="_2I2XhcHJEe-ud5g4HGfq3Q" base_Constraint="_19_0beta_8bb027e_1484311679571_804841_4514" implementation="com.nomagic.magicdraw.search.bytext.table.FindByTextDiagramTableValidator" base_Element="_19_0beta_8bb027e_1484311679571_804841_4514"/>
+  <MagicDrawProfile:searchRule xmi:id="_2I2XhsHJEe-ud5g4HGfq3Q" base_Constraint="_18_5_88f027b_1482412691270_968549_4493" implementation="com.nomagic.magicdraw.search.bytext.diagram.FindByTextDiagramValidator" base_Element="_18_5_88f027b_1482412691270_968549_4493"/>
 </xmi:XMI>

@@ -34,9 +34,17 @@ export class SearchLearningOutcomesImplComponent extends SearchLearningOutcomesC
 
     constructor() {
         super();
+        this.learningOutcomeApiStore.reset();
+        this.success = this.learningOutcomeApiStore.success;
+        this.loading = this.learningOutcomeApiStore.loading;
+        this.error = this.learningOutcomeApiStore.error;
+        this.messages = this.learningOutcomeApiStore.messages;
+        this.loaderMessage = this.learningOutcomeApiStore.loaderMessage;
+        this.learningOutcomesTablePaged = true;
+        this.learningOutcomesTableSignal = this.learningOutcomeApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchLearningOutcomesVarsForm): SearchLearningOutcomesVarsForm{     
+    override beforeOnInit(form: SearchLearningOutcomesVarsForm): SearchLearningOutcomesVarsForm{
         return form;
     }
 

@@ -25,7 +25,7 @@ const initialState: AppState<any, any> = {
 export const TrainingStratergyApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store) => {
+  withMethods((store: any) => {
     const trainingStratergyApi = inject(TrainingStratergyApi);
     return {
       reset: () => {
@@ -33,14 +33,30 @@ export const TrainingStratergyApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return trainingStratergyApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: TrainingStrategyVO | any) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Training Strategy with id ${data.id} found`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -48,14 +64,30 @@ export const TrainingStratergyApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return trainingStratergyApi.getAll().pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: TrainingStrategyVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${data.length} Training Strategies`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -63,14 +95,30 @@ export const TrainingStratergyApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return trainingStratergyApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList: boolean | any) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Training Strategy with id ${dataList.id} removed`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -78,14 +126,30 @@ export const TrainingStratergyApiStore = signalStore(
       ),
       save: rxMethod<{trainingStratergy: TrainingStrategyVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return trainingStratergyApi.save(data.trainingStratergy, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: TrainingStrategyVO | any) => {
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Training Strategy with saved`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -93,14 +157,30 @@ export const TrainingStratergyApiStore = signalStore(
       ),
       search: rxMethod<{criteria: string | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return trainingStratergyApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (dataList: TrainingStrategyVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} Training Strategies`]
+                  }
+                );
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );

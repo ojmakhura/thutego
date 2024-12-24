@@ -36,9 +36,15 @@ export class EditModuleImplComponent extends EditModuleComponent {
 
     constructor() {
         super();
+        this.moduleApiStore.reset();
+        this.success = this.moduleApiStore.success;
+        this.loading = this.moduleApiStore.loading;
+        this.error = this.moduleApiStore.error;
+        this.messages = this.moduleApiStore.messages;
+        this.loaderMessage = this.moduleApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: EditModuleVarsForm): EditModuleVarsForm{     
+    override beforeOnInit(form: EditModuleVarsForm): EditModuleVarsForm{
         return form;
     }
 

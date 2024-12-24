@@ -38,23 +38,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: boolean | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -69,23 +69,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: string | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -100,23 +100,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: UserDTO[] | any[]) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -130,24 +130,24 @@ export const UserApiStore = signalStore(
           return userApi.findByRealmRoles(data.roles, ).pipe(
             tapResponse({
               next: (data: UserDTO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: []
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -161,24 +161,24 @@ export const UserApiStore = signalStore(
           return userApi.findUserById(data.userId, ).pipe(
             tapResponse({
               next: (data: UserDTO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`User with found`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -193,23 +193,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: UserDTO[] | any[]) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -224,23 +224,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: boolean | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -255,23 +255,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: UserDTO | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -286,23 +286,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: UserDTO | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -317,23 +317,23 @@ export const UserApiStore = signalStore(
             tapResponse({
               next: (data: boolean | any) => {
                 //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
                   //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
+                  //    success: true,
+                  //    messages: []
                   //}
                 //);
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },

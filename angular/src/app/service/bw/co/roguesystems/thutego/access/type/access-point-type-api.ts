@@ -10,7 +10,7 @@ import { SearchObject } from '@app/model/search-object';
   providedIn: 'root'
 })
 export class AccessPointTypeApi {
-    
+
     protected path = '/access/type';
 
     private http = inject(HttpClient);
@@ -47,7 +47,7 @@ export class AccessPointTypeApi {
 
     public search(criteria: string | any ): Observable<AccessPointTypeDTO[] | any[]> {
 
-        return this.http.get<AccessPointTypeDTO[] | any[]>(this.path + `/search?criteria=${criteria}`);
+        return this.http.get<AccessPointTypeDTO[] | any[]>(this.path + `/search?criteria=${criteria ? criteria : ''}`);
     }
 
 }

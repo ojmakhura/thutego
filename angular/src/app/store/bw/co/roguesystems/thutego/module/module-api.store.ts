@@ -27,7 +27,7 @@ const initialState: AppState<any, any> = {
 export const ModuleApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store) => {
+  withMethods((store: any) => {
     const moduleApi = inject(ModuleApi);
     return {
       reset: () => {
@@ -35,29 +35,61 @@ export const ModuleApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return moduleApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: ModuleVO | any) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
         }),
       ),
-      findModuleTopics: rxMethod<{moduleId: number | any }>(
+      findCurriculumModules: rxMethod<{curriculumId: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
-          return moduleApi.findModuleTopics(data.moduleId, ).pipe(
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
+          return moduleApi.findCurriculumModules(data.curriculumId, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: ModuleListVO | any) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -65,14 +97,30 @@ export const ModuleApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return moduleApi.getAll().pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: ModuleListVO[] | any[]) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -80,14 +128,30 @@ export const ModuleApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return moduleApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: boolean | any) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -95,14 +159,30 @@ export const ModuleApiStore = signalStore(
       ),
       save: rxMethod<{module: ModuleVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return moduleApi.save(data.module, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: ModuleVO | any) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );
@@ -110,14 +190,30 @@ export const ModuleApiStore = signalStore(
       ),
       search: rxMethod<{criteria: SearchObject<ModuleSearchCriteria> | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return moduleApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: ModuleListVO[] | any[]) => {
+                //patchState(
+                  //store,
+                  // {
+                  //    data,
+                  //    loading: false,
+                  //    error: false,
+                  //    success: true,
+                  //    messages: []
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, {
+                    error,
+                    loading: false,
+                    success: false,
+                    messages: [error?.error ? error.error : error]
+                  }
+                );
               },
             }),
           );

@@ -37,24 +37,24 @@ export const OrganisationApiStore = signalStore(
           return organisationApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data: OrganisationVO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Organisation with id ${data.name} found`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -67,25 +67,25 @@ export const OrganisationApiStore = signalStore(
           patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return organisationApi.getAll().pipe(
             tapResponse({
-              next: (data: OrganisationVO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: OrganisationVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} organisations.`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -99,24 +99,23 @@ export const OrganisationApiStore = signalStore(
           return organisationApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data: boolean | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Organisation with removed`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -130,24 +129,24 @@ export const OrganisationApiStore = signalStore(
           return organisationApi.save(data.organisation, ).pipe(
             tapResponse({
               next: (data: OrganisationVO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Organisation with id ${data.name} saved`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -160,25 +159,25 @@ export const OrganisationApiStore = signalStore(
           patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return organisationApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: OrganisationVO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: OrganisationVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} organisations.`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },

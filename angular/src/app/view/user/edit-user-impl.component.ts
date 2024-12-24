@@ -36,9 +36,14 @@ export class EditUserImplComponent extends EditUserComponent {
 
     constructor() {
         super();
+        this.success = this.userApiStore.success;
+        this.loading = this.userApiStore.loading;
+        this.error = this.userApiStore.error;
+        this.messages = this.userApiStore.messages;
+        this.loaderMessage = this.userApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: EditUserVarsForm): EditUserVarsForm{     
+    override beforeOnInit(form: EditUserVarsForm): EditUserVarsForm{
         return form;
     }
 

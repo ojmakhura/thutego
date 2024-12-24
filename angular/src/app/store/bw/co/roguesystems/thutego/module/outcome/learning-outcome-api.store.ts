@@ -25,7 +25,7 @@ const initialState: AppState<any, any> = {
 export const LearningOutcomeApiStore = signalStore(
   { providedIn: 'root' },
   withState(initialState),
-  withMethods((store) => {
+  withMethods((store: any) => {
     const learningOutcomeApi = inject(LearningOutcomeApi);
     return {
       reset: () => {
@@ -33,14 +33,30 @@ export const LearningOutcomeApiStore = signalStore(
       },
       findById: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.findById(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: LearningOutcomeVO | any) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );
@@ -48,14 +64,30 @@ export const LearningOutcomeApiStore = signalStore(
       ),
       findModuleOutcomes: rxMethod<{moduleId: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.findModuleOutcomes(data.moduleId, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: LearningOutcomeVO[] | any[]) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );
@@ -63,14 +95,30 @@ export const LearningOutcomeApiStore = signalStore(
       ),
       getAll: rxMethod<void>(
         switchMap(() => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.getAll().pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: LearningOutcomeVO[] | any[]) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );
@@ -78,14 +126,30 @@ export const LearningOutcomeApiStore = signalStore(
       ),
       remove: rxMethod<{id: number | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.remove(data.id, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: boolean | any) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );
@@ -93,14 +157,30 @@ export const LearningOutcomeApiStore = signalStore(
       ),
       save: rxMethod<{learningOutcome: LearningOutcomeVO | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.save(data.learningOutcome, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: LearningOutcomeVO | any) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );
@@ -108,14 +188,30 @@ export const LearningOutcomeApiStore = signalStore(
       ),
       search: rxMethod<{criteria: string | any }>(
         switchMap((data: any) => {
-          patchState(store, { loading: true });
+          patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return learningOutcomeApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: any) => {
-                // patchState(store, { data, loading: false, success: true });
+              next: (data: LearningOutcomeVO[] | any[]) => {
+                //patchState(
+                  //store, 
+                  // { 
+                  //    data, 
+                  //    loading: false, 
+                  //    error: false,
+                  //    success: true, 
+                  //    messages: [] 
+                  //}
+                //);
               },
               error: (error: any) => {
-                patchState(store, { error, loading: false, success: false });
+                patchState(
+                  store, { 
+                    error, 
+                    loading: false, 
+                    success: false,
+                    messages: [error?.error ? error.error : error] 
+                  }
+                );
               },
             }),
           );

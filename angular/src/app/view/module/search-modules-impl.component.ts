@@ -36,9 +36,17 @@ export class SearchModulesImplComponent extends SearchModulesComponent {
 
     constructor() {
         super();
+        this.moduleApiStore.reset();
+        this.success = this.moduleApiStore.success;
+        this.loading = this.moduleApiStore.loading;
+        this.error = this.moduleApiStore.error;
+        this.messages = this.moduleApiStore.messages;
+        this.loaderMessage = this.moduleApiStore.loaderMessage;
+        this.modulesTablePaged = true;
+        this.modulesTableSignal = this.moduleApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchModulesVarsForm): SearchModulesVarsForm{     
+    override beforeOnInit(form: SearchModulesVarsForm): SearchModulesVarsForm{
         return form;
     }
 

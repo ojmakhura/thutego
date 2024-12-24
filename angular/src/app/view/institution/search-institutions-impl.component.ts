@@ -34,9 +34,17 @@ export class SearchInstitutionsImplComponent extends SearchInstitutionsComponent
 
     constructor() {
         super();
+        this.institutionApiStore.reset();
+        this.success = this.institutionApiStore.success;
+        this.loading = this.institutionApiStore.loading;
+        this.error = this.institutionApiStore.error;
+        this.messages = this.institutionApiStore.messages;
+        this.loaderMessage = this.institutionApiStore.loaderMessage;
+        this.institutionsTablePaged = true;
+        this.institutionsTableSignal = this.institutionApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchInstitutionsVarsForm): SearchInstitutionsVarsForm{     
+    override beforeOnInit(form: SearchInstitutionsVarsForm): SearchInstitutionsVarsForm{
         return form;
     }
 

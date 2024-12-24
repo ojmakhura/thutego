@@ -1,7 +1,6 @@
 <h2 mat-dialog-title>Edit Fleet Item Template</h2>
 <mat-dialog-content>
     <form>
-        <!-- <app-fleet-item-template-editor #templateEditor [id]="data?.id"></app-fleet-item-template-editor> -->
          <ng-container id="dialogChild" #dialogChild *ngComponentOutlet="data.component; inputs: data.inputs;"></ng-container>
     </form>
 </mat-dialog-content>

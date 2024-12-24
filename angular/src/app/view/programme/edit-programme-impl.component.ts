@@ -36,9 +36,15 @@ export class EditProgrammeImplComponent extends EditProgrammeComponent {
 
     constructor() {
         super();
+        this.programmeApiStore.reset();
+        this.success = this.programmeApiStore.success;
+        this.loading = this.programmeApiStore.loading;
+        this.error = this.programmeApiStore.error;
+        this.messages = this.programmeApiStore.messages;
+        this.loaderMessage = this.programmeApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: EditProgrammeVarsForm): EditProgrammeVarsForm{     
+    override beforeOnInit(form: EditProgrammeVarsForm): EditProgrammeVarsForm{
         return form;
     }
 

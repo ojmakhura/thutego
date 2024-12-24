@@ -32,6 +32,13 @@ export class SearchAccessPointTypesImplComponent extends SearchAccessPointTypesC
 
     constructor() {
         super();
+        this.accessPointTypeApiStore.reset()
+        this.success = this.accessPointTypeApiStore.success;
+        this.loading = this.accessPointTypeApiStore.loading;
+        this.error = this.accessPointTypeApiStore.error;
+        this.messages = this.accessPointTypeApiStore.messages;
+        this.accessPointTypesTablePaged = false;
+        this.accessPointTypesTableSignal = this.accessPointTypeApiStore.dataList;
     }
 
     override beforeOnInit(form: SearchAccessPointTypesVarsForm): SearchAccessPointTypesVarsForm{

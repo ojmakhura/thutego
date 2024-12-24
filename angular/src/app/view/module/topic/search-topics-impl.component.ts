@@ -34,9 +34,17 @@ export class SearchTopicsImplComponent extends SearchTopicsComponent {
 
     constructor() {
         super();
+        this.topicApiStore.reset();
+        this.success = this.topicApiStore.success;
+        this.loading = this.topicApiStore.loading;
+        this.error = this.topicApiStore.error;
+        this.messages = this.topicApiStore.messages;
+        this.loaderMessage = this.topicApiStore.loaderMessage;
+        this.topicsTablePaged = true;
+        this.topicsTableSignal = this.topicApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchTopicsVarsForm): SearchTopicsVarsForm{     
+    override beforeOnInit(form: SearchTopicsVarsForm): SearchTopicsVarsForm{
         return form;
     }
 

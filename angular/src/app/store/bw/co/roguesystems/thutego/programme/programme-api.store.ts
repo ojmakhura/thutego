@@ -37,24 +37,24 @@ export const ProgrammeApiStore = signalStore(
           return programmeApi.findById(data.id, ).pipe(
             tapResponse({
               next: (data: ProgrammeVO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Programme with id ${data.id} found`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -67,25 +67,25 @@ export const ProgrammeApiStore = signalStore(
           patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return programmeApi.getAll().pipe(
             tapResponse({
-              next: (data: ProgrammeVO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: ProgrammeVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} Programmes`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -99,24 +99,24 @@ export const ProgrammeApiStore = signalStore(
           return programmeApi.remove(data.id, ).pipe(
             tapResponse({
               next: (data: boolean | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Programme with removed`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -130,24 +130,24 @@ export const ProgrammeApiStore = signalStore(
           return programmeApi.save(data.programme, ).pipe(
             tapResponse({
               next: (data: ProgrammeVO | any) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+                patchState(
+                  store,
+                  {
+                     data,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Programme with id ${data.id} saved`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },
@@ -160,25 +160,25 @@ export const ProgrammeApiStore = signalStore(
           patchState(store, { loading: true, loaderMessage: 'Loading ...' });
           return programmeApi.search(data.criteria, ).pipe(
             tapResponse({
-              next: (data: ProgrammeVO[] | any[]) => {
-                //patchState(
-                  //store, 
-                  // { 
-                  //    data, 
-                  //    loading: false, 
-                  //    error: false,
-                  //    success: true, 
-                  //    messages: [] 
-                  //}
-                //);
+              next: (dataList: ProgrammeVO[] | any[]) => {
+                patchState(
+                  store,
+                  {
+                    dataList,
+                     loading: false,
+                     error: false,
+                     success: true,
+                     messages: [`Found ${dataList.length} Programmes`]
+                  }
+                );
               },
               error: (error: any) => {
                 patchState(
-                  store, { 
-                    error, 
-                    loading: false, 
+                  store, {
+                    error,
+                    loading: false,
                     success: false,
-                    messages: [error?.error ? error.error : error] 
+                    messages: [error?.error ? error.error : error]
                   }
                 );
               },

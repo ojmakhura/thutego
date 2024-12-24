@@ -33,9 +33,14 @@ export class ChangePasswordImplComponent extends ChangePasswordComponent {
 
     constructor(@Inject(MAT_DIALOG_DATA) data: any) {
         super(data);
+        this.success = this.userApiStore.success;
+        this.loading = this.userApiStore.loading;
+        this.error = this.userApiStore.error;
+        this.messages = this.userApiStore.messages;
+        this.loaderMessage = this.userApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: ChangePasswordVarsForm): ChangePasswordVarsForm{     
+    override beforeOnInit(form: ChangePasswordVarsForm): ChangePasswordVarsForm{
         return form;
     }
 

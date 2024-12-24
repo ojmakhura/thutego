@@ -36,9 +36,15 @@ export class EditLearningOutcomeImplComponent extends EditLearningOutcomeCompone
 
     constructor() {
         super();
+        this.learningOutcomeApiStore.reset();
+        this.success = this.learningOutcomeApiStore.success;
+        this.loading = this.learningOutcomeApiStore.loading;
+        this.error = this.learningOutcomeApiStore.error;
+        this.messages = this.learningOutcomeApiStore.messages;
+        this.loaderMessage = this.learningOutcomeApiStore.loaderMessage;
     }
 
-    override beforeOnInit(form: EditLearningOutcomeVarsForm): EditLearningOutcomeVarsForm{     
+    override beforeOnInit(form: EditLearningOutcomeVarsForm): EditLearningOutcomeVarsForm{
         return form;
     }
 

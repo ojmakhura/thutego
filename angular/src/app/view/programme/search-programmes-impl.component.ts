@@ -34,9 +34,17 @@ export class SearchProgrammesImplComponent extends SearchProgrammesComponent {
 
     constructor() {
         super();
+        this.programmeApiStore.reset();
+        this.success = this.programmeApiStore.success;
+        this.loading = this.programmeApiStore.loading;
+        this.error = this.programmeApiStore.error;
+        this.messages = this.programmeApiStore.messages;
+        this.loaderMessage = this.programmeApiStore.loaderMessage;
+        this.programmesTablePaged = true;
+        this.programmesTableSignal = this.programmeApiStore.dataPage;
     }
 
-    override beforeOnInit(form: SearchProgrammesVarsForm): SearchProgrammesVarsForm{     
+    override beforeOnInit(form: SearchProgrammesVarsForm): SearchProgrammesVarsForm{
         return form;
     }
 
