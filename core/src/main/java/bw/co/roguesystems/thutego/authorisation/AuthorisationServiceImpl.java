@@ -26,21 +26,18 @@ import org.springframework.transaction.annotation.Transactional;
  * @see bw.co.roguesystems.thutego.authorisation.AuthorisationService
  */
 @Service("authorisationService")
-@Transactional(propagation = Propagation.REQUIRED, readOnly=false)
+@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 public class AuthorisationServiceImpl
-    extends AuthorisationServiceBase
-{
+        extends AuthorisationServiceBase {
     public AuthorisationServiceImpl(
-        AuthorisationDao authorisationDao,
-        AuthorisationRepository authorisationRepository,
-        MessageSource messageSource
-    ) {
-        
+            AuthorisationDao authorisationDao,
+            AuthorisationRepository authorisationRepository,
+            MessageSource messageSource) {
+
         super(
-            authorisationDao,
-            authorisationRepository,
-            messageSource
-        );
+                authorisationDao,
+                authorisationRepository,
+                messageSource);
     }
 
     /**
@@ -159,8 +156,14 @@ public class AuthorisationServiceImpl
             Set<String> accessPointTypeCodes)
             throws Exception {
 
-        return this.authorisationDao.toAuthorisationListDTOCollection(this.authorisationRepository.findAccessTypeCodeAuthorisations(roles,
-                accessPointTypeCodes));
+        Collection<AuthorisationListDTO> auths = this.authorisationDao
+                .toAuthorisationListDTOCollection(this.authorisationRepository.findAccessTypeCodeAuthorisations(roles,
+                        accessPointTypeCodes));
+
+        // String hash = roles.hashCode() + "" + accessPointTypeCodes.hashCode();
+        // cacheManagement.put("authorisation", hash, auths);
+
+        return auths;
     }
 
     /**
@@ -170,8 +173,8 @@ public class AuthorisationServiceImpl
     @Override
     protected Collection<AuthorisationListDTO> handleFindByRolesAndUrl(String url, Set<String> roles)
             throws Exception {
-        Collection<Authorisation> auths = this.authorisationRepository.findByRolesAndUrl(url, roles);
-        return authorisationDao.toAuthorisationListDTOCollection(auths);
+        Collection<AuthorisationListDTO> auths = this.authorisationRepository.findByRolesAndUrl(url, roles);
+        return auths;
     }
 
     /**
@@ -234,12 +237,13 @@ public class AuthorisationServiceImpl
             Set<String> accessPointTypeCodes, Integer pageNumber, Integer pageSize)
             throws Exception {
 
-
         Page<Authorisation> authorisations = this.authorisationRepository.findAccessTypeCodeAuthorisations(roles,
                 accessPointTypeCodes, PageRequest.of(pageNumber, pageSize));
 
-        return authorisations == null ? null
+        Page<AuthorisationListDTO> p = authorisations == null ? null
                 : authorisations.map(auth -> authorisationDao.toAuthorisationListDTO(auth));
+
+        return p;
     }
 
     /**
@@ -251,11 +255,8 @@ public class AuthorisationServiceImpl
             Integer pageSize)
             throws Exception {
 
-        Page<Authorisation> authorisations = this.authorisationRepository.findByRolesAndUrl(url, roles,
+        return this.authorisationRepository.findByRolesAndUrl(url, roles,
                 PageRequest.of(pageNumber, pageSize));
-
-        return authorisations == null ? null
-                : authorisations.map(auth -> authorisationDao.toAuthorisationListDTO(auth));
     }
 
 }

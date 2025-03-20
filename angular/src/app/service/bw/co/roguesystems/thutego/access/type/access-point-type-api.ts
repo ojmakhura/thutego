@@ -10,7 +10,7 @@ import { SearchObject } from '@app/model/search-object';
   providedIn: 'root'
 })
 export class AccessPointTypeApi {
-
+    
     protected path = '/access/type';
 
     private http = inject(HttpClient);
@@ -27,12 +27,12 @@ export class AccessPointTypeApi {
 
     public getAllPaged(pageNumber: number | any , pageSize: number | any ): Observable<AccessPointTypeDTO | any> {
 
-        return this.http.get<AccessPointTypeDTO | any>(this.path + `/page/${pageNumber}/size/${pageSize}/page/{pageNumber}/size/{pageSize}`);
+        return this.http.get<AccessPointTypeDTO | any>(this.path + `/page/${pageNumber}/size/${pageSize}`);
     }
 
     public pagedSearch(criteria: SearchObject<string> | any ): Observable<AccessPointTypeDTO | any> {
 
-        return this.http.post<AccessPointTypeDTO | any>(this.path + `/search/paged/search/paged`, criteria);
+        return this.http.post<AccessPointTypeDTO | any>(this.path + `/search/paged`, criteria);
     }
 
     public remove(id: number | any ): Observable<boolean | any> {
@@ -47,7 +47,7 @@ export class AccessPointTypeApi {
 
     public search(criteria: string | any ): Observable<AccessPointTypeDTO[] | any[]> {
 
-        return this.http.get<AccessPointTypeDTO[] | any[]>(this.path + `/search?criteria=${criteria ? criteria : ''}`);
+        return this.http.get<AccessPointTypeDTO[] | any[]>(this.path + `/search?criteria=${criteria}`);
     }
 
 }

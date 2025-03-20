@@ -17,7 +17,7 @@ export class DomainApi {
 
     public findById(id: number | any ): Observable<DomainVO | any> {
 
-        return this.http.get<DomainVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<DomainVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<DomainVO[] | any[]> {
@@ -27,7 +27,7 @@ export class DomainApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(domain: DomainVO | any ): Observable<DomainVO | any> {

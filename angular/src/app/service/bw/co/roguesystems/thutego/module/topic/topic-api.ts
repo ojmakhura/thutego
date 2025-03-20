@@ -17,17 +17,17 @@ export class TopicApi {
 
     public findById(id: number | any ): Observable<TopicVO | any> {
 
-        return this.http.get<TopicVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<TopicVO | any>(this.path + `/${id}`);
     }
 
     public findModuleOutcomeTopics(learningOutcomeId: number | any ): Observable<TopicVO[] | any[]> {
 
-        return this.http.get<TopicVO[] | any[]>(this.path + `/module/outcome/${learningOutcomeId}/module/outcome/{learningOutcomeId}`);
+        return this.http.get<TopicVO[] | any[]>(this.path + `/module/outcome/${learningOutcomeId}`);
     }
 
     public findModuleTopics(moduleId: number | any ): Observable<TopicVO[] | any[]> {
 
-        return this.http.get<TopicVO[] | any[]>(this.path + `/module/${moduleId}/module/{moduleId}`);
+        return this.http.get<TopicVO[] | any[]>(this.path + `/module/${moduleId}`);
     }
 
     public getAll(): Observable<TopicVO[] | any[]> {
@@ -37,7 +37,7 @@ export class TopicApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(topic: TopicVO | any ): Observable<TopicVO | any> {

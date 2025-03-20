@@ -17,7 +17,7 @@ export class OrganisationApi {
 
     public findById(id: number | any ): Observable<OrganisationVO | any> {
 
-        return this.http.get<OrganisationVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<OrganisationVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<OrganisationVO[] | any[]> {
@@ -27,7 +27,7 @@ export class OrganisationApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(organisation: OrganisationVO | any ): Observable<OrganisationVO | any> {

@@ -62,7 +62,7 @@ export class UserApi {
 
     public updateUserName(userId: string | any , username: string | any ): Observable<boolean | any> {
 
-        return this.http.patch<boolean | any>(this.path + `/${userId}{userId}?username=${username}`, {userId: userId, username: username});
+        return this.http.patch<boolean | any>(this.path + `/${userId}?username=${username}`, {userId: userId, username: username});
     }
 
 }

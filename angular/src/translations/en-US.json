@@ -89,7 +89,6 @@
   ".reset.message": "Reset",
   "access.point": "Access Point",
   "access.point.documentation": "TODO: Model Documentation for access.accessPoint",
-  "access.point.icon": "Access Point Icon",
   "access.point.id": "Access Point Id",
   "access.point.name": "Access Point Name",
   "access.point.required": "Access Point is required.",

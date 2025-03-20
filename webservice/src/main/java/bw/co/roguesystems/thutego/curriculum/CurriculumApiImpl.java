@@ -138,6 +138,7 @@ public class CurriculumApiImpl extends CurriculumApiBase {
     @Override
     public ResponseEntity<?> handleSearch(SearchObject<CurriculumSearchCriteria> criteria) {
         try {
+
             Optional<?> data = Optional.of(curriculumService.search(criteria.getCriteria(), Set.copyOf(criteria.getSortings()))); // TODO: Add custom code here;
             ResponseEntity<?> response;
 

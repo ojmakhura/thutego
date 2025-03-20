@@ -5,6 +5,7 @@
 //
 package bw.co.roguesystems.thutego.organisation;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class OrganisationApiImpl extends OrganisationApiBase {
     @Override
     public ResponseEntity<?> handleFindById(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(organisationService.findById(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -46,8 +47,9 @@ public class OrganisationApiImpl extends OrganisationApiBase {
 
     @Override
     public ResponseEntity<?> handleGetAll() {
+        System.out.println("============================================");
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(organisationService.getAll()); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -66,7 +68,7 @@ public class OrganisationApiImpl extends OrganisationApiBase {
     @Override
     public ResponseEntity<?> handleRemove(Long id) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(organisationService.remove(id)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -85,7 +87,15 @@ public class OrganisationApiImpl extends OrganisationApiBase {
     @Override
     public ResponseEntity<?> handleSave(OrganisationVO organisation) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            if(organisation.getId() == null) {
+                organisation.setCreatedAt(LocalDateTime.now());
+                organisation.setCreatedBy("SYSTEM");
+            } else {
+                organisation.setModifiedAt(LocalDateTime.now());
+                organisation.setModifiedBy("SYSTEM");
+            }
+
+            Optional<?> data = Optional.of(organisationService.save(organisation)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {
@@ -104,7 +114,7 @@ public class OrganisationApiImpl extends OrganisationApiBase {
     @Override
     public ResponseEntity<?> handleSearch(String criteria) {
         try {
-            Optional<?> data = Optional.empty(); // TODO: Add custom code here;
+            Optional<?> data = Optional.of(organisationService.search(criteria, null)); // TODO: Add custom code here;
             ResponseEntity<?> response;
 
             if(data.isPresent()) {

@@ -17,12 +17,12 @@ export class LearningOutcomeApi {
 
     public findById(id: number | any ): Observable<LearningOutcomeVO | any> {
 
-        return this.http.get<LearningOutcomeVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<LearningOutcomeVO | any>(this.path + `/${id}`);
     }
 
     public findModuleOutcomes(moduleId: number | any ): Observable<LearningOutcomeVO[] | any[]> {
 
-        return this.http.get<LearningOutcomeVO[] | any[]>(this.path + `/module/${moduleId}/module/{moduleId}`);
+        return this.http.get<LearningOutcomeVO[] | any[]>(this.path + `/module/${moduleId}`);
     }
 
     public getAll(): Observable<LearningOutcomeVO[] | any[]> {
@@ -32,7 +32,7 @@ export class LearningOutcomeApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(learningOutcome: LearningOutcomeVO | any ): Observable<LearningOutcomeVO | any> {

@@ -17,7 +17,7 @@ export class LearningFieldApi {
 
     public findById(id: number | any ): Observable<LearningFieldVO | any> {
 
-        return this.http.get<LearningFieldVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<LearningFieldVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<LearningFieldVO[] | any[]> {
@@ -27,7 +27,7 @@ export class LearningFieldApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(field: LearningFieldVO | any ): Observable<LearningFieldVO | any> {

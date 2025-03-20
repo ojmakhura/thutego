@@ -9,46 +9,38 @@ import { SearchObject } from '@app/model/search-object';
 import { CurriculumSearchCriteria } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-search-criteria';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CurriculumApi {
+  protected path = '/curriculum';
 
-    protected path = '/curriculum';
+  private http = inject(HttpClient);
 
-    private http = inject(HttpClient);
+  public findById(id: number | any): Observable<CurriculumVO | any> {
+    return this.http.get<CurriculumVO | any>(this.path + `/${id}`);
+  }
 
-    public findById(id: number | any ): Observable<CurriculumVO | any> {
+  public getAll(): Observable<CurriculumListVO[] | any[]> {
+    return this.http.get<CurriculumListVO[] | any[]>(this.path);
+  }
 
-        return this.http.get<CurriculumVO | any>(this.path + `/${id}/{id}`);
-    }
+  public getAllPaged(pageNumber: number | any, pageSize: number | any): Observable<Page<CurriculumListVO> | any> {
+    return this.http.get<Page<CurriculumListVO> | any>(this.path + `/page/${pageNumber}/size/${pageSize}`);
+  }
 
-    public getAll(): Observable<CurriculumListVO[] | any[]> {
+  public remove(id: number | any): Observable<boolean | any> {
+    return this.http.delete<boolean | any>(this.path + `/${id}`);
+  }
 
-        return this.http.get<CurriculumListVO[] | any[]>(this.path);
-    }
+  public save(curriculum: CurriculumVO | any): Observable<CurriculumVO | any> {
+    return this.http.post<CurriculumVO | any>(this.path, curriculum);
+  }
 
-    public getAllPaged(pageNumber: number | any , pageSize: number | any ): Observable<Page<CurriculumListVO> | any> {
+  public search(criteria: SearchObject<CurriculumSearchCriteria> | any): Observable<CurriculumListVO[] | any[]> {
+    return this.http.post<CurriculumListVO[] | any[]>(this.path + `/search`, criteria);
+  }
 
-        return this.http.get<Page<CurriculumListVO> | any>(this.path + `/page/${pageNumber}/size/${pageSize}/page/{pageNumber}/size/{pageSize}`);
-    }
-
-    public remove(id: number | any ): Observable<boolean | any> {
-
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
-    }
-
-    public save(curriculum: CurriculumVO | any ): Observable<CurriculumVO | any> {
-
-        return this.http.post<CurriculumVO | any>(this.path, curriculum);
-    }
-
-    public search(criteria: SearchObject<CurriculumSearchCriteria> | any ): Observable<CurriculumListVO[] | any[]> {
-
-        return this.http.post<CurriculumListVO[] | any[]>(this.path + `/search`, criteria);
-    }
-
-    public searchPaged(criteria: SearchObject<CurriculumSearchCriteria> | any ): Observable<Page<CurriculumListVO> | any> {
-
-        return this.http.post<Page<CurriculumListVO> | any>(this.path + `/search/paged`, criteria);
-    }
+  public searchPaged(criteria: SearchObject<CurriculumSearchCriteria> | any): Observable<Page<CurriculumListVO> | any> {
+    return this.http.post<Page<CurriculumListVO> | any>(this.path + `/search/paged`, criteria);
+  }
 }

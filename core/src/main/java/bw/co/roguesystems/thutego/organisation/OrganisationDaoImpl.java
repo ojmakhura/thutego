@@ -57,10 +57,6 @@ public class OrganisationDaoImpl
      */
     private Organisation loadOrganisationFromOrganisationVO(OrganisationVO organisationVO)
     {
-        // TODO implement loadOrganisationFromOrganisationVO
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.loadOrganisationFromOrganisationVO(OrganisationVO) not yet implemented.");
-
-        /* A typical implementation looks like this:
         if (organisationVO.getId() == null)
         {
             return  Organisation.Factory.newInstance();
@@ -69,7 +65,6 @@ public class OrganisationDaoImpl
         {
             return this.load(organisationVO.getId());
         }
-        */
     }
 
     /**

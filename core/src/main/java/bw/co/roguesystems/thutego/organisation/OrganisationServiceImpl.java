@@ -11,7 +11,10 @@ package bw.co.roguesystems.thutego.organisation;
 import bw.co.roguesystems.thutego.PropertySearchOrder;
 import java.util.Collection;
 import java.util.Set;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.MessageSource;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,8 +47,8 @@ public class OrganisationServiceImpl
     protected OrganisationVO handleFindById(Long id)
         throws Exception
     {
-        // TODO implement protected  OrganisationVO handleFindById(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.OrganisationService.handleFindById(Long id) Not implemented!");
+
+        return organisationDao.toOrganisationVO(organisationRepository.findById(id).orElse(null));
     }
 
     /**
@@ -55,8 +58,8 @@ public class OrganisationServiceImpl
     protected Collection<OrganisationVO> handleGetAll()
         throws Exception
     {
-        // TODO implement protected  Collection<OrganisationVO> handleGetAll()
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.OrganisationService.handleGetAll() Not implemented!");
+
+        return organisationDao.toOrganisationVOCollection(organisationRepository.findAll());
     }
 
     /**
@@ -66,8 +69,9 @@ public class OrganisationServiceImpl
     protected boolean handleRemove(Long id)
         throws Exception
     {
-        // TODO implement protected  boolean handleRemove(Long id)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.OrganisationService.handleRemove(Long id) Not implemented!");
+
+        organisationRepository.deleteById(id);
+        return true;
     }
 
     /**
@@ -77,8 +81,10 @@ public class OrganisationServiceImpl
     protected OrganisationVO handleSave(OrganisationVO organisation)
         throws Exception
     {
-        // TODO implement protected  OrganisationVO handleSave(OrganisationVO organisation)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.OrganisationService.handleSave(OrganisationVO organisation) Not implemented!");
+
+        Organisation entity = organisationDao.organisationVOToEntity(organisation);
+        entity = organisationRepository.save(entity);
+        return organisationDao.toOrganisationVO(entity);
     }
 
     /**
@@ -88,8 +94,18 @@ public class OrganisationServiceImpl
     protected Collection<OrganisationVO> handleSearch(String criteria, Set<PropertySearchOrder> orderings)
         throws Exception
     {
-        // TODO implement protected  Collection<OrganisationVO> handleSearch(String criteria, Set<PropertySearchOrder> orderings)
-        throw new UnsupportedOperationException("bw.co.roguesystems.thutego.organisation.OrganisationService.handleSearch(String criteria, Set<PropertySearchOrder> orderings) Not implemented!");
+
+        Specification<Organisation> spec = null;
+
+        if(StringUtils.isNotBlank(criteria)) {
+
+            spec = (root, query, cb) -> cb.or(
+                cb.like(cb.lower(root.get("code")), "%" + criteria.toLowerCase() + "%"),
+                cb.like(cb.lower(root.get("name")), "%" + criteria.toLowerCase() + "%")
+            );
+        }
+
+        return organisationDao.toOrganisationVOCollection(organisationRepository.findAll(spec));
     }
 
 }

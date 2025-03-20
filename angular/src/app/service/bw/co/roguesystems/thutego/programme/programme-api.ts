@@ -17,7 +17,7 @@ export class ProgrammeApi {
 
     public findById(id: number | any ): Observable<ProgrammeVO | any> {
 
-        return this.http.get<ProgrammeVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<ProgrammeVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<ProgrammeVO[] | any[]> {
@@ -27,7 +27,7 @@ export class ProgrammeApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(programme: ProgrammeVO | any ): Observable<ProgrammeVO | any> {

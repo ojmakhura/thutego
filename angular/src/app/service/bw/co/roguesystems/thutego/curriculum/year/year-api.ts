@@ -17,7 +17,7 @@ export class YearApi {
 
     public findById(id: number | any ): Observable<YearVO | any> {
 
-        return this.http.get<YearVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<YearVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<YearVO[] | any[]> {
@@ -27,7 +27,7 @@ export class YearApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(year: YearVO | any ): Observable<YearVO | any> {

@@ -17,7 +17,7 @@ export class CurriculumLevelApi {
 
     public findById(id: number | any ): Observable<CurriculumLevelVO | any> {
 
-        return this.http.get<CurriculumLevelVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<CurriculumLevelVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<CurriculumLevelVO[] | any[]> {
@@ -27,7 +27,7 @@ export class CurriculumLevelApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(curriculumLevel: CurriculumLevelVO | any ): Observable<CurriculumLevelVO | any> {

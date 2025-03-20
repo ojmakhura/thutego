@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "@shared/loader/loader.component";
+import { LoaderComponent } from '@shared/loader/loader.component';
 import { OrganisationEditorImplComponent } from '@app/components/organisation/organisation-editor-impl.component';
 import { OrganisationDetailsImplComponent } from '@app/components/organisation/organisation-details-impl.component';
 
@@ -33,15 +33,33 @@ import { OrganisationDetailsImplComponent } from '@app/components/organisation/o
   ],
 })
 export class EditOrganisationImplComponent extends EditOrganisationComponent {
+  constructor() {
+    super();
+    this.organisationApiStore.reset();
+    this.success = this.organisationApiStore.success;
+    this.error = this.organisationApiStore.error;
+    this.loading = this.organisationApiStore.loading;
+    this.messages = this.organisationApiStore.messages;
+  }
 
-    constructor() {
-        super();
-    }
+  override beforeOnInit(form: EditOrganisationVarsForm): EditOrganisationVarsForm {
+    return form;
+  }
 
-    override beforeOnInit(form: EditOrganisationVarsForm): EditOrganisationVarsForm{     
-        return form;
-    }
+  doNgOnDestroy(): void {}
 
-    doNgOnDestroy(): void {
+  override beforeEditOrganisationSave(form: any): void {
+    let organisation = this.organisationEditor.formGroupControl.value;
+    this.organisationApiStore.save({ organisation });
+  }
+
+  override doNgAfterViewInit(): void {
+    this.editOrganisationForm = this.organisationEditor.formGroupControl;
+  }
+
+  override beforeEditOrganisationDelete(form: any): void {
+    if (confirm('Are you sure you want to delete this organisation?. This action cannot be undone.')) {
+      this.organisationApiStore.remove({ id: this.organisationEditor.formGroupControl.value.id });
     }
+  }
 }

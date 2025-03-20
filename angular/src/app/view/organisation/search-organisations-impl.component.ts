@@ -10,8 +10,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
 import { CsvModule } from '@ctrl/ngx-csv';
 import { TableComponent } from '@app/components/table/table.component';
-import { LoaderComponent } from "@shared/loader/loader.component";
+import { LoaderComponent } from '@shared/loader/loader.component';
 import { OrganisationEditorImplComponent } from '@app/components/organisation/organisation-editor-impl.component';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-search-organisations',
@@ -31,15 +32,56 @@ import { OrganisationEditorImplComponent } from '@app/components/organisation/or
   ],
 })
 export class SearchOrganisationsImplComponent extends SearchOrganisationsComponent {
+  constructor() {
+    super();
 
-    constructor() {
-        super();
-    }
+    this.organisationApiStore.reset();
+    this.success = this.organisationApiStore.success;
+    this.loading = this.organisationApiStore.loading;
+    this.error = this.organisationApiStore.error;
+    this.messages = this.organisationApiStore.messages;
+    this.loaderMessage = this.organisationApiStore.loaderMessage;
+    this.organisationsTablePaged = false;
+    this.organisationsTableSignal = this.organisationApiStore.dataList;
+  }
 
-    override beforeOnInit(form: SearchOrganisationsVarsForm): SearchOrganisationsVarsForm{     
-        return form;
-    }
+  override beforeOnInit(form: SearchOrganisationsVarsForm): SearchOrganisationsVarsForm {
+    return form;
+  }
 
-    doNgOnDestroy(): void {
-    }
+  doNgOnDestroy(): void {}
+
+
+  override doNgAfterViewInit(): void {
+    this.organisationsTable?.tablePaginator?.page?.subscribe({
+      next: (paginator: MatPaginator) => {
+        this.doSearch();
+      },
+    });
+  }
+
+  override beforeSearchOrganisationsSearch(form: any): void {
+    form.criteria = {};
+
+    this.doSearch();
+  }
+
+  private doSearch(): void {
+
+    let criteria = this.criteriaControl.value;
+
+    this.organisationApiStore.search({criteria: criteria ? criteria : ''});
+
+    // this.organisationApiStore.search
+    // let criteria = new SearchObject<string>();
+    // criteria.criteria = {
+    //   code: this.codeControl.value,
+    //   name: this.nameControl.value,
+    //   status: this.statusControl.value,
+    // };
+    // criteria.pageNumber = pageNumber;
+    // criteria.pageSize = pageSize;
+
+    // this.organisationApiStore.pagedSearch({ criteria: criteria });
+  }
 }

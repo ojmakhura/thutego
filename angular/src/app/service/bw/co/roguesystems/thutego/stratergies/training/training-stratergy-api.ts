@@ -17,7 +17,7 @@ export class TrainingStratergyApi {
 
     public findById(id: number | any ): Observable<TrainingStrategyVO | any> {
 
-        return this.http.get<TrainingStrategyVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<TrainingStrategyVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<TrainingStrategyVO[] | any[]> {
@@ -27,7 +27,7 @@ export class TrainingStratergyApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(trainingStratergy: TrainingStrategyVO | any ): Observable<TrainingStrategyVO | any> {

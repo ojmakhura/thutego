@@ -17,7 +17,7 @@ export class ExitLevelOutcomeApi {
 
     public findById(id: number | any ): Observable<ExitLevelOutcomeVO | any> {
 
-        return this.http.get<ExitLevelOutcomeVO | any>(this.path + `/${id}/{id}`);
+        return this.http.get<ExitLevelOutcomeVO | any>(this.path + `/${id}`);
     }
 
     public getAll(): Observable<ExitLevelOutcomeVO[] | any[]> {
@@ -27,7 +27,7 @@ export class ExitLevelOutcomeApi {
 
     public remove(id: number | any ): Observable<boolean | any> {
 
-        return this.http.delete<boolean | any>(this.path + `/${id}/{id}`);
+        return this.http.delete<boolean | any>(this.path + `/${id}`);
     }
 
     public save(exitLevelOutcome: ExitLevelOutcomeVO | any ): Observable<ExitLevelOutcomeVO | any> {
