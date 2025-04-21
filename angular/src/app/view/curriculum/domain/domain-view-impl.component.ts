@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { LoaderComponent } from "@shared/loader/loader.component";
 import { DomainDetailsImplComponent } from '@app/components/curriculum/domain/domain-details-impl.component';
@@ -25,7 +25,7 @@ import { DomainEditorImplComponent } from '@app/components/curriculum/domain/dom
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     LoaderComponent,
     DomainDetailsImplComponent,
@@ -38,7 +38,7 @@ export class DomainViewImplComponent extends DomainViewComponent {
         super();
     }
 
-    override beforeOnInit(form: DomainViewVarsForm): DomainViewVarsForm{     
+    override beforeOnInit(form: DomainViewVarsForm): DomainViewVarsForm{
         return form;
     }
 

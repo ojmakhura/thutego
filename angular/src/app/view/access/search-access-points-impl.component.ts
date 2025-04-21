@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { AccessPointSearchImplComponent } from '@app/components/access/access-point-search-impl.component';
 import { LoaderComponent } from '@app/@shared';
@@ -27,7 +27,7 @@ import { MatPaginator } from '@angular/material/paginator';
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     AccessPointSearchImplComponent,
     LoaderComponent

@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/level/curriculum-level-vo';
 import { ExitLevelOutcomeVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/outcome/exit-level-outcome-vo';
 import { CurriculumListVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-list-vo';
@@ -39,7 +39,7 @@ import { TableComponent } from '@app/components/table/table.component';
   templateUrl: './curriculum-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule,  TableComponent],
 })
 export class CurriculumDetailsImplComponent extends CurriculumDetailsComponent {
   constructor() {

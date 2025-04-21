@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { LoaderComponent } from "@shared/loader/loader.component";
 import { LeaningOutcomeDetailsImplComponent } from '@app/components/module/outcome/learning-outcome-details-impl.component';
@@ -25,7 +25,7 @@ import { LearningOutcomeEditorImplComponent } from '@app/components/module/outco
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     LoaderComponent,
     LeaningOutcomeDetailsImplComponent,

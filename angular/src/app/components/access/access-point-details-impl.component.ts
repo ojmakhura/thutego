@@ -21,7 +21,7 @@ import { firstValueFrom, Observable, map, of, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { AccessPointTypeDTO } from '@app/model/bw/co/bitri/cfpso/access/type/access-point-type-dto';
 import { SearchObject } from '@app/model/search-object';
 import { AccessPointDetailsComponent } from './access-point-details.component';
@@ -32,7 +32,7 @@ import { TableComponent } from '@app/components/table/table.component';
   templateUrl: './access-point-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, MaterialModule,  TableComponent],
 })
 export class AccessPointDetailsImplComponent extends AccessPointDetailsComponent {
   constructor() {

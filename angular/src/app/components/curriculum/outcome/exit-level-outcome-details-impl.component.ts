@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { SearchObject } from '@app/model/search-object';
 import { ExitLevelOutcomeDetailsComponent } from './exit-level-outcome-details.component';
 import { TableComponent } from '@app/components/table/table.component';
@@ -35,7 +35,7 @@ import { TableComponent } from '@app/components/table/table.component';
   templateUrl: './exit-level-outcome-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule,  TableComponent],
 })
 export class ExitLevelOutcomeDetailsImplComponent extends ExitLevelOutcomeDetailsComponent {
   constructor() {

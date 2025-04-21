@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { LoaderComponent } from "@shared/loader/loader.component";
 import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/level/curriculum-level-editor-impl.component';
@@ -25,7 +25,7 @@ import { CurriculumLevelDetailsImplComponent } from '@app/components/curriculum/
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     LoaderComponent,
     CurriculumLevelEditorImplComponent,
@@ -38,7 +38,7 @@ export class EditCurriculumLevelImplComponent extends EditCurriculumLevelCompone
         super();
     }
 
-    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{     
+    override beforeOnInit(form: EditCurriculumLevelVarsForm): EditCurriculumLevelVarsForm{
         return form;
     }
 

@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { CurriculumLevelVO } from '@app/model/bw/co/roguesystems/thutego/curriculum/level/curriculum-level-vo';
 import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
@@ -41,7 +41,7 @@ import { LearningFieldApiStore } from '@app/store/bw/co/roguesystems/thutego/cur
   templateUrl: './curriculum-editor.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule,  TableComponent],
   providers: [
     CurriculumLevelApiStore,
     DomainApiStore
@@ -98,9 +98,9 @@ export class CurriculumEditorImplComponent extends CurriculumEditorComponent {
 
     });
 
-    if(this.id) {
+    if(this.curriculumEditorForm.id) {
       this.loadingCurriculum = true;
-      this.curriculumStore.findById({id: this.id});
+      this.curriculumStore.findById({id: this.curriculumEditorForm.id});
     }
   }
 

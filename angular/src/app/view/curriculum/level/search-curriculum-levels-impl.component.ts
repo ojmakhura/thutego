@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { LoaderComponent } from "@shared/loader/loader.component";
 import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/level/curriculum-level-editor-impl.component';
@@ -24,7 +24,7 @@ import { CurriculumLevelEditorImplComponent } from '@app/components/curriculum/l
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     LoaderComponent,
     CurriculumLevelEditorImplComponent,
@@ -36,7 +36,7 @@ export class SearchCurriculumLevelsImplComponent extends SearchCurriculumLevelsC
         super();
     }
 
-    override beforeOnInit(form: SearchCurriculumLevelsVarsForm): SearchCurriculumLevelsVarsForm{     
+    override beforeOnInit(form: SearchCurriculumLevelsVarsForm): SearchCurriculumLevelsVarsForm{
         return form;
     }
 

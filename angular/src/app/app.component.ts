@@ -13,7 +13,7 @@ import { environment } from '@env/environment';
 import { MaterialModule } from './material.module';
 import { ShellComponent } from './shell/shell.component';
 import { I18nService } from './i18n/i18n.service';
-import { Logger, UntilDestroy, untilDestroyed } from './@shared';
+import { Logger } from './@shared';
 import { HttpClient } from '@angular/common/http';
 import { AppEnvStore } from './store/app-env.state';
 import { KeycloakService } from 'keycloak-angular';
@@ -24,7 +24,6 @@ import { AuthorisationApiStore } from './store/bw/co/roguesystems/thutego/author
 
 const log = new Logger('App');
 
-@UntilDestroy()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -94,9 +93,8 @@ export class AppComponent implements OnInit, OnDestroy {
         }),
         filter((route) => route.outlet === 'primary'),
         switchMap((route) => route.data),
-        untilDestroyed(this),
       )
-      .subscribe((event) => {
+      .subscribe((event: any) => {
         const title = event['title'];
         if (title) {
           this.titleService.setTitle(this.translateService.instant(title));

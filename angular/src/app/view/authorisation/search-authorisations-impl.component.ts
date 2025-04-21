@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { TableComponent } from '@app/components/table/table.component';
 import { AuthorisationSearchImplComponent } from '@app/components/authorisation/authorisation-search-impl.component';
 import { KeycloakService } from 'keycloak-angular';
@@ -32,7 +32,7 @@ import { LoaderComponent } from '@app/@shared';
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
     AuthorisationSearchImplComponent,
     LoaderComponent

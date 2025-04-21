@@ -30,7 +30,7 @@ import { firstValueFrom, Observable, map, of, startWith } from "rxjs";
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { AccessPointTypeDTO } from '@app/model/bw/co/roguesystems/thutego/access/type/access-point-type-dto';
 import { SearchObject } from '@app/model/search-object';
 import { AccessPointSearchComponent } from './access-point-search.component';
@@ -48,7 +48,7 @@ import { AccessPointTypeApiStore } from "@app/store/bw/co/roguesystems/thutego/a
     ReactiveFormsModule,
     TranslateModule,
     MaterialModule,
-    CsvModule,
+
     TableComponent,
   ]
 })

@@ -25,7 +25,7 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { SharedModule } from '@app/@shared';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { CurriculumStatus } from '@app/model/bw/co/roguesystems/thutego/curriculum/curriculum-status';
 import { SearchObject } from '@app/model/search-object';
 import { CurriculumSearchComponent } from './curriculum-search.component';
@@ -36,7 +36,7 @@ import { TableComponent } from '@app/components/table/table.component';
   templateUrl: './curriculum-search.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, SharedModule, MaterialModule,  TableComponent],
 })
 export class CurriculumSearchImplComponent extends CurriculumSearchComponent {
   constructor() {

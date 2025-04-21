@@ -21,7 +21,7 @@ import { firstValueFrom, Observable, map, of, startWith } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { MaterialModule } from '@app/material.module';
-import { CsvModule } from '@ctrl/ngx-csv';
+
 import { AccessPointListDTO } from '@app/model/bw/co/bitri/cfpso/access/access-point-list-dto';
 import { SearchObject } from '@app/model/search-object';
 import { AuthorisationDetailsComponent } from './authorisation-details.component';
@@ -33,7 +33,7 @@ import { AppEnvStore } from '@app/store/app-env.state';
   templateUrl: './authorisation-details.component.html',
   styleUrls: [],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, MaterialModule, CsvModule, TableComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, TranslateModule, MaterialModule,  TableComponent],
 })
 export class AuthorisationDetailsImplComponent extends AuthorisationDetailsComponent {
   readonly appStore = inject(AppEnvStore);

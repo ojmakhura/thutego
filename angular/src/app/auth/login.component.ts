@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angula
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { LoaderComponent, Logger, UntilDestroy, untilDestroyed } from '@shared';
+import { LoaderComponent, Logger, untilDestroyed } from '@shared';
 import { AuthenticationService } from './authentication.service';
 import { MaterialModule } from '@app/material.module';
 import { TranslateModule } from '@ngx-translate/core';
@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
 
 const log = new Logger('Login');
 
-@UntilDestroy()
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
